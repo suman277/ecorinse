@@ -1,0 +1,380 @@
+.hero {
+  position: relative;
+  height: calc(100vh - 84px);
+  overflow: hidden;
+}
+
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.heroContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.heroContent p {
+  font-size: 1.1rem;
+}
+
+.introductionSection {
+  background-color: #dce3ec;
+  display: flex;
+  padding: 5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.imageProp {
+  height: 30rem;
+  border-radius: 1rem;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.brand {
+  color: green;
+  text-decoration: underline;
+  font-style: normal;
+}
+
+.introHeader {
+  font-size: 4rem;
+  font-style: italic;
+}
+
+.subIntro {
+  font-size: 2rem;
+}
+
+.introDetail {
+  width: 35rem;
+  text-wrap: wrap;
+}
+
+.serviceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: linear-gradient(to bottom, #f4f7fa, #e9eef4);
+  padding-block: 6rem;
+  align-items: center;
+}
+
+.headerText {
+  font-size: 4rem;
+}
+
+.bar {
+  background-color: #337dcb;
+  width: 14rem;
+  padding: 0.3rem;
+  border-radius: 1rem;
+}
+
+.paraTag {
+  color: gray;
+  font-size: larger;
+}
+
+.InfoGraphicContainer {
+  display: flex;
+  margin-top: 3rem;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.imgBackground {
+  height: 20rem;
+  border-radius: 1rem;
+  border: solid 2px lightblue;
+}
+
+.detailBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+  padding: 1rem;
+}
+
+.detailsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detailIcon {
+  background-color: #337dcb;
+  height: fit-content;
+  width: fit-content;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statsSection {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: #f8fafc;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-bottom: #337dcb solid 10px;
+}
+
+.statDetailWrapper {
+  display: flex;
+  padding: 1rem;
+  min-width: 16rem;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  border-top: #337dcb 5px solid;
+}
+
+.heading {
+  font-size: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+}
+
+.processSection {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+  background-color: #fcfcfd;
+}
+
+.processDetailWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.processHeader {
+  font-size: 3rem;
+}
+
+.processIcon {
+  height: 5rem;
+  width: 5rem;
+  background-color: #337dcb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.processWrapper {
+  max-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 1rem;
+  border: #e2e8f0 solid 1px;
+  border-radius: 1rem;
+  border-bottom: #337dcb solid 5px;
+}
+
+.processHeading {
+  font-size: 2rem;
+}
+
+.mottoSection {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.mottoSection::before {
+  position: absolute;
+  inset: 0;
+  background: url("../../assets/images/homepage/MottoBackground.jpg");
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(8px);
+  transform: scale(1.5);
+  z-index: -1;
+}
+
+.mottoContainer {
+  width: 100%;
+  display: flex;
+  z-index: 2;
+  justify-content: space-evenly;
+  gap: 3rem;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.Icon {
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #46525c;
+}
+
+.paraContainer {
+  font-size: 4rem;
+}
+
+.textContainer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 30rem;
+}
+
+.highLight {
+  color: yellow;
+}
+
+.rightContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divContainer {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mottoWrapper {
+  display: flex;
+  width: 100%;
+  background-color: #46525c;
+  color: white;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 1rem;
+}
+
+.mottoImageWrapper {
+  background-color: #04143f;
+  border-radius: 1rem;
+  display: flex;
+  height: 20rem;
+  width: 20rem;
+  overflow: hidden;
+}
+
+.resizeImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.chooseUsSection {
+  padding: 3rem;
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  border-bottom: #337dcb 5px solid;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.headerText {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.chooseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #337dcb 3px solid;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+}
+
+.chooseBar {
+  height: 0.3rem;
+  width: 2rem;
+  background-color: #337dcb;
+}
+
+.chooseHeading {
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  gap: 1rem;
+}
+
+.chooseDetail {
+  font-size: large;
+}
+
+.chooseWrapper {
+  display: flex;
+  width: 10rem;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.howItWorks{
+  background-color: #0B1B2B;
+}

@@ -1,0 +1,61 @@
+.serviceSubContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  background-color: #2864ae;
+  padding: 2rem;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+.serviceBar {
+  width: 4rem;
+  height: 0.1rem;
+  background-color: #2864ae;
+}
+
+.servicesContainer {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100vw;
+}
+
+.serviceHeader {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imageContainer img {
+  width: 20rem;
+}
+
+.serviceCard {
+  background-color: white;
+  width: 20rem;
+  margin: 0 auto;
+  border-radius: 1rem solid white;
+  border-radius: 1rem;
+}
+
+.details{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    text-align: center;
+}
+
+.heading{
+    font-weight: bolder;
+}
+
+.subHeading{
+  color: #2864ae;
+}

@@ -1,0 +1,59 @@
+.processSection {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+  background-color: inherit;
+}
+
+.includeBorderRadius{
+  border-radius: 2rem;
+}
+
+.processHeader {
+  font-size: 3rem;
+}
+
+.processDetailWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.processWrapper {
+  max-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 1.3rem;
+  border: #e2e8f0 solid 1px;
+  border-radius: 1rem;
+}
+
+.processIcon {
+  height: 5rem;
+  width: 5rem;
+  background-color: #337dcb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.processHeading {
+  font-size: 1.5rem;
+}
+
+.borderBottom {
+  border-radius: 1rem;
+  border-bottom: #337dcb solid 5px;
+}
+
+.borderTop {
+  border-radius: 1rem;
+  border-top: #337dcb solid 5px;
+}

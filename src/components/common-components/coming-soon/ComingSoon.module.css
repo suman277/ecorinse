@@ -1,0 +1,32 @@
+.subContainer::before {
+  background: url("../../../assets/images/background/EcoRinseSquare.jpeg");
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  background-position: center;
+  inset: 0;
+  background-size: cover;
+  filter: blur(25px);
+  z-index: -1;
+}
+
+.subContainer {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.socialIcons{
+    display: flex;
+}

@@ -1,0 +1,94 @@
+.laundryProcess {
+  background-color: black;
+  border-radius: 2rem;
+}
+
+.serviceExcel {
+  background-color: black;
+  color: white;
+  padding: 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceDetailWrapper {
+  padding: 2rem;
+  display: flex;
+  border-radius: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 15rem;
+  max-height: 10rem;
+  color: #46a6ff;
+  align-items: center;
+  background-color: white;
+}
+
+.heading {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.detail {
+  color: gray;
+  text-align: center;
+  font-size: small;
+}
+
+.serviceHeader {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.serviceWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* serviceCategories */
+.serviceCategories {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  background-color: #f8fafc;
+}
+
+.serviceCategoryWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.categoryHeading {
+  font-size: larger;
+  text-align: center;
+}
+
+.categoryWrapper {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-bottom: #46a6ff solid 5px;
+    min-width: 15rem
+}
+
+.detailCheck{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.categoryService{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

@@ -22,10 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-src
-public
-eslint*
-index*
-package*
 vite*
 RE*
