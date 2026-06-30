@@ -7,7 +7,7 @@
   background-color: inherit;
 }
 
-.includeBorderRadius{
+.includeBorderRadius {
   border-radius: 2rem;
 }
 
@@ -56,4 +56,16 @@
 .borderTop {
   border-radius: 1rem;
   border-top: #337dcb solid 5px;
+}
+
+@media (max-width: 768px) {
+  .processHeader {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .processDetailWrapper{
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 }

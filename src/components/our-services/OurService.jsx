@@ -79,7 +79,7 @@ const OurService = () => {
         </div>
       </div>
       <div className={style.laundryDetails}>
-        <LaundryDetails/>
+        <LaundryDetails />
       </div>
     </>
   );

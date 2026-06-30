@@ -42,20 +42,37 @@
   border-radius: 1rem;
 }
 
-.details{
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    flex-direction: column;
-    text-align: center;
+.details {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  text-align: center;
 }
 
-.heading{
-    font-weight: bolder;
+.heading {
+  font-weight: bolder;
 }
 
-.subHeading{
+.subHeading {
   color: #2864ae;
+}
+
+@media (max-width: 768px) {
+  .serviceSubContainer {
+    grid-template-columns: repeat(1, 1fr);
+      padding: 2rem;
+  }
+  .serviceCard{
+    width: 15rem;
+  }
+  .imageContainer img{
+    object-fit: cover;
+    width: 15rem;
+  }
+  .servicesContainer{
+    padding: 1rem;
+  }
 }

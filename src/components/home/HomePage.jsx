@@ -18,7 +18,7 @@ import { chooseNeatClean, howItWorks } from "../../utils/UtilsData";
 
 const HomePage = () => {
   return (
-    <main>
+    <main className={style.mainContainer}>
       <section className={style.hero}>
         <img src={HomePageWM} className={style.heroImage} alt="EcoRinse" />
         <div className={style.heroContent}>
@@ -112,7 +112,7 @@ const HomePage = () => {
               <p className={style.paraContainer}>
                 Our <span className={style.highLight}>Motto</span>
               </p>
-              <p>
+              <p className={style.mottoText}>
                 At EcoRinse, we believe clean clothes aren't just about
                 hygiene—they're about confidence, comfort, and care. Our mission
                 is to make laundry effortless, reliable, and refreshingly

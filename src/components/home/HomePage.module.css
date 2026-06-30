@@ -105,7 +105,7 @@
 
 .InfoGraphicContainer {
   display: flex;
-  margin-top: 3rem;
+  padding: 2rem;
   width: 100%;
   justify-content: space-evenly;
 }
@@ -375,6 +375,109 @@
   text-align: center;
 }
 
-.howItWorks{
-  background-color: #0B1B2B;
+.howItWorks {
+  background-color: #0b1b2b;
+}
+
+/* media queries */
+@media (max-width: 768px) {
+  .introductionSection {
+    background-color: #dce3ec;
+    display: flex;
+    flex-direction: column;
+  }
+  .imageProp {
+    height: 20rem;
+    max-width: 25rem;
+    border-radius: 1rem;
+  }
+  .infoSection {
+    max-width: 20rem;
+    gap: 1rem;
+  }
+  .introDetail {
+    width: inherit;
+  }
+  .introHeader {
+    font-size: 1.5rem;
+    font-style: italic;
+  }
+  .subIntro {
+    font-size: 1rem;
+  }
+  .paraTag {
+    color: gray;
+    font-size: small;
+  }
+  .serviceSection {
+    padding-block: 2rem;
+  }
+  .InfoGraphicContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .imgBackground {
+    align-self: center;
+    height: 20rem;
+    width: 25rem;
+    border-radius: 1rem;
+    border: solid 2px lightblue;
+  }
+  .detailsContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+  .detailBox {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1rem;
+  }
+  .statsSection {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .processSection {
+    gap: 2rem;
+  }
+  .processHeader {
+    text-align: center;
+    font-size: 2rem;
+  }
+  .processDetailWrapper {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .processWrapper {
+    min-width: 20rem;
+  }
+  .mottoContainer {
+    flex-direction: column;
+  }
+  .headerText {
+    font-size: xx-large;
+  }
+  .chooseContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .chooseBar {
+    display: none;
+  }
+}
+
+@media (max-width: 415px) {
+  .imgBackground {
+    align-self: center;
+    height: 15rem;
+    width: 22rem;
+    border-radius: 1rem;
+    border: solid 2px lightblue;
+  }
 }
