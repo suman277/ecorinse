@@ -15,7 +15,7 @@ const AboutUs = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.aboutContainer}>
-        <h1>About Us</h1>
+        <h1 className={style.aboutHeading}>About Us</h1>
         <p className={style.aboutText}>
           Be a part of India's fastest growing dry-cleaning brand. Low
           investment, high return, full support.
@@ -84,11 +84,27 @@ const AboutUs = () => {
         </div>
       </div>
       <div className={style.aboutDetails}>
-        <WidthFeature details={aboutUsDetails} />
+        <Feature
+          headingColor={"white"}
+          details={whyWeStand}
+          borderTop={true}
+          logoColor={"#2B6BBD"}
+          includeBorderRadius={true}
+          stroke={"3"}
+          size={"30"}
+        />
       </div>
       <div className={style.standForDetails}>
-        <h1 className={style.standHeading}>What We Stand For</h1>
-        <WidthFeature details={whyWeStand} />
+        <Feature
+          header={"What We Stand For"}
+          headingColor={"white"}
+          details={whyWeStand}
+          borderTop={true}
+          logoColor={"#2B6BBD"}
+          includeBorderRadius={true}
+          stroke={"3"}
+          size={"30"}
+        />
       </div>
       <div className={style.recognition}>
         <Feature

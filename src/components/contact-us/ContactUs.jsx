@@ -7,7 +7,7 @@ import {
   showContactDetails,
   askedQuestions,
   supportHours,
-  waysToReachUs
+  waysToReachUs,
 } from "../../utils/UtilsData";
 
 const ContactUs = () => {
@@ -16,7 +16,7 @@ const ContactUs = () => {
     contactNo: "",
     city: "",
   });
-  const handleChange = () => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
@@ -48,23 +48,23 @@ const ContactUs = () => {
               placeholder="Enter Name"
               name="name"
               value={form.name}
-              onChange={() => handleChange(e)}
+              onChange={(e) => handleChange(e)}
             />
             <input
               className={style.inputTextField}
-              type="text"
+              type="number"
               placeholder="Enter Phone Number"
               name="contactNo"
               value={form.contactNo}
-              onChange={() => handleChange(e)}
+              onChange={(e) => handleChange(e)}
             />
             <input
               className={style.inputTextField}
               type="text"
-              placeholder="Enter Name"
+              placeholder="Enter City/State"
               name="city"
               value={form.city}
-              onChange={() => handleChange(e)}
+              onChange={(e) => handleChange(e)}
             />
             <button className={style.btnClass}>SEND MESSAGE</button>
           </div>

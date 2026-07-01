@@ -38,8 +38,7 @@
 }
 
 .getFormDetail {
-  padding-block: 3rem;
-  padding-inline: 3rem;
+  padding: 3rem;
 }
 
 .heroDetail {
@@ -110,13 +109,12 @@
   height: 10rem;
 }
 
-.askedQuestionsContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-block: 2rem;
+.askedQuestionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 2rem;
 }
-
 
 .askedContainer {
   display: grid;
@@ -136,19 +134,63 @@
   border-radius: 1rem;
 }
 
-.askedQuestionsContainer h1{
-    text-align: center;
+.askedQuestionsContainer h1 {
+  text-align: center;
 }
 
-.askedDetail{
-    text-align: center;
+.askedDetail {
+  text-align: center;
 }
 
-.askedHeading{
+.askedHeading {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.supportHours {
+  background-color: #0b1b2b;
+}
+
+@media (max-width: 768px) {
+  .heroContainer {
+    font-size: 1rem;
+  }
+  .heroDetail {
+    width: 10rem;
+  }
+  .getFormDetail {
+    padding: 1.5rem;
+  }
+  .contentDetails h1 {
     font-size: 1.5rem;
-    font-weight: bold;
-}
+  }
+  .heroDetails {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .formWorks {
+    flex-direction: column;
+  }
+  .askedContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    padding-inline: 2rem;
 
-.supportHours{
-    background-color: #0B1B2B;
+  }
+  .askedQuestionsContainer h1 {
+    font-size: 1rem;
+  }
+
+  .inputFromWrapper{
+    width: 100%;
+  }
+
+  .contactWays {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+  }
 }

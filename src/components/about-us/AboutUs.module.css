@@ -49,8 +49,9 @@
 }
 
 .paraTag {
-  text-align: center;
   font-size: 1.5rem;
+  word-wrap: break-word;
+  text-align: center;
 }
 
 .teamGoals {
@@ -99,11 +100,41 @@
   padding: 2rem;
 }
 
-.standHeading{
-    text-align: center;
-    color: white;
+.standHeading {
+  text-align: center;
+  color: white;
 }
 
-.community{
-    background-color: #0B1B2B;
+.community {
+  background-color: #0b1b2b;
+}
+
+@media (max-width: 768px) {
+  .aboutContainer {
+    padding: 5rem;
+  }
+  .paraTag {
+    font-size: 1rem;
+  }
+  .aboutHighlight {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .aboutContent {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  .contentHeading {
+    font-size: 1rem;
+  }
+  .teamGoals{
+    flex-direction: column;
+    padding: 2.5rem;
+  }
+  .goalContent{
+    font-size: 0.8rem;
+  }
 }
