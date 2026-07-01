@@ -12,33 +12,46 @@ const Feature = ({
   logoColor,
   headingColor,
   topHeadingColour,
-  includeBorderRadius
+  includeBorderRadius,
+  isGrid,
+  minWidth,
 }) => {
   return (
-    <div className={`${style.processSection} ${includeBorderRadius ? style.includeBorderRadius : " "}`}>
-      <p className={style.processHeader} style={{color: headingColor}}>{header}</p>
+    <div
+      className={`${style.processSection} ${includeBorderRadius ? style.includeBorderRadius : " "}`}
+    >
+      {header && (
+        <p className={style.processHeader} style={{ color: headingColor }}>
+          {header}
+        </p>
+      )}
       <div className={style.processDetailWrapper}>
         {details.map((process) => {
           const Icon = process.icon;
           return (
             <div
+              style={{ minWidth: minWidth }}
               className={`${style.processWrapper} ${
                 borderTop ? style.borderTop : style.borderBottom
               }`}
             >
-              <div
-                className={
-                  isIconInCircle ? style.processIcon : ""
-                }
-              >
+              <div className={isIconInCircle ? style.processIcon : ""}>
                 {Icon ? (
-                  <Icon color={logoColor} size={size} strokeWidth={stroke}/>
+                  <Icon color={logoColor} size={size} strokeWidth={stroke} />
                 ) : (
-                  <p className={style.processHeading} style={{color:topHeadingColour}}>{process.topheading}</p>
+                  <p
+                    className={style.processHeading}
+                    style={{ color: topHeadingColour }}
+                  >
+                    {process.topheading}
+                  </p>
                 )}
               </div>
               <p className={style.processHeading}>{process.heading}</p>
               <p>{process.detail}</p>
+              {process.path && 
+                <button className={style.linkDetails
+                }>{process.linkDetails}</button>}
             </div>
           );
         })}

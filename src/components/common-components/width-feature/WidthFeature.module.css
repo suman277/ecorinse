@@ -1,0 +1,30 @@
+.mainContainer{
+    padding: 2rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.detailWrapper{
+    min-width: 33%;
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid #E2E8F0;
+    border-top: 5px solid #2B6BBD;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.heading{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.headingText{
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+}

@@ -58,14 +58,26 @@
   border-top: #337dcb solid 5px;
 }
 
+.linkDetails {
+  padding: 1rem;
+  background-color: #2b6bbd;
+  color: white;
+  border-radius: 1rem;
+}
+
+.reachUsContainer{
+  padding: 2rem;
+}
+
 @media (max-width: 768px) {
   .processHeader {
     font-size: 2rem;
     text-align: center;
   }
-  .processDetailWrapper{
+  .processDetailWrapper {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
 }
+
