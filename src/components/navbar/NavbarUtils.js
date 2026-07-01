@@ -12,10 +12,6 @@ export const NavbarDetails = [
     path: "/about-us",
   },
   {
-    title: "Order",
-    path: "/order",
-  },
-  {
     title: "Our Services",
     path: "/our-services",
   },

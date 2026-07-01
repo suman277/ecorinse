@@ -86,7 +86,7 @@ const HomePage = () => {
         })}
       </section>
       <section className={style.processSection}>
-        <p className={style.processHeader}>How EcoRinse Works</p>
+        {/* <p className={style.processHeader}>How EcoRinse Works</p>
         <div className={style.processDetailWrapper}>
           {ProcessDetails.map((process) => {
             const Icon = process.icon;
@@ -100,7 +100,15 @@ const HomePage = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
+        <Feature
+          header={"How EcoRinse Works"}
+          details={ProcessDetails}
+          isIconInCircle={true}
+          borderTop={false}
+          size={30}
+          logoColor={"white"}
+        />
       </section>
       <section className={style.mottoSection}>
         <div className={style.mottoContainer}>

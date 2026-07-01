@@ -1,7 +1,13 @@
+@import "../common-components/common.module.css";
+
 .hero {
   position: relative;
   height: calc(100vh - 84px);
   overflow: hidden;
+}
+
+.heroContent h1, p {
+  animation: slide-in 0.8s ease-in;
 }
 
 .heroImage {
@@ -173,7 +179,7 @@
 }
 
 .processSection {
-  padding: 3rem;
+  /* padding: 3rem; */
   display: flex;
   flex-direction: column;
   gap: 5rem;

@@ -14,6 +14,7 @@ const Feature = ({
   topHeadingColour,
   includeBorderRadius,
   isGrid,
+  gap,
   minWidth,
 }) => {
   return (
@@ -25,7 +26,7 @@ const Feature = ({
           {header}
         </p>
       )}
-      <div className={style.processDetailWrapper}>
+      <div className={style.processDetailWrapper} style={{ gap: gap }}>
         {details.map((process) => {
           const Icon = process.icon;
           return (
@@ -49,9 +50,11 @@ const Feature = ({
               </div>
               <p className={style.processHeading}>{process.heading}</p>
               <p>{process.detail}</p>
-              {process.path && 
-                <button className={style.linkDetails
-                }>{process.linkDetails}</button>}
+              {process.path && (
+                <button className={style.linkDetails}>
+                  {process.linkDetails}
+                </button>
+              )}
             </div>
           );
         })}

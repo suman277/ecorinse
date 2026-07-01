@@ -6,8 +6,8 @@ const ComingSoon = () => {
     <div className={style.mainContainer}>
       <div className={style.subContainer}>
         <div className={style.contentWrapper}>
-          <span style={{ fontSize: "13rem" }}>We are coming soon</span>
-          <span style={{ fontSize: "4rem" }}>Please stay tuned</span>
+          <span className={style.heading}>We are coming soon</span>
+          <span className={style.subHeading}>Please stay tuned</span>
         </div>
       </div>
     </div>

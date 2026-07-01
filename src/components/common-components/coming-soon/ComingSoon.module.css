@@ -17,8 +17,8 @@
 }
 
 .contentWrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   z-index: 2;
   height: 100%;
   width: 100%;
@@ -27,6 +27,23 @@
   text-align: center;
 }
 
-.socialIcons{
-    display: flex;
+.socialIcons {
+  display: flex;
+}
+
+.heading {
+  font-size: 13rem;
+}
+
+.subHeading {
+  font-size: 4rem;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 6rem;
+  }
+  .subHeading {
+    font-size: 2rem;
+  }
 }

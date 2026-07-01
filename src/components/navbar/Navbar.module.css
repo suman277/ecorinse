@@ -70,6 +70,14 @@
   background-color: white;
 }
 
+.bookNow {
+  background-color: #2B6BBD;
+  padding: 1rem;
+  border-radius: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
 .menuOption {
   display: none;
 }
@@ -117,11 +125,14 @@
     height: 2rem;
     width: 2rem;
   }
-  .navBarWidthOnMedia{
+  .navBarWidthOnMedia {
     position: absolute;
     display: flex;
     width: 100%;
     flex-direction: column;
     background-color: white;
+  }
+  .bookNow{
+    display: none;
   }
 }
