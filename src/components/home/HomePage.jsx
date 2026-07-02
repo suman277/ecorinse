@@ -78,7 +78,7 @@ const HomePage = () => {
           logoColor={"#488b36"}
           borderTop={false}
           stroke={"3"}
-          minWidth={"20rem"}
+          minWidth={"15rem"}
         />
       </section>
       <section className={style.processSection}>
