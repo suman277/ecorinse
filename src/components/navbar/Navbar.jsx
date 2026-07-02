@@ -4,18 +4,19 @@ import style from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import MainLogo from "../../assets/images/navbar/MainLogo.jpeg";
-import EcoLogo from "../../assets/images/navbar/EcoLogo.png"
+import EcoLogo from "../../assets/images/navbar/EcoLogo.png";
 import Logo from "../../assets/images/navbar/Logo.png";
 import { NavbarDetails, labelDetails } from "./NavbarUtils";
 import { Menu } from "lucide-react";
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
   const toogleMenu = () => {
     console.log("I am getting clikced");
     setToggle(!toggle);
   };
+  const isMobile = window.innerWidth <= 678;
   return (
     <>
       <div className={style.navbarContainer}>
@@ -42,7 +43,9 @@ const Navbar = () => {
               );
             })}
           </div>
-          <div className={style.bookNow} onClick={() =>navigate("/order")}>Book Now</div>
+          <div className={style.bookNow} onClick={() => navigate("/order")}>
+            Schedule A Pickup
+          </div>
         </div>
         {toggle && (
           <div className={style.navBarWidthOnMedia}>
@@ -64,15 +67,18 @@ const Navbar = () => {
         )}
       </div>
       <div className={style.banner}>
-        {labelDetails.map((detail, index) => {
-          const Icon = detail.icon;
-          return (
-            <div className={style.labelDetails}>
-              <Icon size={12} />
-              {detail.detail}
-            </div>
-          );
-        })}
+        {labelDetails
+          .filter((item) => !(isMobile && item.hideOnMobile))
+          .map((detail, index) => {
+            const Icon = detail.icon;
+
+            return (
+              <div key={index} className={style.labelDetails}>
+                <Icon size={12} />
+                {detail.detail}
+              </div>
+            );
+          })}
       </div>
     </>
   );

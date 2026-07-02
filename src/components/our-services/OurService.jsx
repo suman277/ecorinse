@@ -24,8 +24,9 @@ const OurService = () => {
           details={LaundryProcess}
           isIconInCircle={false}
           borderTop={true}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           stroke={3}
+          size={30}
           headingColor={"white"}
           includeBorderRadius={true}
         />
@@ -36,8 +37,8 @@ const OurService = () => {
           details={chooseNeatClean}
           isIconInCircle={false}
           borderTop={true}
-          size={20}
-          logoColor={"#2864AE"}
+          size={30}
+          logoColor={"#488b36"}
         />
       </div>
       <div className={style.serviceExcel}>

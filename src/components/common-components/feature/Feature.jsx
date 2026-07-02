@@ -22,9 +22,12 @@ const Feature = ({
       className={`${style.processSection} ${includeBorderRadius ? style.includeBorderRadius : " "}`}
     >
       {header && (
-        <p className={style.processHeader} style={{ color: headingColor }}>
-          {header}
-        </p>
+        <div className={style.featureHeading}>
+          <p className={style.processHeader} style={{ color: headingColor }}>
+            {header}
+          </p>
+          <div className={style.bar}></div>
+        </div>
       )}
       <div className={style.processDetailWrapper} style={{ gap: gap }}>
         {details.map((process) => {

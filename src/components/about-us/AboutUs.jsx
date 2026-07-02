@@ -88,7 +88,7 @@ const AboutUs = () => {
           headingColor={"white"}
           details={whyWeStand}
           borderTop={true}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           includeBorderRadius={true}
           stroke={"3"}
           size={"30"}
@@ -100,7 +100,7 @@ const AboutUs = () => {
           headingColor={"white"}
           details={whyWeStand}
           borderTop={true}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           includeBorderRadius={true}
           stroke={"3"}
           size={"30"}
@@ -111,7 +111,7 @@ const AboutUs = () => {
           header={"Awards & Recognition"}
           details={AwardDetails}
           borderTop={true}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           includeBorderRadius={true}
           stroke={"3"}
           size={"30"}
@@ -123,7 +123,7 @@ const AboutUs = () => {
           details={CommunityDetails}
           headingColor={"white"}
           borderTop={true}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           includeBorderRadius={true}
           stroke={"3"}
           size={"30"}

@@ -12,12 +12,16 @@
   text-align: center;
 }
 
+.aboutHeading{
+  font-size: var(--heading-font-size);
+}
+
 .aboutHighlight {
   display: flex;
   flex-wrap: wrap;
   padding: 4rem;
   background-color: #f9fbfc;
-  border-bottom: 5px solid #2b6bbd;
+  border-bottom: 5px solid var(--bg-color);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
@@ -44,7 +48,7 @@
 }
 
 .contentHeading {
-  font-size: 1.5rem;
+    font-size: var(--heading-font-size);
   text-align: center;
 }
 
@@ -88,7 +92,7 @@
 }
 
 .textColor {
-  color: #2b6bbd;
+  color: var(--bg-color);
 }
 
 .aboutDetails {

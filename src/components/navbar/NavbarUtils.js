@@ -23,6 +23,7 @@ export const NavbarDetails = [
 
 export const labelDetails = [
   {
+    hideOnMobile: true,
     icon: MapPin,
     detail: "B-10, Ground Floor G-02, Sector-2, Noida, UP, 201301",
   },

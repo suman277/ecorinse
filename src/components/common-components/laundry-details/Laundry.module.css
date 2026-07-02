@@ -11,7 +11,7 @@
 
 .heading {
   text-align: center;
-  font-size: 2.8rem;
+  font-size: var(--heading-font-size);
   font-weight: bolder;
 }
 
@@ -32,14 +32,14 @@
   padding: 0.8rem;
   border-radius: 0.8rem;
   border: none;
-  color: #2b6bbd;
+  color: var(--bg-color);
   background-color: #e0e0e0;
   cursor: pointer;
   min-width: 5rem;
 }
 
 .btnBackground {
-  background-color: #2b6bbd;
+  background-color: var(--bg-color);
   color: white;
 }
 
@@ -57,7 +57,7 @@
   border-radius: 1rem;
   min-height: 7rem;
   flex-direction: column;
-  border-bottom: 5px solid #2b6bbd;
+  border-bottom: 5px solid var(--bg-color);
   justify-content: space-between;
 }
 

@@ -1,47 +1,73 @@
-.footerContainer{
-    width: 100vw;
-    padding: 5rem;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: space-around;
+.footerContainer {
+  width: 100vw;
+  padding: 2rem;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
-.detailsWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.linkPaths {
+  padding: 5rem;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
 }
 
-.heading{
-    font-size: larger;
-    display: block;
-    border-bottom: 2px green solid;
-    align-self: flex-start;
+.detailsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 33%;
 }
 
-.subHeaderWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.heading {
+  font-size: larger;
+  display: block;
+  border-bottom: 2px green solid;
+  align-self: flex-start;
 }
 
-.iconWrapper{
-    display: flex;
-    gap: 0.3rem;
-    align-items: center;
+.socialHeading {
+  font-size: larger;
+  display: block;
+  border-bottom: 2px green solid;
 }
 
-.pathClicker{
-    cursor: pointer;
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.subHeaderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.detail:hover{
-    color: yellow;
+.socialItems{
+  display: flex;
+  gap: 2rem;
+}
+
+.iconWrapper {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.pathClicker {
+  cursor: pointer;
+}
+
+.detail:hover {
+  color: yellow;
 }
 
 @media (max-width: 768px) {
-  .footerContainer {
+  .linkPaths {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -61,6 +87,7 @@
 
   .heading {
     align-self: center;
+    font-size: 1.1rem;
   }
 
   .iconWrapper {

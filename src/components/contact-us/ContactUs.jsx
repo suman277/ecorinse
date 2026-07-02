@@ -74,7 +74,7 @@ const ContactUs = () => {
               return (
                 <div className={style.contactWrapper}>
                   <div>
-                    <Icon color={"#2B6BBD"} strokeWidth={"3"} />
+                    <Icon color={"#488b36"} strokeWidth={"3"} />
                   </div>
                   <div>{contact.heading}</div>
                   <div>{contact.detail}</div>
@@ -104,7 +104,7 @@ const ContactUs = () => {
           borderTop={true}
           size={30}
           headingColor={"white"}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           topHeadingColour={"white"}
           includeBorderRadius={true}
           minWidth={"15rem"}
@@ -116,7 +116,7 @@ const ContactUs = () => {
           details={waysToReachUs}
           borderTop={true}
           size={30}
-          logoColor={"#2B6BBD"}
+          logoColor={"#488b36"}
           includeBorderRadius={true}
           minWidth={"15rem"}
         />

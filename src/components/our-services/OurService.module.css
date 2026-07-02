@@ -20,7 +20,7 @@
   gap: 1rem;
   min-width: 15rem;
   max-height: 10rem;
-  color: #46a6ff;
+  color: var(--bg-color);
   align-items: center;
   background-color: white;
 }
@@ -38,8 +38,8 @@
 
 .serviceHeader {
   text-align: center;
-  font-size: 2.5rem;
   font-weight: bold;
+  font-size: var(--heading-font-size);
 }
 
 .serviceWrapper {
@@ -77,7 +77,7 @@
     gap: 1rem;
     padding: 2rem;
     border-radius: 1rem;
-    border-bottom: #46a6ff solid 5px;
+    border-bottom: var(--bg-color) solid 5px;
     min-width: 15rem
 }
 

@@ -13,8 +13,22 @@
   border-radius: 2rem;
 }
 
+.featureHeading{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar {
+  background-color: var(--bg-color);
+  width: 15rem;
+  padding: 0.1rem;
+  border-radius: 1rem;
+}
+
 .processHeader {
-  font-size: 3rem;
+  font-size: var(--heading-font-size);
 }
 
 .processDetailWrapper {
@@ -43,13 +57,13 @@
 
 .processWrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 1px 5px 10px #337dcb;
+  box-shadow: 2px 12px 50px var(--bg-color);
 }
 
 .processIcon {
   height: 5rem;
   width: 5rem;
-  background-color: #337dcb;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,17 +76,17 @@
 
 .borderBottom {
   border-radius: 1rem;
-  border-bottom: #337dcb solid 5px;
+  border-bottom: var(--bg-color) solid 5px;
 }
 
 .borderTop {
   border-radius: 1rem;
-  border-top: #337dcb solid 5px;
+  border-top: var(--bg-color) solid 5px;
 }
 
 .linkDetails {
   padding: 1rem;
-  background-color: #2b6bbd;
+  background-color: var(--bg-color);
   color: white;
   border-radius: 1rem;
 }

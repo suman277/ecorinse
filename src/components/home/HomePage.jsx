@@ -63,7 +63,7 @@ const HomePage = () => {
                   <div className={style.detailIcon}>
                     <Icon color="white" />
                   </div>
-                  <div>{info.heading}</div>
+                  <div className={style.detailHeading}>{info.heading}</div>
                   <div>{info.detail}</div>
                 </div>
               );
@@ -72,35 +72,16 @@ const HomePage = () => {
         </div>
       </section>
       <section className={style.statsSection}>
-        {StatsDetails.map((stats) => {
-          const Icon = stats.icon;
-          return (
-            <div className={style.statDetailWrapper}>
-              <div>
-                <Icon color="#337DCB" strokeWidth={3} />
-              </div>
-              <p className={style.heading}>{stats.heading}</p>
-              <p>{stats.detail}</p>
-            </div>
-          );
-        })}
+        <Feature
+          details={StatsDetails}
+          isIconInCircle={false}
+          logoColor={"#488b36"}
+          borderTop={false}
+          stroke={"3"}
+          minWidth={"20rem"}
+        />
       </section>
       <section className={style.processSection}>
-        {/* <p className={style.processHeader}>How EcoRinse Works</p>
-        <div className={style.processDetailWrapper}>
-          {ProcessDetails.map((process) => {
-            const Icon = process.icon;
-            return (
-              <div className={style.processWrapper}>
-                <div className={style.processIcon}>
-                  <Icon color="white" size={40} />
-                </div>
-                <p className={style.processHeading}>{process.heading}</p>
-                <p>{process.detail}</p>
-              </div>
-            );
-          })}
-        </div> */}
         <Feature
           header={"How EcoRinse Works"}
           details={ProcessDetails}
@@ -115,7 +96,7 @@ const HomePage = () => {
           <div className={style.leftContainer}>
             <div className={style.textContainer}>
               <div className={style.Icon}>
-                <Star color="gold" />
+                <Star color="#488b36" />
               </div>
               <p className={style.paraContainer}>
                 Our <span className={style.highLight}>Motto</span>
@@ -160,7 +141,7 @@ const HomePage = () => {
               <>
                 <div className={style.chooseWrapper}>
                   <div className={style.icon}>
-                    <Icon color="blue" />
+                    <Icon color="#488b36" />
                   </div>
                   <div className={style.chooseHeading}>{choose.heading}</div>
                   <div className={style.chooseDetail}>{choose.detail}</div>
@@ -180,8 +161,8 @@ const HomePage = () => {
           details={chooseNeatClean}
           isIconInCircle={false}
           borderTop={true}
-          size={20}
-          logoColor={"#2864AE"}
+          size={40}
+          logoColor={"#488b36"}
         />
       </section>
       <section className={style.howItWorks}>

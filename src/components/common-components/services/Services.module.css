@@ -2,16 +2,20 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  background-color: #2864ae;
+  background-color: var(--bg-color);
   padding: 2rem;
   justify-content: center;
   border-radius: 1rem;
 }
 
+.Heading{
+  font-size: var(--heading-font-size);
+}
+
 .serviceBar {
-  width: 4rem;
-  height: 0.1rem;
-  background-color: #2864ae;
+  width: 10rem;
+  height: 0.3rem;
+  background-color: var(--bg-color);
 }
 
 .servicesContainer {
@@ -57,22 +61,30 @@
 }
 
 .subHeading {
-  color: #2864ae;
+  color: var(--sub-bg-color);
+}
+
+@media (max-width: 1200px) {
+  .serviceSubContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .serviceSubContainer {
     grid-template-columns: repeat(1, 1fr);
-      padding: 2rem;
+    padding: 2rem;
   }
-  .serviceCard{
+  .serviceCard {
     width: 15rem;
   }
-  .imageContainer img{
+  .imageContainer img {
     object-fit: cover;
     width: 15rem;
   }
-  .servicesContainer{
+  .servicesContainer {
     padding: 1rem;
   }
 }
