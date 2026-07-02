@@ -12,6 +12,14 @@
   flex-direction: column;
 }
 
+.bar {
+  background-color: var(--bg-color);
+  width: 15rem;
+  padding: 0.1rem;
+  border-radius: 1rem;
+  align-self: center;
+}
+
 .serviceDetailWrapper {
   padding: 2rem;
   display: flex;

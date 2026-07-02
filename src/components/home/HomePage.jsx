@@ -134,6 +134,7 @@ const HomePage = () => {
       </section>
       <section className={style.chooseUsSection}>
         <div className={style.headerText}>Why Choose Us?</div>
+        <div className={style.bar}></div>
         <div className={style.chooseContainer}>
           {WhyChooseUsList.map((choose) => {
             const Icon = choose.icon;

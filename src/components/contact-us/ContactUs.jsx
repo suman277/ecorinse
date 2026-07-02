@@ -34,7 +34,8 @@ const ContactUs = () => {
       </div>
       <div className={style.getFormDetail}>
         <div className={style.contentDetails}>
-          <h1>Let's Connect</h1>
+          <span className={style.heading}>Let's Connect</span>
+          <div className={style.bar}></div>
           <span className={style.heroDetails}>
             Have questions or want to explore opportunities with NeatnClean?
             Reach out through the form or connect via the contact options.
@@ -85,7 +86,8 @@ const ContactUs = () => {
         </div>
       </div>
       <div className={style.askedQuestionsContainer}>
-        <h1>Frquently Asked Questions</h1>
+        <span className={style.heading}>Frquently Asked Questions</span>
+                <div className={style.bar}></div>
         <div className={style.askedContainer}>
           {askedQuestions.map((question) => {
             return (

@@ -16,6 +16,7 @@ const LaundryDetails = () => {
     <div className={style.mainContainer}>
       <div className={style.subMainWrapper}>
         <div className={style.heading}>Laundry Pricing (RS)</div>
+        <div className={style.bar}></div>
         <div className={style.categoryOptions}>
           <div className={style.categoryBtnsWrapper}>
             {categories.map((category) => {

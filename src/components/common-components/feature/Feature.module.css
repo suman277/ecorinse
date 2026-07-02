@@ -20,6 +20,10 @@
   gap: 1rem;
 }
 
+.goalHeader{
+  font-size: var(--heading-font-size);
+}
+
 .bar {
   background-color: var(--bg-color);
   width: 15rem;
@@ -29,6 +33,7 @@
 
 .processHeader {
   font-size: var(--heading-font-size);
+  font-weight: bold;
 }
 
 .processDetailWrapper {
@@ -72,6 +77,7 @@
 
 .processHeading {
   font-size: 1.5rem;
+  /* font-weight: bold; */
 }
 
 .borderBottom {

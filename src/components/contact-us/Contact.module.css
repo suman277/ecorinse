@@ -14,8 +14,22 @@
   gap: 2rem;
 }
 
+.heading{
+  font-size: var(--heading-font-size);
+  font-weight: bold;
+  text-align: center;
+}
+
 .heroContainer h1{
   font-size: var(--heading-font-size);
+}
+
+.bar {
+  background-color: var(--bg-color);
+  width: 15rem;
+  padding: 0.1rem;
+  border-radius: 1rem;
+  align-self: center;
 }
 
 .heroContainer::before {

@@ -15,7 +15,7 @@ const FloatingAction = () => {
         <FaWhatsapp size={30} color="white" />
       </a>
       <div className={style.bookNow} onClick={() => navigate("/order")}>
-        Book Now
+        Schedule A Pickup
       </div>
     </div>
   );

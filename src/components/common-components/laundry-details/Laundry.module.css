@@ -15,6 +15,14 @@
   font-weight: bolder;
 }
 
+.bar {
+  background-color: var(--bg-color);
+  width: 15rem;
+  padding: 0.1rem;
+  border-radius: 1rem;
+  align-self: center;
+}
+
 .categoryOptions {
   display: flex;
   justify-content: center;
@@ -79,6 +87,12 @@
   .categoryBtns {
     min-width: 3rem;
     padding: 0.5rem;
+}
+.itemType {
+  font-size: 0.8rem;
+}
+.itemCost {
+  font-size:medium;
 }
 
 }

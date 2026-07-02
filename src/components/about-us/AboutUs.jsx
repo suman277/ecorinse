@@ -26,9 +26,10 @@ const AboutUs = () => {
           <img src={AboutUs1} />
         </div>
         <div className={style.aboutContent}>
-          <h2 className={style.contentHeading}>
+          <span className={style.contentHeading}>
             LAUNDRY BELONGS IN A LAUNDROMAT
-          </h2>
+          </span>
+                  <div className={style.bar}></div>
           <p className={style.paraTag}>
             An average human spends between 12000 hours of their adult life in
             cleaning and managing their clothes. We have all grown up on a heavy
@@ -58,6 +59,7 @@ const AboutUs = () => {
         </div>
         <div className={style.goalContent}>
           <h2 className={style.goalHeader}>Our Goals</h2>
+          <div className={style.bar}></div>
           <strong className={style.textColor}>
             Less time doing laundry. More time living life.
           </strong>

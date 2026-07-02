@@ -12,7 +12,15 @@
   text-align: center;
 }
 
-.aboutHeading{
+.bar {
+  background-color: var(--bg-color);
+  width: 15rem;
+  padding: 0.1rem;
+  border-radius: 1rem;
+  align-self: center;
+}
+
+.aboutHeading {
   font-size: var(--heading-font-size);
 }
 
@@ -48,8 +56,9 @@
 }
 
 .contentHeading {
-    font-size: var(--heading-font-size);
+  font-size: var(--heading-font-size);
   text-align: center;
+  font-weight: bold;
 }
 
 .paraTag {
@@ -88,6 +97,7 @@
 }
 
 .goalHeader {
+  font-size: var(--heading-font-size);
   text-align: center;
 }
 
@@ -132,13 +142,13 @@
     text-align: center;
   }
   .contentHeading {
-    font-size: 1rem;
+    font-size: var(--heading-font-size);
   }
-  .teamGoals{
+  .teamGoals {
     flex-direction: column;
     padding: 2.5rem;
   }
-  .goalContent{
+  .goalContent {
     font-size: 0.8rem;
   }
 }

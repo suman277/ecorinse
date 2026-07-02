@@ -43,6 +43,7 @@ const OurService = () => {
       </div>
       <div className={style.serviceExcel}>
         <div className={style.serviceHeader}>Our Service Excellence</div>
+        <div className={style.bar}></div>
         <div className={style.serviceWrapper}>
           {ServiceExcellence.map((excel) => {
             return (
@@ -56,6 +57,7 @@ const OurService = () => {
       </div>
       <div className={style.serviceCategories}>
         <div className={style.serviceHeader}>Service Categories</div>
+                <div className={style.bar}></div>
         <div className={style.serviceCategoryWrapper}>
           {ServiceCategories.map((category) => {
             return (
