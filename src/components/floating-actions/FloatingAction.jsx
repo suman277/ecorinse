@@ -7,7 +7,7 @@ const FloatingAction = () => {
   return (
     <div className={style.container}>
       <a
-        href="https://wa.me/919556759064"
+        href="https://wa.me/919900388956"
         target="_blank"
         rel="noreferrer"
         className={style.whatsapp}

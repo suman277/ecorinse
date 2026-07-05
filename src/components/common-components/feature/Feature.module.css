@@ -1,10 +1,10 @@
 @import "../../common-components/common.module.css";
 
 .processSection {
-  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 5rem;
+  width: 100%;
   align-items: center;
   background-color: inherit;
 }
@@ -13,14 +13,14 @@
   border-radius: 2rem;
 }
 
-.featureHeading{
+.featureHeading {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.goalHeader{
+.goalHeader {
   font-size: var(--heading-font-size);
 }
 
@@ -39,7 +39,7 @@
 .processDetailWrapper {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -95,6 +95,7 @@
   background-color: var(--bg-color);
   color: white;
   border-radius: 1rem;
+  cursor: pointer;
 }
 
 .reachUsContainer {

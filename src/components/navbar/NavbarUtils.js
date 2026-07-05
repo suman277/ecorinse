@@ -19,13 +19,17 @@ export const NavbarDetails = [
     title: "Contact us",
     path: "/contact-us",
   },
+  // {
+  //   title: "membeship",
+  //   path: "/contact-us",
+  // },
 ];
 
 export const labelDetails = [
   {
     hideOnMobile: true,
     icon: MapPin,
-    detail: "B-10, Ground Floor G-02, Sector-2, Noida, UP, 201301",
+    detail: "B-10, Ground Floor KVG Complex, Raghavendra Circle, T C Palya, Bangalore, 560016",
   },
   {
     icon: Phone,

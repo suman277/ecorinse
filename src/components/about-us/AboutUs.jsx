@@ -15,7 +15,7 @@ const AboutUs = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.aboutContainer}>
-        <h1 className={style.aboutHeading}>About Us</h1>
+        <span className={style.aboutHeading}>About Us</span>
         <p className={style.aboutText}>
           Be a part of India's fastest growing dry-cleaning brand. Low
           investment, high return, full support.
@@ -26,10 +26,12 @@ const AboutUs = () => {
           <img src={AboutUs1} />
         </div>
         <div className={style.aboutContent}>
-          <span className={style.contentHeading}>
-            LAUNDRY BELONGS IN A LAUNDROMAT
-          </span>
-                  <div className={style.bar}></div>
+          <div className={style.contents}>
+            <span className={style.contentHeading}>
+              LAUNDRY BELONGS IN A LAUNDROMAT
+            </span>
+            <div className={style.bar}></div>
+          </div>
           <p className={style.paraTag}>
             An average human spends between 12000 hours of their adult life in
             cleaning and managing their clothes. We have all grown up on a heavy

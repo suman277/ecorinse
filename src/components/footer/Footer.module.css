@@ -1,6 +1,6 @@
 .footerContainer {
   width: 100%;
-  padding: 2rem;
+  padding: 5rem;
   background-color: black;
   color: white;
   display: flex;
@@ -8,11 +8,10 @@
 }
 
 .linkPaths {
-  padding: 5rem;
   background-color: black;
   color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .detailsWrapper {
@@ -37,7 +36,6 @@
 .socialLinks {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
 }
 .subHeaderWrapper {
@@ -46,9 +44,10 @@
   gap: 1rem;
 }
 
-.socialItems{
+.socialItems {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .iconWrapper {
@@ -63,6 +62,13 @@
 
 .detail:hover {
   color: yellow;
+}
+
+.linkItems {
+  display: flex;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: white;
 }
 
 @media (max-width: 768px) {

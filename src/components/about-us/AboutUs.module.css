@@ -1,5 +1,5 @@
 .mainContainer {
-  width: 100vw;
+  width: 100%;
 }
 
 .aboutContainer {
@@ -12,22 +12,32 @@
   text-align: center;
 }
 
+.contents {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .bar {
   background-color: var(--bg-color);
-  width: 15rem;
   padding: 0.1rem;
+  width: 15rem;
   border-radius: 1rem;
-  align-self: center;
 }
 
 .aboutHeading {
   font-size: var(--heading-font-size);
+  font-weight: bold;
 }
 
 .aboutHighlight {
   display: flex;
   flex-wrap: wrap;
-  padding: 4rem;
+  padding: 5rem;
+  gap: 5rem;
   background-color: #f9fbfc;
   border-bottom: 5px solid var(--bg-color);
   border-bottom-left-radius: 1rem;
@@ -40,19 +50,17 @@
 
 .aboutContent {
   flex: 1;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 10rem;
 }
 
 .imageContainer img {
   width: 100%;
   display: block;
   height: auto;
-}
-
-.aboutContent {
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .contentHeading {
@@ -62,9 +70,8 @@
 }
 
 .paraTag {
-  font-size: 1.5rem;
+  font-size: 1rem;
   word-wrap: break-word;
-  text-align: center;
 }
 
 .teamGoals {
@@ -96,6 +103,14 @@
   font-size: 1.2rem;
 }
 
+.recognition{
+  padding: 5rem;
+}
+
+.community{
+  padding: 5rem;
+}
+
 .goalHeader {
   font-size: var(--heading-font-size);
   text-align: center;
@@ -107,11 +122,12 @@
 
 .aboutDetails {
   background-color: #fefeff;
+  padding: 5rem;
 }
 
 .standForDetails {
   background-color: #0b1b2b;
-  padding: 2rem;
+  padding: 5rem;
 }
 
 .standHeading {

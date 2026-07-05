@@ -54,7 +54,12 @@ const Feature = ({
               <p className={style.processHeading}>{process.heading}</p>
               <p>{process.detail}</p>
               {process.path && (
-                <button className={style.linkDetails}>
+                <button
+                  onClick={() => {
+                    window.location.href = process.path;
+                  }}
+                  className={style.linkDetails}
+                >
                   {process.linkDetails}
                 </button>
               )}

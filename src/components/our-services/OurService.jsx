@@ -14,10 +14,12 @@ import LaundryDetails from "../common-components/laundry-details/LaundryDetails"
 const OurService = () => {
   return (
     <>
-      <ServiceCard
-        heading={"From Wash to Wow!!"}
-        subHeading={"Our Laundry Services"}
-      />
+      <div className={style.serviceDetails}>
+        <ServiceCard
+          heading={"From Wash to Wow!!"}
+          subHeading={"Our Laundry Services"}
+        />
+      </div>
       <div className={style.laundryProcess}>
         <Feature
           header={"The Laundry Process"}
@@ -31,7 +33,7 @@ const OurService = () => {
           includeBorderRadius={true}
         />
       </div>
-      <div>
+      <div className={style.chooseOurService}>
         <Feature
           header={"Why Choose Our Services?"}
           details={chooseNeatClean}
@@ -57,7 +59,7 @@ const OurService = () => {
       </div>
       <div className={style.serviceCategories}>
         <div className={style.serviceHeader}>Service Categories</div>
-                <div className={style.bar}></div>
+        <div className={style.bar}></div>
         <div className={style.serviceCategoryWrapper}>
           {ServiceCategories.map((category) => {
             return (

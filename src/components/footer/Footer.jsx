@@ -46,34 +46,37 @@ const Footer = () => {
             </div>
           );
         })}
-      </div>
-      <div className={style.socialLinks}>
-        <div className={style.socialHeading}>Social Links</div>
-        <div className={style.socialItems}>
-          <a
-            href="https://wa.me/919556759064"
-            target="_blank"
-            rel="noreferrer"
-            className={style.whatsapp}
-          >
-            <FaInstagram size={30} color="white" />
-          </a>
-          <a
-            href="https://wa.me/919556759064"
-            target="_blank"
-            rel="noreferrer"
-            className={style.whatsapp}
-          >
-            <FaLinkedin size={30} color="white" />
-          </a>
-          <a
-            href="https://wa.me/919556759064"
-            target="_blank"
-            rel="noreferrer"
-            className={style.whatsapp}
-          >
-            <FaFacebook size={30} color="white" />
-          </a>
+        <div className={style.socialLinks}>
+          <div className={style.socialHeading}>Social Links</div>
+          <div className={style.socialItems}>
+            <a
+              className={style.linkItems}
+              href="https://wa.me/919556759064"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaInstagram size={24} color="white" />
+              <p>Instagram</p>
+            </a>
+            <a
+              className={style.linkItems}
+              href="https://wa.me/919556759064"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedin size={24} color="white" />
+              <p>Linkedin</p>
+            </a>
+            <a
+              className={style.linkItems}
+              href="https://wa.me/919556759064"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaFacebook size={24} color="white" />
+              <p>Facebook</p>
+            </a>
+          </div>
         </div>
       </div>
     </div>

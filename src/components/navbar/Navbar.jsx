@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className={style.firstSubContainer}>
           <div className={style.imageContainer}>
             <img className={style.imagePlaceholder} src={EcoLogo} />
-            <img className={style.iconPlaceholder} src={Logo} />
+            {/* <img className={style.iconPlaceholder} src={Logo} /> */}
           </div>
           <div className={style.menuOption} onClick={toogleMenu}>
             <Menu />
@@ -42,9 +42,9 @@ const Navbar = () => {
                 </NavLink>
               );
             })}
-          </div>
-          <div className={style.bookNow} onClick={() => navigate("/order")}>
-            Schedule A Pickup
+            <div className={style.bookNow} onClick={() => navigate("/order")}>
+              Schedule A Pickup
+            </div>
           </div>
         </div>
         {toggle && (

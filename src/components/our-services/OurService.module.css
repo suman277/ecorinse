@@ -1,12 +1,21 @@
 .laundryProcess {
   background-color: black;
   border-radius: 2rem;
+  padding: 5rem;;
+}
+
+.serviceDetails{
+  padding: 5rem;
+}
+
+.chooseOurService{
+  padding: 5rem;
 }
 
 .serviceExcel {
   background-color: black;
   color: white;
-  padding: 2rem;
+  padding: 5rem;
   gap: 2rem;
   display: flex;
   flex-direction: column;
@@ -52,14 +61,14 @@
 
 .serviceWrapper {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-between;
   gap: 2rem;
-  align-items: center;
 }
 
 /* serviceCategories */
 .serviceCategories {
-  padding: 4rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +78,7 @@
 
 .serviceCategoryWrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 

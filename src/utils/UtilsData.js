@@ -122,15 +122,16 @@ export const FooterUtils = [
     subHeaders: [
       {
         icon: Map,
-        detail: "Address: B-10, Ground Floor G-02, Sector-2, Noida, UP, 201301",
+        detail:
+          "Ground Floor of KVG Complex, Raghavendra Circle, Ramamurthy Nagar, Bangalore, 560016",
       },
       {
         icon: Mail,
-        detail: "support@neatnclean.in",
+        detail: "ecorinselaundry@gmail.com",
       },
       {
         icon: Phone,
-        detail: "+919654335152",
+        detail: "+919900388956",
       },
     ],
   },
@@ -686,28 +687,28 @@ export const waysToReachUs = [
     icon: Phone,
     heading: "Phone Support",
     detail: "8 AM - 8 PM",
-    path: "/details",
-    linkDetails: "+91 0000000000",
+    path: "tel:9900388956",
+    linkDetails: "+91 9900388956",
   },
   {
     icon: MessagesSquare,
     heading: "WhatsApp",
     detail: "Quick messaging for non-urgent queries and updates.",
-    path: "/details",
+    path: "https://wa.me/919900388956",
     linkDetails: "Chat on WhatsApp",
   },
   {
     icon: Mail,
     heading: "Email Support",
     detail: "Detailed queries and documentation via email.",
-    path: "/details",
+    path: "mailto:ecorinselaundry@gmail.com",
     linkDetails: "support@ecorinse.in",
   },
   {
     icon: BadgeQuestionMark,
     heading: "Help Center",
     detail: "Self-service options and detailed guides.",
-    path: "/details",
+    path: "mailto:ecorinselaundry@gmail.com",
     linkDetails: "Visit Help Center",
   },
 ];
