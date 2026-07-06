@@ -4,12 +4,6 @@ import { useLocation } from "react-router-dom";
 const ScrollToTop = () => {
   console.log("ScrollToTop file loaded");
   const { pathname, hash } = useLocation();
-  console.log("hash:", hash);
-
-  const element = document.querySelector(hash);
-
-  console.log("element:", element);
-
   useEffect(() => {
     if (hash) {
       requestAnimationFrame(() => {
