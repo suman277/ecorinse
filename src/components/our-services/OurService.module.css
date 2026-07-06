@@ -114,9 +114,15 @@
   .serviceWrapper{
     flex-direction: column;
   }
+  .serviceDetails{
+    padding: 1rem;
+  }
   .serviceCategoryWrapper{
     flex-direction: column;
     gap: 2rem;
+  }
+  .laundryProcess, .chooseOurService, .serviceExcel, .serviceCategories{
+    padding: 1rem;
   }
 
 }

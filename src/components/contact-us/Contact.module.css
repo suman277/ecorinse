@@ -204,12 +204,12 @@
   .askedContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
-    padding-inline: 2rem;
+    gap: 2rem;
+    padding-inline: 1rem;
 
   }
-  askedQuestionsContainer{
-    padding-inline: 1rem;
+  .askedQuestionsContainer, .supportHours, .reachUsContainer{
+    padding: 1rem;
   }
   .askedQuestionsContainer h1 {
     font-size: 1rem;

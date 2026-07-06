@@ -32,7 +32,7 @@ const HomePage = () => {
         </div>
         <div className={style.infoSection}>
           <p className={style.introHeader}>
-            Welcome to <span className={style.brand}>EcoRinse</span>
+            Welcome to <span className={style.brand}>EcoRinse Laundry</span>
           </p>
           <p className={style.subIntro}>
             India's Most Trusted Laundry & Dry Cleaning Service

@@ -82,7 +82,7 @@ export const FooterUtils = [
     subHeaders: [
       {
         detail: "About Us",
-        path: "/about",
+        path: "/about-us",
       },
       {
         detail: "Terms & Conditions",
@@ -100,19 +100,23 @@ export const FooterUtils = [
   },
   {
     heading: "Our Service",
-    showPointer: false,
+    showPointer: true,
     subHeaders: [
       {
         detail: "Dry Cleaning",
+        path: "/our-services#laundryDetails",
       },
       {
         detail: "Shoe Cleaning",
+        path: "/our-services#laundryDetails",
       },
       {
         detail: "Steam Ironing",
+        path: "/our-services#laundryDetails",
       },
       {
         detail: "Premium Laundry",
+        path: "/our-services#laundryDetails",
       },
     ],
   },

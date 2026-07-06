@@ -99,6 +99,7 @@ p {
 .headerText {
   font-size: var(--heading-font-size);
   font-weight: bold;
+  text-align: center;
 }
 
 .bar {
@@ -425,11 +426,19 @@ p {
     background-color: #dce3ec;
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+  }
+  .whyChoosingUs{
+    padding: 1rem;
   }
   .imageProp {
     height: 20rem;
     max-width: 25rem;
     border-radius: 1rem;
+    padding: 1rem;
+  }
+  .howItWorks{
+    padding: 1rem;
   }
   .infoSection {
     max-width: 20rem;
@@ -449,20 +458,28 @@ p {
     color: gray;
     font-size: small;
   }
+  .servicesSection{
+    padding: 1rem;
+  }
   .serviceSection {
-    padding-block: 2rem;
+    padding: 1rem;
+  }
+  .chooseUsSection{
+    padding: 1rem;
   }
   .InfoGraphicContainer {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding: 1rem;
   }
   .imgBackground {
     align-self: center;
     height: 20rem;
-    width: 25rem;
+    width: 20rem;
     border-radius: 1rem;
     border: solid 2px lightblue;
+    object-fit: cover;
   }
   .detailsContainer {
     display: grid;
@@ -478,12 +495,13 @@ p {
     padding: 1rem;
   }
   .statsSection {
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
   }
   .processSection {
     gap: 2rem;
+    padding: 1rem;
   }
   .processHeader {
     text-align: center;
@@ -499,6 +517,7 @@ p {
   }
   .mottoContainer {
     flex-direction: column;
+    padding: 1rem;
   }
   .headerText {
     font-size: xx-large;

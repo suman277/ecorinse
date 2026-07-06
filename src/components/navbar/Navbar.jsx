@@ -21,7 +21,7 @@ const Navbar = () => {
     <>
       <div className={style.navbarContainer}>
         <div className={style.firstSubContainer}>
-          <div className={style.imageContainer}>
+          <div className={style.imageContainer}onClick={() => navigate("/")}>
             <img className={style.imagePlaceholder} src={EcoLogo} />
             {/* <img className={style.iconPlaceholder} src={Logo} /> */}
           </div>

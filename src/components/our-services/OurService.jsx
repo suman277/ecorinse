@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useDebugValue } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ServiceCard from "../common-components/services/ServiceCard";
 import style from "./OurService.module.css";
 import Feature from "../common-components/feature/Feature";
@@ -12,6 +14,19 @@ import { Check } from "lucide-react";
 import LaundryDetails from "../common-components/laundry-details/LaundryDetails";
 
 const OurService = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [location.hash]);
   return (
     <>
       <div className={style.serviceDetails}>
@@ -83,7 +98,7 @@ const OurService = () => {
           })}
         </div>
       </div>
-      <div className={style.laundryDetails}>
+      <div className={style.laundryDetails} id="laundryDetails">
         <LaundryDetails />
       </div>
     </>
