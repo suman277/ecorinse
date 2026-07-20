@@ -33,10 +33,10 @@ export const labelDetails = [
   },
   {
     icon: Phone,
-    detail: "9090909090",
+    detail: "9900388956",
   },
   {
     icon: Mail,
-    detail: "ecorinse@gmail.com",
+    detail: "ecorinselaundry@gmail.com",
   },
 ];

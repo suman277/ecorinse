@@ -56,6 +56,13 @@
   align-items: center;
 }
 
+.iconText {
+  max-width: 250px;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
 .pathClicker {
   cursor: pointer;
 }

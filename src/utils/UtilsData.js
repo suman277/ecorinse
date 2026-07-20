@@ -615,23 +615,23 @@ export const showContactDetails = [
   {
     icon: Phone,
     heading: "Call Us",
-    detail: "+91 0000000000",
+    detail: "+91 9900388956",
   },
   {
     icon: MessageCircleDashed,
     heading: "WhatsApp",
-    detail: "+91 0000000000",
+    detail: "+91 9900388956",
   },
   {
     icon: Mail,
     heading: "Email",
-    detail: "support@ecorinse.in",
+    detail: "ecorinselaundry@gmail.com",
   },
   {
     icon: MapPin,
     heading: "Visit Us",
     detail:
-      "H-16/431, Sangam Vihar, Hamdard Nagar, South Delhi, New Delhi, Delhi, India, 110062",
+      "Ground Floor of KVG Complex, Raghavendra Circle, Ramamurthy Nagar, Bangalore, 560016",
   },
 ];
 
@@ -706,7 +706,7 @@ export const waysToReachUs = [
     heading: "Email Support",
     detail: "Detailed queries and documentation via email.",
     path: "mailto:ecorinselaundry@gmail.com",
-    linkDetails: "support@ecorinse.in",
+    linkDetails: "ecorinselaundry@gmail.com",
   },
   {
     icon: BadgeQuestionMark,

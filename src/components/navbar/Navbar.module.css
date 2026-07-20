@@ -64,7 +64,7 @@
 .firstSubContainer {
   display: flex;
   padding-inline: 5rem;
-  padding-block: 0.5rem;
+  padding-block: 0.3rem;
   display: flex;
   justify-content: space-between;
   background-color: white;
@@ -73,7 +73,7 @@
 .bookNow {
   background-color: var(--bg-color);
   padding-inline: 1rem;
-  padding-block: 1rem;
+  padding-block: 0.7rem;
   border-radius: var(--border-radius);
   color: white;
   cursor: pointer;

@@ -21,7 +21,7 @@ const AboutUs = () => {
           investment, high return, full support.
         </p>
       </div>
-      <div className={style.aboutHighlight}>
+      {/* <div className={style.aboutHighlight}>
         <div className={style.imageContainer}>
           <img src={AboutUs1} />
         </div>
@@ -53,6 +53,46 @@ const AboutUs = () => {
             dry-cleaning services, with free home pick & drop, and a promise to
             deliver your clothes in less than 24 hours*.
           </p>
+        </div>
+      </div> */}
+      <div className={style.aboutHighlight}>
+        <div className={style.aboutWrapper}>
+          <div className={style.imageContainer}>
+            <img src={AboutUs1} alt="About Us" />
+          </div>
+
+          <div className={style.aboutContent}>
+            <div className={style.contents}>
+              <span className={style.contentHeading}>
+                LAUNDRY BELONGS IN A LAUNDROMAT
+              </span>
+              <div className={style.bar}></div>
+            </div>
+
+            <p className={style.paraTag}>
+              An average human spends between 12000 hours of their adult life in
+              cleaning and managing their clothes. We have all grown up on a
+              heavy dose of detergent commercials propagating the idea of
+              'whiter the better'.
+            </p>
+
+            <p className={style.paraTag}>
+              But none of these commercials talked about the hours of hard work
+              required to get that blinding whiteness. Do the words 'enzyme
+              soak', 'hot water cleaning', 'bluing' ring a bell? How we wish
+              maintaining our white clothes was easy as watching those
+              commercials. With us, it is Easier!
+            </p>
+
+            <p className={style.paraTag}>
+              We bring the best-in-class Laundry, Dry Cleaning and Home Cleaning
+              Services at your doorstep! We operate a network of 17+ stores
+              across 13 cities, making it the Largest Laundry & Dry-Cleaning
+              Chain in India. Our nearest store offers live laundry, steam
+              ironing and dry-cleaning services, with free home pick & drop, and
+              a promise to deliver your clothes in less than 24 hours*.
+            </p>
+          </div>
         </div>
       </div>
       <div className={style.teamGoals}>

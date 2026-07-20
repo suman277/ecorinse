@@ -33,7 +33,7 @@ const Footer = () => {
                         <div>
                           <Icon />
                         </div>
-                        <div style={{ textAlign: "center" }}>
+                          <div className={style.iconText}>
                           {heading.detail}
                         </div>
                       </div>

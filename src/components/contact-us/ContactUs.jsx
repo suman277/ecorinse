@@ -27,10 +27,10 @@ const ContactUs = () => {
     <div className={style.mainContainer}>
       <div className={style.heroContainer}>
         <h1>Contact Us</h1>
-        <span className={style.heroDetail}>
+        <p className={style.heroDetail}>
           Be a part of India's fastest growing dry-cleaning brand. Low
           investment, high return, full support.
-        </span>
+        </p>
       </div>
       <div className={style.getFormDetail}>
         <div className={style.contentDetails}>

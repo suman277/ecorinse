@@ -4,8 +4,7 @@
   z-index: 1;
   color: white;
   padding: 4rem;
-  padding-block: 12rem;
-  padding-inline: 3rem;
+  padding: 10rem;
   text-align: center;
   font-size: 2rem;
   overflow: hidden;
@@ -14,13 +13,13 @@
   gap: 2rem;
 }
 
-.heading{
+.heading {
   font-size: var(--heading-font-size);
   font-weight: bold;
   text-align: center;
 }
 
-.heroContainer h1{
+.heroContainer h1 {
   font-size: var(--heading-font-size);
 }
 
@@ -34,15 +33,19 @@
 
 .heroContainer::before {
   content: "";
-  background: url("../../assets/images/contact-us/Contact.jpg");
+  background: url("../../assets/images/about-us/Final.webp");
   background-repeat: no-repeat;
   inset: 0;
   background-size: cover;
   position: absolute;
   display: block;
-  object-fit: contain;
+  object-fit: fill;
   z-index: -1;
-  filter: blur(100px);
+  filter: blur(10px);
+}
+
+.heroDetail{
+  font-size: 1rem;
 }
 
 .heroDetails {
@@ -58,8 +61,8 @@
   padding-block: 2rem;
 }
 
-.contentDetails h1{
-    font-size: var(--heading-font-size);
+.contentDetails h1 {
+  font-size: var(--heading-font-size);
 }
 
 .getFormDetail {
@@ -119,7 +122,7 @@
 
 .contactWrapper {
   border: var(--bg-color) solid 2px;
-    border-top: var(--bg-color) solid 5px;
+  border-top: var(--bg-color) solid 5px;
   padding: 1rem;
   border-radius: 12px;
   display: flex;
@@ -138,7 +141,7 @@
   padding: 5rem;
 }
 
-.askedQuestionsContainer h1{
+.askedQuestionsContainer h1 {
   font-size: var(--heading-font-size);
 }
 
@@ -177,7 +180,7 @@
   padding: 5rem;
 }
 
-.reachUsContainer{
+.reachUsContainer {
   padding: 5rem;
 }
 
@@ -206,20 +209,21 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
     padding-inline: 1rem;
-
   }
-  .askedQuestionsContainer, .supportHours, .reachUsContainer{
+  .askedQuestionsContainer,
+  .supportHours,
+  .reachUsContainer {
     padding: 1rem;
   }
   .askedQuestionsContainer h1 {
     font-size: 1rem;
   }
 
-  .askedHeading{
+  .askedHeading {
     text-align: center;
   }
 
-  .inputFromWrapper{
+  .inputFromWrapper {
     width: 100%;
   }
 
