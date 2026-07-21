@@ -7,7 +7,7 @@ const FloatingAction = () => {
   return (
     <div className={style.container}>
       <a
-        href="https://wa.me/919900388956"
+        href="https://wa.me/919900388956?text=Hi%20EcoRinse%20Laundry,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
         target="_blank"
         rel="noreferrer"
         className={style.whatsapp}

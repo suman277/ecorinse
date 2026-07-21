@@ -21,7 +21,7 @@ const Navbar = () => {
     <>
       <div className={style.navbarContainer}>
         <div className={style.firstSubContainer}>
-          <div className={style.imageContainer}onClick={() => navigate("/")}>
+          <div className={style.imageContainer} onClick={() => navigate("/")}>
             <img className={style.imagePlaceholder} src={EcoLogo} />
             {/* <img className={style.iconPlaceholder} src={Logo} /> */}
           </div>
@@ -73,10 +73,15 @@ const Navbar = () => {
             const Icon = detail.icon;
 
             return (
-              <div key={index} className={style.labelDetails}>
+              <a
+                target="_blank"
+                href={detail.path}
+                key={index}
+                className={style.labelDetails}
+              >
                 <Icon size={12} />
                 {detail.detail}
-              </div>
+              </a>
             );
           })}
       </div>

@@ -3,7 +3,7 @@
 }
 .aboutContainer::before {
   content: "";
-  background: url("../../assets/images/about-us/Final.webp");
+  background: url("../../assets/images/background/BackgroundImage.jpeg");
   background-repeat: no-repeat;
   position: absolute;
   background-size: cover;
@@ -42,6 +42,11 @@
 .aboutHeading {
   font-size: var(--heading-font-size);
   font-weight: bold;
+  color: #0e2e54;
+}
+
+.aboutText {
+  color: #0e2e54;
 }
 
 /* .aboutHighlight {
@@ -113,7 +118,6 @@
   gap: 1.2rem;
 }
 
-
 .contentHeading {
   font-size: var(--heading-font-size);
   text-align: center;
@@ -154,11 +158,11 @@
   font-size: 1.2rem;
 }
 
-.recognition{
+.recognition {
   padding: 5rem;
 }
 
-.community{
+.community {
   padding: 5rem;
 }
 
@@ -197,7 +201,7 @@
   .paraTag {
     font-size: 1rem;
   }
-    .aboutHighlight {
+  .aboutHighlight {
     padding: 2.5rem 0;
   }
 
@@ -234,7 +238,10 @@
   .goalContent {
     font-size: 0.8rem;
   }
-  .aboutDetails, .standForDetails, .recognition, .community{
+  .aboutDetails,
+  .standForDetails,
+  .recognition,
+  .community {
     padding: 1rem;
   }
 }

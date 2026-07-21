@@ -10,7 +10,7 @@ const TermsConditions = () => {
         <section className={styles.section}>
           <h2>1. Acceptance of Terms</h2>
           <p>
-            By accessing or using NeatnClean&apos;s services, you agree to comply
+            By accessing or using Eco Rinse&apos;s services, you agree to comply
             with these Terms & Conditions. If you do not agree, please refrain
             from using our services.
           </p>
@@ -19,7 +19,7 @@ const TermsConditions = () => {
         <section className={styles.section}>
           <h2>2. Services Offered</h2>
           <p>
-            NeatnClean provides professional laundry and dry-cleaning services,
+            Eco Rinse provides professional laundry and dry-cleaning services,
             including pickup and delivery. Service availability may vary
             depending on your location.
           </p>
@@ -104,7 +104,7 @@ const TermsConditions = () => {
         <section className={styles.section}>
           <h2>6. Limitation of Liability</h2>
           <p>
-            NeatnClean is not responsible for damage or loss of garments caused
+            Eco Rinse is not responsible for damage or loss of garments caused
             by manufacturing defects, improper labeling, or personal items left
             inside clothing. Any liability, if applicable, shall be limited to
             the service charges paid.

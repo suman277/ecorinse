@@ -105,7 +105,7 @@ const PrivacyAndPolicy = () => {
       <section>
         <h2>7. Children's Privacy</h2>
         <p>
-          NeatnClean does not knowingly collect personal data from individuals
+          Eco Rinse does not knowingly collect personal data from individuals
           under the age of 18. If we become aware of such data, we will delete
           it immediately.
         </p>

@@ -19,8 +19,13 @@
   text-align: center;
 }
 
+.contentHeading{
+  color: #0b1b2b;
+}
+
 .heroContainer h1 {
   font-size: var(--heading-font-size);
+  color: #0b1b2b;
 }
 
 .bar {
@@ -33,7 +38,7 @@
 
 .heroContainer::before {
   content: "";
-  background: url("../../assets/images/about-us/Final.webp");
+  background: url("../../assets/images/background/BackgroundImage.jpeg");
   background-repeat: no-repeat;
   inset: 0;
   background-size: cover;
@@ -44,8 +49,9 @@
   filter: blur(10px);
 }
 
-.heroDetail{
+.heroDetail {
   font-size: 1rem;
+  color: #0b1b2b;
 }
 
 .heroDetails {
@@ -80,7 +86,11 @@
   gap: 2rem;
 }
 
-.formstyle{
+.errorStyle{
+  gap: 1rem;
+}
+
+.formstyle {
   gap: 2rem;
   display: flex;
   flex-direction: column;
@@ -141,6 +151,26 @@
   gap: 1rem;
   width: 100%;
   box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 12px;
+  padding-inline: 5rem;
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.error {
+  color: red;
 }
 
 .askedQuestionsContainer {
@@ -184,6 +214,12 @@
   font-weight: bold;
 }
 
+.aboutHeading {
+  font-size: var(--heading-font-size);
+  font-weight: bold;
+  color: #0e2e54;
+}
+
 .supportHours {
   background-color: #0b1b2b;
   padding: 5rem;
@@ -194,8 +230,11 @@
 }
 
 @media (max-width: 768px) {
-  .heroContainer {
+  .heroContainer h1{
     font-size: 1rem;
+  }
+  .heroContainer{
+    padding: 5rem;
   }
   .heroDetail {
     width: 10rem;
@@ -234,6 +273,10 @@
 
   .inputFromWrapper {
     width: 100%;
+  }
+
+  .mapContainer{
+    padding: 1.5rem;
   }
 
   .contactWays {

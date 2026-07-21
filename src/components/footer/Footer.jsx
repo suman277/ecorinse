@@ -14,32 +14,30 @@ const Footer = () => {
             <div className={style.detailsWrapper}>
               <span className={style.heading}>{footer.heading}</span>
               <div className={style.subHeaderWrapper}>
-                {footer.subHeaders.map((heading) => {
-                  if (heading.path) {
-                    const path = heading.path;
+                {footer.subHeaders.map((util) => {
+                  const path = util?.path;
+                  if (footer.isNaviagte) {
                     return (
                       <div
-                        className={style.pathClicker}
+                        className={style.detailText}
                         onClick={() => navigate(path)}
                       >
-                        {heading.detail}
-                      </div>
-                    );
-                  }
-                  if (heading.icon) {
-                    const Icon = heading.icon;
-                    return (
-                      <div className={style.iconWrapper}>
-                        <div>
-                          <Icon />
-                        </div>
-                          <div className={style.iconText}>
-                          {heading.detail}
-                        </div>
+                        {util.detail}
                       </div>
                     );
                   } else {
-                    return <div className={style.detail}>{heading.detail}</div>;
+                    const Icon = util.icon;
+                    return (
+                      <a
+                        className={style.linkDetail}
+                        href={util.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon />
+                        <span className={style.detailText}>{util.detail}</span>
+                      </a>
+                    );
                   }
                 })}
               </div>
@@ -51,14 +49,14 @@ const Footer = () => {
           <div className={style.socialItems}>
             <a
               className={style.linkItems}
-              href="https://wa.me/919556759064"
+              href="https://www.instagram.com/ecorinselaundry/"
               target="_blank"
               rel="noreferrer"
             >
               <FaInstagram size={24} color="white" />
               <p>Instagram</p>
             </a>
-            <a
+            {/* <a
               className={style.linkItems}
               href="https://wa.me/919556759064"
               target="_blank"
@@ -66,10 +64,10 @@ const Footer = () => {
             >
               <FaLinkedin size={24} color="white" />
               <p>Linkedin</p>
-            </a>
+            </a> */}
             <a
               className={style.linkItems}
-              href="https://wa.me/919556759064"
+              href="https://www.facebook.com/profile.php?id=61592245677432"
               target="_blank"
               rel="noreferrer"
             >

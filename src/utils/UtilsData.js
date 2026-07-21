@@ -79,6 +79,7 @@ export const FooterUtils = [
   {
     heading: "Company",
     showPointer: true,
+    isNaviagte: true,
     subHeaders: [
       {
         detail: "About Us",
@@ -101,6 +102,7 @@ export const FooterUtils = [
   {
     heading: "Our Service",
     showPointer: true,
+    isNaviagte: true,
     subHeaders: [
       {
         detail: "Dry Cleaning",
@@ -122,20 +124,24 @@ export const FooterUtils = [
   },
   {
     heading: "Our Presence",
-    showPointer: false,
+    showPointer: true,
+    isNaviagte: false,
     subHeaders: [
       {
         icon: Map,
         detail:
-          "Ground Floor of KVG Complex, Raghavendra Circle, Ramamurthy Nagar, Bangalore, 560016",
+          "Shop No. 02, Ground Floor, K V G Complex. 9, 3rd Main, Thambu Chetty Palya Main Rd, Bengaluru, Karnataka 560016",
+        path: "https://maps.app.goo.gl/zvRpU81sUXDQw56p7",
       },
       {
         icon: Mail,
         detail: "ecorinselaundry@gmail.com",
+        path: "mailto:ecorinselaundry@gmail.com",
       },
       {
         icon: Phone,
         detail: "+919900388956",
+        path: "tel:+919900388956",
       },
     ],
   },
@@ -616,22 +622,26 @@ export const showContactDetails = [
     icon: Phone,
     heading: "Call Us",
     detail: "+91 9900388956",
+    path: "tel:919900388956",
   },
   {
     icon: MessageCircleDashed,
     heading: "WhatsApp",
     detail: "+91 9900388956",
+    path: "https://wa.me/919900388956?text=Hi%20EcoRinse%20Laundry,%20I%20would%20like%20to%20know%20more%20about%20your%20services.",
   },
   {
     icon: Mail,
     heading: "Email",
     detail: "ecorinselaundry@gmail.com",
+    path: "mailto:ecorinselaundry@gmail.com",
   },
   {
     icon: MapPin,
     heading: "Visit Us",
     detail:
-      "Ground Floor of KVG Complex, Raghavendra Circle, Ramamurthy Nagar, Bangalore, 560016",
+      "Shop No. 02, Ground Floor, K V G Complex. 9, 3rd Main, Thambu Chetty Palya Main Rd, Bengaluru, Karnataka 560016",
+    path: "https://maps.app.goo.gl/zvRpU81sUXDQw56p7",
   },
 ];
 
@@ -698,7 +708,7 @@ export const waysToReachUs = [
     icon: MessagesSquare,
     heading: "WhatsApp",
     detail: "Quick messaging for non-urgent queries and updates.",
-    path: "https://wa.me/919900388956",
+    path: "https://wa.me/919900388956?text=Hi%20EcoRinse%20Laundry,%20I%20would%20like%20to%20know%20more%20about%20your%20services.",
     linkDetails: "Chat on WhatsApp",
   },
   {
