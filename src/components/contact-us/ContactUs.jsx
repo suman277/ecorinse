@@ -43,31 +43,36 @@ const ContactUs = () => {
         </div>
         <div className={style.formWorks}>
           <div className={style.inputFromWrapper}>
-            <input
-              className={style.inputTextField}
-              type="text"
-              placeholder="Enter Name"
-              name="name"
-              value={form.name}
-              onChange={(e) => handleChange(e)}
-            />
-            <input
-              className={style.inputTextField}
-              type="number"
-              placeholder="Enter Phone Number"
-              name="contactNo"
-              value={form.contactNo}
-              onChange={(e) => handleChange(e)}
-            />
-            <input
-              className={style.inputTextField}
-              type="text"
-              placeholder="Enter City/State"
-              name="city"
-              value={form.city}
-              onChange={(e) => handleChange(e)}
-            />
-            <button className={style.btnClass}>SEND MESSAGE</button>
+            <form className={style.formstyle}
+              action="https://formsubmit.co/ecorinselaundry@gmail.com"
+              method="POST"
+            >
+              <input
+                className={style.inputTextField}
+                type="text"
+                placeholder="Enter Name"
+                name="name"
+                value={form.name}
+                onChange={(e) => handleChange(e)}
+              />
+              <input
+                className={style.inputTextField}
+                type="number"
+                placeholder="Enter Phone Number"
+                name="contactNo"
+                value={form.contactNo}
+                onChange={(e) => handleChange(e)}
+              />
+              <input
+                className={style.inputTextField}
+                type="text"
+                placeholder="Enter City/State"
+                name="city"
+                value={form.city}
+                onChange={(e) => handleChange(e)}
+              />
+              <button type= "submit" className={style.btnClass}>SEND MESSAGE</button>
+            </form>
           </div>
           <div className={style.contactWays}>
             {showContactDetails.map((contact) => {
@@ -87,7 +92,7 @@ const ContactUs = () => {
       </div>
       <div className={style.askedQuestionsContainer}>
         <span className={style.heading}>Frquently Asked Questions</span>
-                <div className={style.bar}></div>
+        <div className={style.bar}></div>
         <div className={style.askedContainer}>
           {askedQuestions.map((question) => {
             return (

@@ -80,6 +80,15 @@
   gap: 2rem;
 }
 
+.formstyle{
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  min-height: 25rem;
+  justify-content: center;
+}
+
 .inputFromWrapper {
   gap: 2rem;
   display: flex;
