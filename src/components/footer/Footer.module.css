@@ -4,6 +4,7 @@
   background-color: black;
   color: white;
   display: flex;
+  gap: 2rem;
   flex-direction: column;
 }
 
@@ -102,6 +103,10 @@
   gap: 0.5rem;
   text-decoration: none;
   color: white;
+}
+
+.copyRight{
+  text-align: center;
 }
 
 @media (max-width: 768px) {

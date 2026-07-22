@@ -77,6 +77,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className={style.copyRight}>Copyright by @EcoRinseLaundry. All Rights Reserved</div>
     </div>
   );
 };
