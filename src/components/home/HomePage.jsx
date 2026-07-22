@@ -22,7 +22,7 @@ const HomePage = () => {
       <section className={style.hero}>
         <img src={HomePageWM} className={style.heroImage} alt="EcoRinse" />
         <div className={style.heroContent}>
-                    <p>The Eco Rinse makes your product </p>
+          <p>Eco Rinse Laundry </p>
           <h1>Fast • Reliable • Trusted Laundry</h1>
           <p>We collect. We clean. We deliver.</p>
         </div>

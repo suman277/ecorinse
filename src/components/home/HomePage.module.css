@@ -428,6 +428,9 @@ p {
     flex-direction: column;
     padding: 1rem;
   }
+  .heroContent h1{
+    font-size: 2rem;
+  }
   .whyChoosingUs{
     padding: 1rem;
   }
