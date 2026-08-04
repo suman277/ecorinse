@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getOrders,
   getDashboardDetails,
-} from "../../../redux/orders/OrderThunk";
+} from "../../../redux/orders/OrderThunk.js";
 import {
   MessageSquareDotIcon,
   GitPullRequestCreate,

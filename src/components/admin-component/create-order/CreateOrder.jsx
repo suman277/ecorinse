@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import style from "./CreateOrder.module.css";
 import BackgroundImage from "../../../assets/images/background/BackgroundImage.jpeg";
-import { createOrder } from "../../../redux/orders/OrderThunk";
+import { createOrder } from "../../../redux/orders/OrderThunk.js";
 import { useDispatch } from "react-redux";
 import {
   User2,

@@ -5,7 +5,7 @@ import style from "./ViewOrder.module.css";
 import { FcCancel } from "react-icons/fc";
 import Orders from "../orders/Orders";
 import PrevOrder from "../../admin-component/prev-order/PrevOrder";
-import { getOrder } from "../../../redux/orders/OrderThunk";
+import { getOrder } from "../../../redux/orders/OrderThunk.js";
 import { ListOrdered, History, Dot } from "lucide-react";
 
 const ViewOrder = ({ handleClose, orderId }) => {

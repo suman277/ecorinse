@@ -4,7 +4,7 @@ import { DeleteIcon, Trash2 } from "lucide-react";
 import {
   createOrderItems,
   getOrderItemDetails,
-} from "../../../redux/orders/OrderThunk";
+} from "../../../redux/orders/OrderThunk.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const Orders = ({ orderId }) => {
