@@ -1,0 +1,81 @@
+.mainContainer {
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  background-color: #f0f6ed;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 95vh;
+}
+.headerDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerMenu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.statusIcon{
+  height: 2rem;
+}
+
+.statusDetails{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  padding-right: 0.6rem;
+  font-size: large;
+  background-color: #0E2E54;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.layoutDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.layoutMenu {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.activeTabClass {
+  background-color: white;
+  z-index: 5;
+  border: 0.2rem solid #e9e9e9;
+  border-bottom: none;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tabMenu {
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.layoutComps {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  background-color: white;
+  box-shadow: 0 0 0 0.2rem #e9e9e9;
+  margin-left: 0.19rem;
+}

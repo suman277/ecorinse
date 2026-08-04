@@ -1,0 +1,154 @@
+.backgroundImg::before {
+  background: url("../../../assets/images/background/BackgroundImage.jpeg");
+  background-repeat: no-repeat;
+  inset: 0;
+  background-size: cover;
+  position: absolute;
+  content: "";
+}
+
+.backgroundImg {
+  position: relative;
+  width: 100%;
+  height: 20rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundImg h1,
+h3 {
+  position: relative;
+  text-align: center;
+  color: #0e2e54;
+  z-index: 1;
+}
+
+.locationDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.additionalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addressDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.formContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-block: 5rem;
+}
+
+.formInnerContainer {
+  padding-inline: 2rem;
+  padding-block: 2rem;
+  border-radius: 1rem;
+  border: #488b36 solid 2px;
+}
+
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.submitBtn {
+  background-color: #488b36;
+  color: white;
+  padding-block: 1rem;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.inputText {
+  border-radius: 0.5rem;
+  background-color: ghostwhite;
+  width: 100%;
+  font-size: large;
+  padding-inline: 1rem;
+  height: 3rem;
+}
+
+.inputClass {
+  border: none;
+  outline: none;
+  height: 3rem;
+  font-size: large;
+  background-color: ghostwhite;
+  width: 100%;
+}
+
+.addressInput {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: ghostwhite;
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
+  position: relative;
+}
+
+.nameDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.iconDetailContainer {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.locationDetails {
+  position: absolute;
+  border-radius: 0.5rem;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  border: 1px solid black;
+  max-height: 15rem;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.locItems {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.locItems:hover {
+  background-color: gray;
+  color: white;
+}
+
+.dateDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.errorText{
+  color: red;
+}

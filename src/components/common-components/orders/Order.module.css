@@ -1,0 +1,98 @@
+.mainContainer {
+  background-color: white;
+  width: 100%;
+}
+
+.addBTn {
+  position: fixed;
+  top: 10rem;
+  right: 4rem;
+}
+
+.errorText{
+  color: red;
+}
+
+.saveBTn{
+  position: fixed;
+  top: 10rem;
+  right: 12rem;
+}
+
+.addItemContainer {
+  padding-inline: 2rem;
+  padding-block: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+
+.itemDetailsContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.mainItemContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.inputBox {
+  border: none;
+  outline: none;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding-block: 1rem;
+  font-size: large;
+  padding-inline: 0.5rem;
+}
+
+.delIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showDropInputBox{
+      border: none;
+  outline: none;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding-block: 1rem;
+  font-size: large;
+  padding-inline: 0.5rem;
+
+}
+
+.serviceMenu{
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+    z-index: 1;
+    background-color: #F0F6ED;
+}
+
+.serviceWrapper{
+    width: 100%;
+      position: relative;
+}
+
+.DropDownKeys{
+    text-align: center;
+    padding: 0.3rem;
+}
+
+.DropDownKeys:hover{
+    background-color: white;
+}
+
+.btnStyle{
+  background: #488B36;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
