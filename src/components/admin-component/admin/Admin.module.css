@@ -28,6 +28,32 @@
   width: 100%;
 }
 
+.statusIcon{
+  position: relative;
+}
+
+.statusListOptions{
+  top: 3rem;
+  position: absolute;
+  background-color: #F0F6ED;
+  z-index: 1;
+}
+
+.activeStatusColor {
+  /* color: #0E2E54; */
+  color: red;
+}
+
+.statusOption{
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  text-align: center;
+}
+
+.statusOption:hover{
+  background-color: white;
+}
+
 .topHeader {
   display: flex;
   align-items: center;

@@ -43,7 +43,7 @@ const CreateOrder = () => {
       hour,
     });
   }
-  const [details, setDetails] = useState({
+  const initialState = {
     name: "",
     phone_number: "",
     email: "",
@@ -54,7 +54,23 @@ const CreateOrder = () => {
     pickup_time: "",
     pickup_date: "",
     notes: "",
-  });
+  };
+  const [details, setDetails] = useState(initialState);
+  const getLocation = () => {
+    try {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          setDetails((prev) => ({
+            ...prev,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }));
+        });
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const formValidate = (details) => {
     const errorObj = {};
     if (!details.name) {
@@ -70,29 +86,31 @@ const CreateOrder = () => {
     ) {
       errorObj.phone_number = "Please provide a valid phone number";
     }
-    if (!details.pickup_address) {
-      errorObj.pickup_address = "Please select an address";
-    }
 
-    if (details.latitude === null) {
-      errorObj.latitude = "Latitude is missing";
-    }
+    // if (details.latitude === null) {
+    //   errorObj.latitude = "Latitude is missing";
+    // }
 
-    if (details.longitude === null) {
-      errorObj.longitude = "Longitude is missing";
+    // if (details.longitude === null) {
+    //   errorObj.longitude = "Longitude is missing";
+    // }
+    if (details.landmark.trim() === "" || details.landmark.trim().length < 3) {
+      errorObj.landmark = "Please Enter correct landmark";
     }
     setError(errorObj);
     return errorObj;
   };
   const isToday = details.pickup_date === today;
   const handleSubmit = (e) => {
+    console.log(details);
     e.preventDefault();
     const errors = formValidate(details);
     if (Object.keys(errors).length > 0) {
-      setErrors(errors);
+      setError(errors);
       return;
     }
     dispatch(createOrder(details));
+    setDetails(initialState);
   };
   const [search, setSearch] = useState("");
   const [addressDiv, setaddressDiv] = useState(false);
@@ -117,7 +135,6 @@ const CreateOrder = () => {
         );
         const data = await response.json();
         setAddressDetails(data?.features);
-        console.log(addressDetails);
       } catch (error) {
         console.error(error);
       }
@@ -179,7 +196,7 @@ const CreateOrder = () => {
               <div className={style.nameDetails}>
                 <div className={style.iconDetailContainer}>
                   <Mail color="#0E2E54" />
-                  <span>Email *</span>
+                  <span>Email</span>
                 </div>
                 <div>
                   <input
@@ -281,27 +298,40 @@ const CreateOrder = () => {
                 </div>
 
                 <div className={style.locationDiv}>
-                  <div className={style.addressInput}>
-                    <input
-                      className={style.inputClass}
-                      type="text"
-                      placeholder="Enter Address"
-                      value={search}
-                      onFocus={() => setaddressDiv(true)}
-                      onBlur={() => {
-                        setTimeout(() => {
-                          setaddressDiv(false);
-                        }, 150);
-                      }}
-                      onChange={(e) => {
-                        setSearch(e.target.value);
-                        setaddressDiv(true);
-                      }}
+                  <div className={style.locationOperator}>
+                    <div className={style.addressInput}>
+                      <input
+                        className={style.inputClass}
+                        type="text"
+                        placeholder={
+                          details.latitude && details.longitude
+                            ? "Current location captured"
+                            : "Click the location icon to use your current location"
+                        }
+                        readOnly
+                        value={search}
+                        onFocus={() => setaddressDiv(true)}
+                        onBlur={() => {
+                          setTimeout(() => {
+                            setaddressDiv(false);
+                          }, 150);
+                        }}
+                        onChange={(e) => {
+                          setSearch(e.target.value);
+                          setaddressDiv(true);
+                        }}
+                      />
+                    </div>
+                    <MapPinIcon
+                      color="#0E2E54"
+                      size={"3rem"}
+                      className={style.mapIcon}
+                      onClick={() => getLocation()}
                     />
-                    <MapPinIcon color="#0E2E54" />
-                    {addressDiv && search.trim() && (
+                  </div>
+                  {/* {addressDiv && search.trim() && (
                       <div className={style.locationDetails}>
-                        {addressDetails.map((feature) => {
+                        {addressDetails?.map((feature) => {
                           const address = [
                             feature.properties.name,
                             feature.properties.district,
@@ -332,8 +362,7 @@ const CreateOrder = () => {
                           );
                         })}
                       </div>
-                    )}
-                  </div>
+                    )} */}
                   <div className={style.nameDetails}>
                     <div className={style.iconDetailContainer}>
                       <LandmarkIcon color="#0E2E54" />
@@ -353,9 +382,9 @@ const CreateOrder = () => {
                   </div>
                 </div>
               </div>
-              {(error.pickup_address || error.latitude || error.longitude) && (
+              {(error.landmark || error.latitude || error.longitude) && (
                 <div className={style.errorText}>
-                  {error.pickup_address || error.latitude || error.longitude}
+                  {error.landmark || error.latitude || error.longitude}
                 </div>
               )}
             </section>

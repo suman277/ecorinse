@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getAPI, postAPI, putAPI } from "../../apiMethods";
+import { getAlertMessage } from "../alert/alertSlice";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -7,8 +8,13 @@ export const getOrders = createAsyncThunk(
   "/orders-list",
   async (query, thunkAPI) => {
     try {
-      console.log("Inside get Order api", baseUrl);
       const response = await getAPI(`${baseUrl}order/`, query);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Order Fetched Successfully",
+          isError: false,
+        }),
+      );
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -57,8 +63,22 @@ export const createOrder = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await postAPI(`${baseUrl}order/`, payload);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Order Created Successfully",
+          isError: false,
+        }),
+      );
+      console.log(response);
       return response;
     } catch (error) {
+      console.log(error);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail || "An Internal Error Occured",
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -67,8 +87,6 @@ export const createOrder = createAsyncThunk(
 export const createOrderItems = createAsyncThunk(
   "/create-order-items",
   async ({ orderId, payload }, thunkAPI) => {
-    console.log("orderId", orderId);
-    console.log("Inside thunk", payload);
     try {
       const response = await postAPI(
         `${baseUrl}order/items/${orderId}`,

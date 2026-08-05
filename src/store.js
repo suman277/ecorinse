@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import orderReducer from "./redux/orders/OrderSlice.js"
+import orderSlice from "./redux/orders/OrderSlice.js";
+import alertSlice from "./redux/alert/alertSlice.js";
 
 const store = configureStore({
-    reducer : {
-        orders : orderReducer
-    }
-})
+  reducer: {
+    orders: orderSlice,
+    alert: alertSlice,
+  },
+});
 
 export default store;

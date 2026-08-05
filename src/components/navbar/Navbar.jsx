@@ -13,7 +13,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
   const toogleMenu = () => {
-    console.log("I am getting clikced");
     setToggle(!toggle);
   };
   const isMobile = window.innerWidth <= 678;

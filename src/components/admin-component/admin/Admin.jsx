@@ -20,6 +20,7 @@ import {
   LocationEditIcon,
   EllipsisVertical,
 } from "lucide-react";
+import { FaS } from "react-icons/fa6";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -35,9 +36,35 @@ const Admin = () => {
     setOrderId(id);
     setOpenModal(true);
   };
+  const handleStatusDetails = (id, status_id) => {
+    console.log("Entered into function handler");
+    console.log(status_id);
+  };
   const handleCloseViewModal = () => {
     setOpenModal(false);
   };
+  const statusOptions = [
+    {
+      id: 1,
+      name: "Pending",
+    },
+    {
+      id: 2,
+      name: "Accepted",
+    },
+    {
+      id: 3,
+      name: "Processing",
+    },
+    {
+      id: 4,
+      name: "Completed",
+    },
+  ];
+  const [handleStatus, setHandleStatus] = useState({
+    id: "",
+    isOpen: "",
+  });
   useEffect(() => {
     if (query && query?.search) {
       const timer = setTimeout(() => {
@@ -135,8 +162,9 @@ const Admin = () => {
                 }}
               >
                 <option value={""}>All</option>
-                <option value={"Pending"}>Pickup</option>
-                <option value={"Processing"}>In Progress</option>
+                <option value={"Pending"}>Pending</option>
+                <option value={"Confirmed"}>Confirmed</option>
+                <option value={"Processing"}>Processing</option>
                 <option value={"Delivered"}>Delivered</option>
               </select>
             </div>
@@ -188,7 +216,43 @@ const Admin = () => {
                   return (
                     <tr key={order.id}>
                       <td>{order.name}</td>
-                      <td>{order.status}</td>
+                      <td
+                        tabIndex={order.id}
+                        className={style.statusIcon}
+                        onClick={() => {
+                          console.log("Got clicked");
+                          setHandleStatus({ id: order.id, isOpen: true });
+                        }}
+                        onBlur={() =>
+                          setHandleStatus({ id: "", isOpen: false })
+                        }
+                      >
+                        <div>{order.status}</div>
+                        {order.id === handleStatus.id &&
+                          handleStatus.isOpen && (
+                            <div className={style.statusListOptions}>
+                              {statusOptions.map((status) => {
+                                const statusCheck =
+                                  status.name === order.status;
+                                return (
+                                  <div
+                                    onClick={() => {
+                                      if (!statusCheck)
+                                        handleStatusDetails(
+                                          order.id,
+                                          status.id,
+                                        );
+                                    }}
+                                    key={status.id}
+                                    className={`${style.statusOption} ${statusCheck ? style.activeStatusColor : ""}`}
+                                  >
+                                    {status.name}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                      </td>
                       <td
                         onClick={() => {
                           window.location.href = `tel:${order.phone_number}`;
@@ -196,7 +260,7 @@ const Admin = () => {
                       >
                         {order.phone_number}
                       </td>
-                      <td>{order.pickup_address}</td>
+                      <td>{order?.landmark}</td>
                       <td
                         onClick={() =>
                           window.open(

@@ -12,7 +12,6 @@ export const getAPI = async (url, query = {}) => {
     }
     const queryParam = new URLSearchParams(queryObj).toString();
     const finalUrl = queryParam ? `${url}?${queryParam}` : url;
-    console.log("Inside get api");
     const response = await fetch(finalUrl, {
       method: "GET",
       headers: {
@@ -52,7 +51,6 @@ export const putAPI = async (url, payload) => {
 };
 
 export const postAPI = async (url, payload) => {
-  console.log("Inside the postAPI", payload);
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -61,9 +59,9 @@ export const postAPI = async (url, payload) => {
       },
       body: JSON.stringify(payload),
     });
-
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
+      throw data;
     }
 
     return await response.json();

@@ -102,6 +102,7 @@ h3 {
   display: flex;
   align-items: center;
   padding-inline: 1rem;
+  width: 100%;
   position: relative;
 }
 
@@ -151,4 +152,16 @@ h3 {
 
 .errorText{
   color: red;
+}
+
+.locationOperator{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.mapIcon{
+  border: 2px solid black;
+  border-radius: 0.5rem;
 }

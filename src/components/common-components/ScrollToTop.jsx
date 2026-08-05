@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
-  console.log("ScrollToTop file loaded");
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) {
