@@ -1,0 +1,35 @@
+.parentContainer {
+  padding: 2rem;
+  width: 30rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  background-color: #f0f6ed;
+}
+
+.delete {
+  padding-inline: 1rem;
+  padding-block: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: red;
+  color: white;
+}
+
+.cancel {
+  padding-inline: 1rem;
+  padding-block: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: red;
+  color: white;
+}
+
+.btnSection {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}

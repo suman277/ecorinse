@@ -3,6 +3,30 @@
   height: 100vh;
   background-color: #f0f6ed;
   padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.mainContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.deleteModal {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  z-index: 1000000;
 }
 
 .navBar {
@@ -28,36 +52,33 @@
   width: 100%;
 }
 
-.statusIcon{
+.statusIcon {
   position: relative;
 }
 
-.statusListOptions{
-  top: 3rem;
+.statusListOptions {
   position: absolute;
-  background-color: #F0F6ED;
-  z-index: 1;
+  background-color: #f0f6ed;
+  z-index: 999999;
 }
 
 .activeStatusColor {
-  /* color: #0E2E54; */
   color: red;
 }
 
-.statusOption{
+.statusOption {
   padding-block: 0.5rem;
   padding-inline: 1rem;
   text-align: center;
 }
 
-.statusOption:hover{
+.statusOption:hover {
   background-color: white;
 }
 
 .topHeader {
   display: flex;
   align-items: center;
-  padding: 1rem;
   justify-content: space-between;
 }
 
@@ -144,7 +165,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  margin-top: 1rem;
   background-color: white;
 }
 
@@ -200,11 +220,26 @@
   width: 100%;
 }
 
+.loaderComp {
+  height: calc(100% - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableContents {
+  overflow-y: auto;
+  height: calc(100% - 90px);
+}
+
+.tableContentsOverHid {
+  overflow: hidden;
+}
 .tableContents table > thead > tr > th {
   text-align: left;
   padding-inline: 1rem;
   position: sticky;
-  top: 91px;
+  top: 0;
   left: 0;
   background-color: #f0f6ed;
   z-index: 1;
@@ -212,6 +247,7 @@
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .headerOps {
@@ -230,6 +266,10 @@ table {
   gap: 0.5rem;
 }
 
+.tableRow {
+  overflow-y: auto;
+}
+
 .tableRow td {
   padding-block: 0.5rem;
 }
@@ -240,8 +280,7 @@ table > tbody > tr > td {
 }
 
 .detailContainer {
-  height: calc(100% - 310px);
-  overflow-y: auto;
+  height: calc(100% - 320px);
 }
 
 .detailOps {
@@ -256,21 +295,24 @@ tbody > tr {
   position: relative;
 }
 
+.actionBtns {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.actionBtns:hover {
+  color: green;
+}
+
 .dropDownIcon {
   position: absolute;
-  top: 40px;
-  right: 100px;
+  top: 30px;
+  right: 145px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   z-index: 1;
   background-color: #f0f6ed;
-  padding-inline: 2rem;
-  padding-block: 1rem;
   font-size: large;
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  border-bottom-left-radius: 2rem;
 }
 
 .actnBtn {
@@ -300,4 +342,38 @@ tbody > tr {
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(4px);
   z-index: 9998;
+}
+
+.paginationOps {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+  flex: 1;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.paginationOptions {
+  outline: none;
+  border: none;
+}
+
+.rightArrowBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightArrowBtn:hover {
+  background-color: #f0f6ed;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+}
+
+.clickBtns {
+  outline: none;
+  border: none;
 }

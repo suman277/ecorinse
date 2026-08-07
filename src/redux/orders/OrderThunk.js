@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAPI, postAPI, putAPI } from "../../apiMethods";
+import { getAPI, postAPI, putAPI, deleteAPI } from "../../apiMethods";
 import { getAlertMessage } from "../alert/alertSlice";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -110,6 +110,54 @@ export const updateOrderItems = createAsyncThunk(
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateOrder = createAsyncThunk(
+  "update-order",
+  async ({ orderId, payload }, thunkAPI) => {
+    try {
+      const response = await putAPI(`${baseUrl}order/${orderId}`, payload);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Order Updated successfully",
+          isError: false,
+        }),
+      );
+      return response;
+    } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail || "An internal error occured",
+          isError: true,
+        }),
+      );
+      thunkAPI.rejectWithValue("An internal error occured");
+    }
+  },
+);
+
+export const deleteOrder = createAsyncThunk(
+  "delete-api",
+  async (id, thunkAPI) => {
+    try {
+      const response = await deleteAPI(`${baseUrl}order/${id}`);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Order Deleted Successfuly",
+          isError: false,
+        }),
+      );
+      return response;
+    } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail || "An internal error occured",
+          isError: true,
+        }),
+      );
+      console.error("An intenal error occured", error.detail);
     }
   },
 );

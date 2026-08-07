@@ -40,10 +40,11 @@ export const putAPI = async (url, payload) => {
       },
       body: JSON.stringify(payload),
     });
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
+      throw data;
     }
-    return await response.json();
+    return data;
   } catch (error) {
     console.error("An internal error occurred:", error.message);
     throw error;
@@ -67,6 +68,26 @@ export const postAPI = async (url, payload) => {
     return await response.json();
   } catch (error) {
     console.error("An internal error occurred:", error.message);
+    throw error;
+  }
+};
+
+export const deleteAPI = async (url) => {
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(response);
+    if (!response.ok) {
+      throw data;
+    }
+    return data;
+  } catch (error) {
+    console.error("An internal error occured", error.message);
     throw error;
   }
 };
