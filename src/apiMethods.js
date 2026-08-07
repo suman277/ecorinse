@@ -65,7 +65,7 @@ export const postAPI = async (url, payload) => {
       throw data;
     }
 
-    return await response.json();
+    return data;
   } catch (error) {
     console.error("An internal error occurred:", error.message);
     throw error;
