@@ -9,7 +9,7 @@ import Logo from "../../assets/images/navbar/Logo.png";
 import { NavbarDetails, labelDetails } from "./NavbarUtils";
 import { Menu } from "lucide-react";
 
-const Navbar = () => {
+const Navbar = ({ showCart, cartLength, setHandleCart }) => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
   const toogleMenu = () => {
@@ -41,9 +41,18 @@ const Navbar = () => {
                 </NavLink>
               );
             })}
-            <div className={style.bookNow} onClick={() => navigate("/order")}>
-              Schedule A Pickup
-            </div>
+            {showCart ? (
+              <div
+                className={style.bookNow}
+                onClick={() => setHandleCart(true)}
+              >
+                Cart ({cartLength})
+              </div>
+            ) : (
+              <div className={style.bookNow} onClick={() => navigate("/order")}>
+                Schedule A Pickup
+              </div>
+            )}
           </div>
         </div>
         {toggle && (

@@ -19,14 +19,13 @@ export const getAPI = async (url, query = {}) => {
         "ngrok-skip-browser-warning": "true",
       },
     });
-
     if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(errorData.detail);
     }
-
     return await response.json();
   } catch (error) {
-    console.error("An internal error occurred:", error.message);
+    console.error(error.message);
     throw error;
   }
 };

@@ -4,6 +4,7 @@ import {
   getOrderItemDetails,
   getOrder,
   getDashboardDetails,
+  validateAddress,
 } from "./OrderThunk";
 
 const initialState = {
@@ -24,6 +25,11 @@ const initialState = {
   },
   dashboardDetails: {
     response: {},
+    isLoading: false,
+    error: "",
+  },
+  addressDetails: {
+    response: null,
     isLoading: false,
     error: "",
   },
@@ -99,10 +105,28 @@ export const orderSlice = createSlice({
       .addCase(getDashboardDetails.rejected, (state, action) => {
         state.dashboardDetails.isLoading = false;
         state.dashboardDetails.error = action.payload;
+      })
+      .addCase(validateAddress.pending, (state, action) => {
+        state.addressDetails.isLoading = true;
+        state.addressDetails.error = "";
+      })
+      .addCase(validateAddress.fulfilled, (state, action) => {
+        state.addressDetails.response = action.payload;
+        state.addressDetails.isLoading = false;
+        state.addressDetails.error = "";
+      })
+      .addCase(validateAddress.rejected, (state, action) => {
+        state.addressDetails.isLoading = false;
+        state.addressDetails.error = action.payload || "";
+        state.addressDetails.response = null;
       });
   },
 });
 
-export const { clearOrderList, clearOrderItemDetailsList, clearOrder, clearDashBoardDetails } =
-  orderSlice.actions;
+export const {
+  clearOrderList,
+  clearOrderItemDetailsList,
+  clearOrder,
+  clearDashBoardDetails,
+} = orderSlice.actions;
 export default orderSlice.reducer;

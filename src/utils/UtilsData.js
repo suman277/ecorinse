@@ -726,3 +726,98 @@ export const waysToReachUs = [
     linkDetails: "Visit Help Center",
   },
 ];
+
+export const itemCategories = {
+  1: {
+    categoryName: "Laundry",
+    categoryDetail: [
+      {
+        categoryDetailName: "Regular",
+        items: [
+          { id: 1, name: "Wash & Fold", price: 80, unit: "kg" },
+          { id: 2, name: "Wash and Stream Iron", price: 110, unit: "kg" },
+        ],
+      },
+    ],
+  },
+  2: {
+    categoryName: "Dry Clean",
+    categoryDetail: [
+      {
+        categoryDetailName: "Men",
+        items: [
+          { id: 3, name: "Shirt", price: 100, unit: "piece" },
+          { id: 4, name: "Pant", price: 110, unit: "piece" },
+          { id: 5, name: "T - Shirt", price: 100, unit: "piece" },
+          { id: 6, name: "Shorts", price: 70, unit: "piece" },
+          { id: 7, name: "Kurta", price: 110, unit: "piece" },
+          { id: 8, name: "Kurta", price: 150, unit: "piece" },
+          { id: 9, name: "Pyjama", price: 110, unit: "piece" },
+          { id: 10, name: "Jacket", price: 350, unit: "piece" },
+          { id: 11, name: "Leather Jacket", price: 450, unit: "piece" },
+          { id: 12, name: "Coat", price: 250, unit: "piece" },
+        ],
+      },
+      {
+        categoryDetailName: "Women",
+        items: [
+          { id: 13, name: "Plazo Plain", price: 100, unit: "piece" },
+          { id: 14, name: "Kurta Plain", price: 100, unit: "piece" },
+          { id: 15, name: "Saree", price: 200, unit: "piece" },
+          { id: 16, name: "Blouse", price: 60, unit: "piece" },
+          { id: 17, name: "Dress Plain", price: 180, unit: "piece" },
+          { id: 18, name: "Duppatta", price: 60, unit: "piece" },
+          { id: 19, name: "Lehenga Plain", price: 300, unit: "piece" },
+          { id: 20, name: "Skirt Short", price: 100, unit: "piece" },
+          { id: 21, name: "Petticoat", price: 70, unit: "piece" },
+          { id: 22, name: "Top Plain", price: 100, unit: "piece" },
+          { id: 22, name: "Shawl", price: 170, unit: "piece" },
+        ],
+      },
+      {
+        categoryDetailName: "Household",
+        items: [
+          { id: 23, name: "Blanket Single", price: 300, unit: "piece" },
+          { id: 24, name: "Blanket Double", price: 450, unit: "piece" },
+          {
+            id: 25,
+            name: "Curtain Per Pleat ( 4 Feet)",
+            price: 40,
+            unit: "piece",
+          },
+          {
+            id: 26,
+            name: "Curtain per Pleat ( 6 Feet)",
+            price: 45,
+            unit: "piece",
+          },
+          {
+            id: 27,
+            name: "Carpet ( Per Square Feet) ",
+            price: 55,
+            unit: "piece",
+          },
+          { id: 28, name: "Bedsheet Single", price: 150, unit: "piece" },
+          { id: 29, name: "Pillow Cover", price: 60, unit: "piece" },
+          { id: 30, name: "Bath Towel", price: 60, unit: "piece" },
+          { id: 31, name: "Quilt Single", price: 400, unit: "piece" },
+          { id: 32, name: "Quilt Double", price: 500, unit: "piece" },
+        ],
+      },
+    ],
+  },
+  3: {
+    categoryName: "Others",
+    categoryDetail: [
+      {
+        categoryDetailName: "Regular",
+        items: [
+          { id: 33, name: "Sport Shoes", price: 300, unit: "piece" },
+          { id: 34, name: "Leather Shoes", price: 400, unit: "piece" },
+          { id: 35, name: "Toys/Soft Shoes", price: 150, unit: "piece" },
+          { id: 36, name: "Suit Case", price: 250, unit: "piece" },
+        ],
+      },
+    ],
+  },
+};

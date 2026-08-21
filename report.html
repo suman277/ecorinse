@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EcoRinse Invoice</title>
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            background: white;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .container {
+            width: 100%;
+            min-height: 297mm;
+
+            padding: 18mm;
+
+            display: flex;
+            flex-direction: column;
+            gap: 8mm;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            padding-bottom: 8mm;
+
+            border-bottom: 1px solid #1F6B45;
+        }
+
+
+        /* LEFT SIDE */
+
+        .shopTag {
+            flex: 1;
+        }
+
+
+        .shopName {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+
+        .ecoTag {
+            color: #1F6B45;
+        }
+
+
+        .laundry {
+            margin-top: 8px;
+
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+
+        .colorText {
+            margin-top: 8px;
+
+            color: #1F6B45;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+
+        /* RIGHT SIDE */
+
+        .invoiceSection {
+            display: flex;
+            flex-direction: column;
+
+            align-items: flex-end;
+
+            gap: 5px;
+
+            min-width: 230px;
+        }
+
+
+        .invoiceTag {
+            font-size: 34px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .invoiceInfo {
+            font-size: 10px;
+            color: #444;
+        }
+
+
+        .invoiceInfo strong {
+            color: #222;
+        }
+
+
+        /* =====================================================
+           BILL TO / SERVICE DELIVERY
+        ===================================================== */
+
+        .bill-section {
+            width: 100%;
+
+            display: flex;
+
+            gap: 8mm;
+        }
+
+
+        .bill-to {
+            flex: 1;
+
+            border: 1px solid #C9D8D0;
+
+            border-radius: 5px;
+
+            overflow: hidden;
+
+            break-inside: avoid;
+        }
+
+
+        .billToHeader {
+            padding: 10px 14px;
+
+            background-color: #F0F6ED;
+
+            border-bottom: 1px solid #C9D8D0;
+
+            color: #1F6B45;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+
+        .detail {
+            padding: 14px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 7px;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+        }
+
+
+        .detail .name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           ORDER DETAILS
+        ===================================================== */
+
+        .section {
+            width: 100%;
+
+            break-inside: avoid;
+        }
+
+
+        .section-header {
+            padding: 10px 14px;
+
+            background-color: #F0F6ED;
+
+            border: 1px solid #C9D8D0;
+
+            border-bottom: none;
+
+            border-radius: 5px 5px 0 0;
+
+            color: #1F6B45;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           ITEMS TABLE
+        ===================================================== */
+
+        .items-table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            font-size: 10px;
+        }
+
+
+        .items-table thead {
+            display: table-header-group;
+        }
+
+
+        .items-table th {
+            padding: 10px 8px;
+
+            background-color: #1F6B45;
+
+            color: white;
+
+            text-align: left;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+
+        .items-table td {
+            padding: 10px 8px;
+
+            border: 1px solid #DDE4E0;
+
+            vertical-align: middle;
+        }
+
+
+        .items-table tbody tr {
+            break-inside: avoid;
+        }
+
+
+        .items-table .center {
+            text-align: center;
+        }
+
+
+        .items-table .right {
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           SUMMARY SECTION
+        ===================================================== */
+
+        .summary {
+            display: flex;
+
+            justify-content: flex-end;
+
+            margin-top: 6mm;
+
+            break-inside: avoid;
+        }
+
+
+        .summary-box {
+            width: 270px;
+
+            border: 1px solid #D5DDD9;
+
+            border-radius: 5px;
+
+            overflow: hidden;
+        }
+
+
+        .summary-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 9px 12px;
+
+            font-size: 10px;
+
+            border-bottom: 1px solid #E5E9E7;
+        }
+
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .discount {
+            color: #1F6B45;
+        }
+
+
+        .total-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 12px;
+
+            background-color: #E8F1EC;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .total-amount {
+            color: #1F6B45;
+        }
+
+
+        /* =====================================================
+           NOTES + PAYMENT
+        ===================================================== */
+
+        .bottom-section {
+            display: flex;
+
+            gap: 8mm;
+
+            break-inside: avoid;
+        }
+
+
+        .notes,
+        .payment {
+            flex: 1;
+
+            border: 1px solid #C9D8D0;
+
+            border-radius: 5px;
+
+            overflow: hidden;
+        }
+
+
+        .small-header {
+            padding: 9px 12px;
+
+            background-color: #F0F6ED;
+
+            border-bottom: 1px solid #C9D8D0;
+
+            color: #1F6B45;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+
+        .notes-content {
+            padding: 12px;
+
+            font-size: 9px;
+
+            line-height: 1.7;
+        }
+
+
+        .payment-content {
+            padding: 12px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            font-size: 9px;
+        }
+
+
+        .payment-item strong {
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: #1F6B45;
+        }
+
+
+        /* =====================================================
+           AMOUNT IN WORDS
+        ===================================================== */
+
+        .amount-words {
+            padding: 12px;
+
+            border: 1px solid #C9D8D0;
+
+            border-radius: 5px;
+
+            font-size: 9px;
+
+            break-inside: avoid;
+        }
+
+
+        .amount-words strong {
+            color: #1F6B45;
+        }
+
+
+        /* =====================================================
+           THANK YOU
+        ===================================================== */
+
+        .thank-you {
+            padding: 12px;
+
+            background-color: #F0F6ED;
+
+            border: 1px solid #C9D8D0;
+
+            border-radius: 5px;
+
+            text-align: center;
+
+            color: #1F6B45;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            break-inside: avoid;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            margin-top: auto;
+
+            padding-top: 8mm;
+
+            border-top: 1px solid #1F6B45;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 8px;
+
+            color: #555;
+
+            break-inside: avoid;
+        }
+
+
+        .footer strong {
+            color: #1F6B45;
+        }
+
+
+        /* =====================================================
+           PAGE BREAK UTILITY
+        ===================================================== */
+
+        .page-break {
+            break-before: page;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="header">
+
+        <!-- LEFT -->
+
+        <div class="shopTag">
+
+            <div class="shopName">
+                <span class="ecoTag">Eco</span>Rinse
+            </div>
+
+            <div class="laundry">
+                LAUNDRY & CARE
+            </div>
+
+            <div class="colorText">
+                Clean Clothes. Clean Planet.
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="invoiceSection">
+
+            <div class="invoiceTag">
+                INVOICE
+            </div>
+
+            <div class="invoiceInfo">
+                <strong>Invoice No:</strong>
+                INV-2026-000123
+            </div>
+
+            <div class="invoiceInfo">
+                <strong>Invoice Date:</strong>
+                12 Aug 2026
+            </div>
+
+            <div class="invoiceInfo">
+                <strong>Due Date:</strong>
+                19 Aug 2026
+            </div>
+
+            <div class="invoiceInfo">
+                <strong>Order ID:</strong>
+                ORD-000123
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BILL TO / SERVICE DELIVERY
+    ====================================================== -->
+
+    <div class="bill-section">
+
+
+        <!-- BILL TO -->
+
+        <div class="bill-to">
+
+            <div class="billToHeader">
+                Bill To
+            </div>
+
+            <div class="detail">
+
+                <div class="name">
+                    Suman Kumar Sahu
+                </div>
+
+                <div>
+                    +91 95567 59064
+                </div>
+
+                <div>
+                    sumankumarsahu7890@gmail.com
+                </div>
+
+                <div>
+                    123 Green Park Avenue
+                </div>
+
+                <div>
+                    Bengaluru, Karnataka - 560037
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVICE & DELIVERY -->
+
+        <div class="bill-to">
+
+            <div class="billToHeader">
+                Service & Delivery
+            </div>
+
+            <div class="detail">
+
+                <div>
+                    <strong>Pickup Address</strong>
+                </div>
+
+                <div>
+                    123 Green Park Avenue
+                </div>
+
+                <div>
+                    Bengaluru, Karnataka - 560037
+                </div>
+
+                <div>
+                    <strong>Pickup:</strong>
+                    12 Aug 2026
+                </div>
+
+                <div>
+                    <strong>Delivery:</strong>
+                    14 Aug 2026
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ORDER DETAILS
+    ====================================================== -->
+
+    <div class="section">
+
+        <div class="section-header">
+            Order Details
+        </div>
+
+
+        <table class="items-table">
+
+            <thead>
+
+                <tr>
+
+                    <th style="width: 8%;">
+                        #
+                    </th>
+
+                    <th style="width: 25%;">
+                        Item / Service
+                    </th>
+
+                    <th style="width: 25%;">
+                        Description
+                    </th>
+
+                    <th style="width: 10%;" class="center">
+                        Qty
+                    </th>
+
+                    <th style="width: 16%;" class="right">
+                        Unit Price
+                    </th>
+
+                    <th style="width: 16%;" class="right">
+                        Amount
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td class="center">
+                        1
+                    </td>
+
+                    <td>
+                        Wash & Fold
+                    </td>
+
+                    <td>
+                        T-Shirts
+                    </td>
+
+                    <td class="center">
+                        6
+                    </td>
+
+                    <td class="right">
+                        ₹30.00
+                    </td>
+
+                    <td class="right">
+                        ₹180.00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="center">
+                        2
+                    </td>
+
+                    <td>
+                        Wash & Fold
+                    </td>
+
+                    <td>
+                        Shirts
+                    </td>
+
+                    <td class="center">
+                        4
+                    </td>
+
+                    <td class="right">
+                        ₹40.00
+                    </td>
+
+                    <td class="right">
+                        ₹160.00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="center">
+                        3
+                    </td>
+
+                    <td>
+                        Wash & Iron
+                    </td>
+
+                    <td>
+                        Pants / Trousers
+                    </td>
+
+                    <td class="center">
+                        3
+                    </td>
+
+                    <td class="right">
+                        ₹60.00
+                    </td>
+
+                    <td class="right">
+                        ₹180.00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="center">
+                        4
+                    </td>
+
+                    <td>
+                        Iron Only
+                    </td>
+
+                    <td>
+                        Formal Shirts
+                    </td>
+
+                    <td class="center">
+                        2
+                    </td>
+
+                    <td class="right">
+                        ₹25.00
+                    </td>
+
+                    <td class="right">
+                        ₹50.00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="center">
+                        5
+                    </td>
+
+                    <td>
+                        Special Care
+                    </td>
+
+                    <td>
+                        Delicate Saree
+                    </td>
+
+                    <td class="center">
+                        1
+                    </td>
+
+                    <td class="right">
+                        ₹120.00
+                    </td>
+
+                    <td class="right">
+                        ₹120.00
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =====================================================
+         SUMMARY
+    ====================================================== -->
+
+    <div class="summary">
+
+        <div class="summary-box">
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span>
+                    ₹690.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Discount
+                </span>
+
+                <span class="discount">
+                    - ₹30.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Taxable Amount
+                </span>
+
+                <span>
+                    ₹660.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    GST (18%)
+                </span>
+
+                <span>
+                    ₹118.80
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <span class="total-amount">
+                    ₹778.80
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NOTES + PAYMENT
+    ====================================================== -->
+
+    <div class="bottom-section">
+
+
+        <!-- NOTES -->
+
+        <div class="notes">
+
+            <div class="small-header">
+                Notes
+            </div>
+
+            <div class="notes-content">
+
+                <div>
+                    • Thank you for choosing EcoRinse Laundry.
+                </div>
+
+                <div>
+                    • Please check your items upon delivery.
+                </div>
+
+                <div>
+                    • Contact us if you have any concerns.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment">
+
+            <div class="small-header">
+                Payment Methods
+            </div>
+
+            <div class="payment-content">
+
+                <div class="payment-item">
+                    <strong>UPI</strong>
+                    ecorinse@upi
+                </div>
+
+                <div class="payment-item">
+                    <strong>PhonePe</strong>
+                    9556759064
+                </div>
+
+                <div class="payment-item">
+                    <strong>Google Pay</strong>
+                    9556759064
+                </div>
+
+                <div class="payment-item">
+                    <strong>Cash</strong>
+                    At delivery
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         AMOUNT IN WORDS
+    ====================================================== -->
+
+    <div class="amount-words">
+
+        <strong>
+            Amount in Words:
+        </strong>
+
+        Rupees Seven Hundred Seventy Eight and Eighty Paise Only
+
+    </div>
+
+
+    <!-- =====================================================
+         THANK YOU
+    ====================================================== -->
+
+    <div class="thank-you">
+
+        Thank you for supporting eco-friendly laundry!
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="footer">
+
+        <div>
+            <strong>EcoRinse</strong>
+            — Clean Clothes. Clean Planet.
+        </div>
+
+        <div>
+            +91 95567 59064
+        </div>
+
+        <div>
+            hello@ecorinse.com
+        </div>
+
+        <div>
+            Bengaluru, Karnataka
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

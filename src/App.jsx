@@ -12,24 +12,26 @@ import Admin from "./components/admin-component/admin/Admin";
 import CreateOrder from "./components/admin-component/create-order/CreateOrder";
 import ViewOrder from "./components/common-components/view-order/ViewOrder";
 import AlertComponent from "./components/alert-component/AlertComponent";
+import Order from "./components/create-order/Order";
 function App() {
   return (
     <>
-      <AlertComponent/>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="our-services" element={<OurService />} />
-            <Route path="order" element={<ComingSoon />} />
-            <Route path="contact-us" element={<ContactUs />} />
-            <Route path="about-us" element={<AboutUs />} />
-            <Route path="terms-cond" element={<TermsConditions />} />
-            <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
-            <Route path="create-order" element={<CreateOrder />} />
-          </Route>
-          <Route path="/admin" element={<Admin />} />
-          <Route path="view-order" element={<ViewOrder />} />
-        </Routes>
+      <AlertComponent />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="our-services" element={<OurService />} />
+          <Route path="order" element={<ComingSoon />} />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="about-us" element={<AboutUs />} />
+          <Route path="terms-cond" element={<TermsConditions />} />
+          <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
+          <Route path="create-order" element={<CreateOrder />} />
+        </Route>
+          <Route path="create-orders" element={<Order />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="view-order" element={<ViewOrder />} />
+      </Routes>
     </>
   );
 }

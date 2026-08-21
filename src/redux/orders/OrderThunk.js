@@ -161,3 +161,17 @@ export const deleteOrder = createAsyncThunk(
     }
   },
 );
+
+export const validateAddress = createAsyncThunk(
+  "validate-address",
+  async (query, thunkAPI) => {
+    console.log("inside validate api");
+    try {
+      const response = await getAPI(`${baseUrl}order/validate`, query);
+      return response;
+    } catch (error) {
+      console.log("error:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
