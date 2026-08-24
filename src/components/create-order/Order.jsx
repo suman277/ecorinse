@@ -11,7 +11,9 @@ import { SkipForward, Scooter, X, Trash2 } from "lucide-react";
 
 const Order = () => {
   const dispatch = useDispatch();
-  const [details, setuserDetails] = useState({});
+  const [details, setuserDetails] = useState({
+    address_details : "",
+  });
   const cartDetails = useSelector((state) => state.cart.items);
   const totalPrice = cartDetails.reduce(
     (total, item) => total + item.price * item.quantity,

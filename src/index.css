@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   /* width: 100vw; */
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -10,9 +11,9 @@ body {
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
   --bg-color: #488b36;
-  --sub-bg-color : #0E2E54;
+  --sub-bg-color: #0e2e54;
   --heading-font-size: 2rem;
-  --border-radius : 0.3rem
+  --border-radius: 0.3rem;
 }
 
 body {

@@ -10,6 +10,8 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
   const { response, isLoading, error } = useSelector(
     (state) => state.orders.addressDetails,
   );
+  console.log("user_details", details);
+  
   useEffect(() => {
     if (response) {
       setuserDetails((prev) => ({
@@ -125,22 +127,26 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
             }}
           ></input>
         </div>
-        <div className={style.inputFrom}>
-          <label htmlFor="locality">
-            <h5>Locality</h5>
-          </label>
-          <input
-            type="text"
-            id="locality"
-            placeholder="Locality"
-            name="locality"
-            value={details?.locality}
-            className={style.inputDetails}
-            onChange={(e) => {
-              handleUserDetails(e);
-            }}
-          ></input>
-        </div>
+        {details?.address_details?.trim() === "" ? (
+          <div className={style.inputFrom}>
+            <label htmlFor="locality">
+              <h5>Locality</h5>
+            </label>
+            <input
+              type="text"
+              id="locality"
+              placeholder="Locality"
+              name="address_details"
+              value={details?.address_details}
+              className={style.inputDetails}
+              onChange={(e) => {
+                handleUserDetails(e);
+              }}
+            ></input>
+          </div>
+        ) : (
+          ""
+        )}
         <div className={style.inputFrom}>
           <label htmlFor="landmakr">
             <h5>FLAT / HOUSE NO.</h5>
