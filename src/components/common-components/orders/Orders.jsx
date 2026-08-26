@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Orders = ({ orderId }) => {
   const dispatch = useDispatch();
   const response = useSelector(
-    (state) => state.orders.orderItemDetailsList.response.item_details,
+    (state) => state.orders.orderItemDetailsList.response.order_details,
   );
 
   const [showDropdown, setShowDropDown] = useState({

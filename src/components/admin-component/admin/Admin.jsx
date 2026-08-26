@@ -26,7 +26,7 @@ import {
   EllipsisVertical,
   ChevronLeft,
   ChevronRight,
-  CircleDotDashed
+  CircleDotDashed,
 } from "lucide-react";
 import { FaS } from "react-icons/fa6";
 
@@ -260,7 +260,7 @@ const Admin = () => {
                     <th className={style.headerOps}>Name</th>
                     <th className={style.headerOps}>Status</th>
                     <th className={style.headerOps}>Phone No.</th>
-                    <th className={style.headerOps}>Pickup Address</th>
+                    <th className={style.headerOps}>Landmark</th>
                     <th className={style.headerOps}>Location</th>
                     <th className={style.headerOps}>Date & Time</th>
                     <th className={style.headerOps}>Action</th>
@@ -346,16 +346,20 @@ const Admin = () => {
                             {order.phone_number}
                           </td>
                           <td>{order?.landmark}</td>
-                          <td
-                            onClick={() =>
-                              window.open(
-                                `https://www.google.com/maps?q=${order.latitude},${order.longitude}`,
-                                "_blank",
-                              )
-                            }
-                          >
-                            <LocationEditIcon />
-                          </td>
+                          {order?.latitude ? (
+                            <td
+                              onClick={() =>
+                                window.open(
+                                  `https://www.google.com/maps?q=${order.latitude},${order.longitude}`,
+                                  "_blank",
+                                )
+                              }
+                            >
+                              <LocationEditIcon />
+                            </td>
+                          ) : (
+                            <td>{order?.pickup_address}</td>
+                          )}
                           <td>
                             <div className={style.dateTime}>
                               <span>{order.pickup_date}</span>

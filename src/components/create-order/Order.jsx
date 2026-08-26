@@ -9,6 +9,7 @@ import {
   deleteItem,
   clearCart,
 } from "../../redux/cart/cartSlice";
+import { clearAddressDetails } from "../../redux/orders/OrderSlice";
 import { createOrderWithItem } from "../../redux/orders/OrderThunk";
 import ChooseItems from "./ChooseItems";
 import Address from "./Address";
@@ -168,6 +169,7 @@ const Order = () => {
         }),
       );
       dispatch(clearCart());
+      dispatch(clearAddressDetails())
       setuserDetails({
         name: "",
         address_details: "",
