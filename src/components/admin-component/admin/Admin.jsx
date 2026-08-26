@@ -257,6 +257,7 @@ const Admin = () => {
               <table>
                 <thead>
                   <tr>
+                    <th className={style.headerOps}>Order Ref Num</th>
                     <th className={style.headerOps}>Name</th>
                     <th className={style.headerOps}>Status</th>
                     <th className={style.headerOps}>Phone No.</th>
@@ -277,6 +278,7 @@ const Admin = () => {
                     {data?.map((order) => {
                       return (
                         <tr key={order.id}>
+                                                    <td>{order?.order_ref_num}</td>
                           <td>{order.name}</td>
                           <td
                             tabIndex={order.id}
