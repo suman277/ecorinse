@@ -3,7 +3,13 @@ import { useEffect, useRef } from "react";
 import Navbar from "../navbar/Navbar";
 import style from "./Order.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem, deleteItem } from "../../redux/cart/cartSlice";
+import {
+  addItem,
+  removeItem,
+  deleteItem,
+  clearCart,
+} from "../../redux/cart/cartSlice";
+import { createOrderWithItem } from "../../redux/orders/OrderThunk";
 import ChooseItems from "./ChooseItems";
 import Address from "./Address";
 import Pickup from "./Pickup";
@@ -11,12 +17,22 @@ import { SkipForward, Scooter, X, Trash2 } from "lucide-react";
 
 const Order = () => {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
   const [details, setuserDetails] = useState({
-    address_details : "",
+    name: "",
+    address_details: "",
+    address: "",
+    pickup_date: "",
+    pickup_time: "",
+    landmark: "",
+    notes: "",
+    longitude: null,
+    latitude: null,
+    email: "",
   });
   const cartDetails = useSelector((state) => state.cart.items);
   const totalPrice = cartDetails.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.unit_price * item.quantity,
     0,
   );
   const [currentStep, setCurrentStep] = useState(1);
@@ -47,6 +63,7 @@ const Order = () => {
       ...prev,
       [name]: value,
     }));
+    setErrors({});
   };
   const calculateProgressBarWidth = () => {
     return ((currentStep - 1) / (components.length - 1)) * 100;
@@ -56,6 +73,118 @@ const Order = () => {
     leftMargin: 0,
     rightMargin: 0,
   });
+  // const validateItemDetails = () => {
+  //   const errorObj = {};
+  //   if (currentStep === 2) {
+  //     // Pickup validation
+
+  //     if (!details?.pickup_date) {
+  //       errorObj.pickup_date = "Please choose a valid pickup date";
+  //     }
+
+  //     if (!details?.pickup_time) {
+  //       errorObj.pickup_time = "Please choose a valid pickup slot";
+  //     }
+  //   }
+
+  //   if (currentStep === 3) {
+  //     // Address validation
+
+  //     if (!details?.phone || details.phone.trim() === "") {
+  //       errorObj.phone = "Please enter phone number";
+  //     } else if (details.phone.length !== 10) {
+  //       errorObj.phone = "Please enter a valid phone number";
+  //     }
+
+  //     if (!details?.address?.trim() && !details?.address_details?.trim()) {
+  //       errorObj.address_details = "Please enter a valid address";
+  //     }
+
+  //     if (!details?.name || details.name.trim() === "") {
+  //       errorObj.name = "Please enter your name";
+  //     } else if (details.name.trim().length < 3) {
+  //       errorObj.name = "Please enter a valid name";
+  //     }
+  //   }
+  //   return errorObj;
+  // };
+  const validateItemDetails = () => {
+    const errorObj = {};
+
+    if (currentStep === 2) {
+      if (!details?.pickup_date) {
+        errorObj.pickup_date = "Please choose a valid pickup date";
+        return errorObj;
+      }
+
+      if (!details?.pickup_time) {
+        errorObj.pickup_time = "Please choose a valid pickup slot";
+        return errorObj;
+      }
+    }
+
+    if (currentStep === 3) {
+      if (!details?.name || details.name.trim() === "") {
+        errorObj.name = "Please enter your name";
+        return errorObj;
+      }
+
+      if (details.name.trim().length < 3) {
+        errorObj.name = "Please enter a valid name";
+        return errorObj;
+      }
+      if (!details?.phone || details.phone.trim() === "") {
+        errorObj.phone = "Please enter phone number";
+        return errorObj;
+      }
+
+      if (details.phone.trim().length !== 10) {
+        errorObj.phone = "Please enter a valid phone number";
+        return errorObj;
+      }
+
+      if (!details?.address?.trim() && !details?.address_details?.trim()) {
+        errorObj.address = "Please enter a valid address";
+        return errorObj;
+      }
+    }
+
+    return errorObj;
+  };
+  const handleNext = async () => {
+    const errorList = validateItemDetails();
+    setErrors(errorList);
+    if (Object.keys(errorList).length > 0) {
+      console.log("RETURNING BECAUSE OF VALIDATION");
+      console.log("userDetails", details);
+      console.log("errorList:", errorList);
+      return;
+    }
+    if (currentStep === components.length) {
+      await dispatch(
+        createOrderWithItem({
+          ...details,
+          order_details: cartDetails,
+        }),
+      );
+      dispatch(clearCart());
+      setuserDetails({
+        name: "",
+        address_details: "",
+        address: "",
+        pickup_date: "",
+        pickup_time: "",
+        landmark: "",
+        notes: "",
+        longitude: null,
+        latitude: null,
+        email: "",
+      });
+      setCurrentStep(components[0].id);
+      return;
+    }
+    setCurrentStep((prev) => prev + 1);
+  };
   useEffect(() => {
     const left = stepRef.current[0].offsetWidth / 2;
     const right = stepRef.current[components.length - 1].offsetWidth / 2;
@@ -85,13 +214,13 @@ const Order = () => {
                   return (
                     <div className={style.cartItems}>
                       <div>
-                        <div className={style.itemName}>{item.name}</div>
+                        <div className={style.itemName}>{item.item_name}</div>
                         <div className={style.priceDetails}>
-                          <div>{item.price}</div>
+                          <div>{item.unit_price}</div>
                           <div>x{item.quantity}</div>
                         </div>
                         <div className={style.totalPrice}>
-                          Subtotal : {item.quantity * item.price}
+                          Subtotal : {item.quantity * item.unit_price}
                         </div>
                       </div>
                       <div className={style.ops}>
@@ -171,18 +300,14 @@ const Order = () => {
             details={details}
             handleUserDetails={handleUserDetails}
             setuserDetails={setuserDetails}
-            setHandleCart = {setHandleCart}
+            setHandleCart={setHandleCart}
+            errors={errors}
           />
         </div>
       </div>
       <div className={style.footerContainer}>
         <div className={style.footerOps}>
           <div className={style.leftSideContainer}>
-            <div className={style.cartDetails}>
-              {cartDetails.length > 0
-                ? `${cartDetails.length} Item - ₹${totalPrice}`
-                : "No Items Selected"}
-            </div>
             {currentStep > 1 && (
               <div
                 className={style.backBtn}
@@ -193,12 +318,18 @@ const Order = () => {
                 Back
               </div>
             )}
+            <div className={style.cartDetails}>
+              {cartDetails.length > 0
+                ? `${cartDetails.length} Item - ₹${totalPrice}`
+                : "No Items Selected"}
+            </div>
           </div>
           <div className={style.btnGroup}>
             {currentStep === components[0].id ? (
               <button
                 className={style.skipForward}
                 onClick={() => {
+                  dispatch(clearCart());
                   setCurrentStep((prev) => prev + 1);
                 }}
               >
@@ -215,10 +346,10 @@ const Order = () => {
                   cartDetails.length === 0 && currentStep === components[0].id
                 }
                 onClick={() => {
-                  setCurrentStep((prev) => prev + 1);
+                  handleNext();
                 }}
               >
-                Next
+                {currentStep === components.length ? "Place Order" : "Next"}
               </button>
             </div>
           </div>

@@ -51,6 +51,9 @@ export const orderSlice = createSlice({
     clearDashBoardDetails: (state) => {
       state.dashboardDetails = initialState.dashboardDetails;
     },
+    clearAddressDetails: (state) => {
+      state.addressDetails = initialState.addressDetails;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -128,5 +131,6 @@ export const {
   clearOrderItemDetailsList,
   clearOrder,
   clearDashBoardDetails,
+  clearAddressDetails,
 } = orderSlice.actions;
 export default orderSlice.reducer;

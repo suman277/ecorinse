@@ -7,10 +7,11 @@ const Pickup = ({
   handleUserDetails,
   setuserDetails,
   setHandleCart,
+  errors,
 }) => {
   const itemDetails = useSelector((state) => state.cart.items);
   const totalPrice = itemDetails.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.unit_price * item.quantity,
     0,
   );
   const now = new Date();
@@ -29,14 +30,13 @@ const Pickup = ({
     if (isToday && i <= currentHour) {
       continue;
     }
-    console.log("from pickup component ", itemDetails);
-
     pickupSlots.push({
       hour: i,
       label: `${String(i).padStart(2, "0")}:00 - ${String(i + 1).padStart(2, "0")}:00`,
-      value: `${String(i).padStart(2, "0")}:00:00`,
+      value: `${String(i).padStart(2, "0")}:00`,
     });
   }
+  console.log("PIckup comp", details);
   return (
     <>
       <div className={style.mainPickupContainer}>
@@ -44,7 +44,7 @@ const Pickup = ({
           <h6>PICKUP DATE</h6>
           <div className={style.dateInput}>
             <input
-              className={style.inputDate}
+              className={`${style.inputDate} ${errors.pickup_date ? style.inputDataError : ""}`}
               type="date"
               min={minDate}
               max={maxDate}
@@ -55,6 +55,9 @@ const Pickup = ({
               }}
             />
           </div>
+          {errors.pickup_date && (
+            <div className={style.errorDetails}>{errors.pickup_date}</div>
+          )}
         </div>
         <div>
           {details?.pickup_date?.trim() && (
@@ -65,11 +68,11 @@ const Pickup = ({
                   pickupSlots.map((slot) => (
                     <button
                       key={slot.value}
-                      className={`${style.pickUpTimes} ${details.pickup_slot === slot.value ? style.activeBackGround : ""}`}
+                      className={`${style.pickUpTimes} ${details.pickup_time === slot.value ? style.activeBackGround : ""}`}
                       onClick={() => {
                         setuserDetails((prev) => ({
                           ...prev,
-                          pickup_slot: slot.value,
+                          pickup_time: slot.value,
                         }));
                       }}
                     >
@@ -83,6 +86,9 @@ const Pickup = ({
             </div>
           )}
         </div>
+        {errors.pickup_time && (
+          <div className={style.errorDetails}>{errors.pickup_time}</div>
+        )}
         {itemDetails.length > 0 && (
           <div className={style.pickupMainCartContainer}>
             <div className={style.pickUpHeader}>
@@ -100,9 +106,9 @@ const Pickup = ({
                   return (
                     <div className={style.pickupCartItemDetails}>
                       <span className={style.itemNameQuantity}>
-                        {item?.quantity} x {item?.name}
+                        {item?.quantity} x {item?.item_name}
                       </span>
-                      <div>{`₹ ${item?.price * item?.quantity}`}</div>
+                      <div>{`₹ ${item?.unit_price * item?.quantity}`}</div>
                     </div>
                   );
                 })}

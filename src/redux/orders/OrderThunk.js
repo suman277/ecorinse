@@ -175,3 +175,22 @@ export const validateAddress = createAsyncThunk(
     }
   },
 );
+
+export const createOrderWithItem = createAsyncThunk(
+  "create-order-with-item",
+  async (payload, thunkAPI) => {
+    console.log("Inside the thunk function")
+    try {
+      const resposne = await postAPI(`${baseUrl}order/itemsss`, payload);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Order created successfully",
+          isError: false,
+        }),
+      );
+      return resposne;
+    } catch (error) {
+      console.log("An internal error occured");
+    }
+  },
+);

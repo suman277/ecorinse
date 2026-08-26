@@ -1,17 +1,31 @@
 .parentContainer {
   width: 100%;
   background-color: #f8fafd;
-  min-height: 100vh;
+  height: 100dvh;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .componentDetailContainer {
+  width: 100%;
   max-width: 60rem;
   margin: 0 auto;
   padding-block: 2rem;
-  height: 100%;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/old Edge */
+}
+
+.errorDetails{
+  color: red;
+}
+
+.navbarContainer {
+  flex-shrink: 0;
 }
 
 .cartBackdrop {
@@ -201,9 +215,10 @@
 
 .footerContainer {
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* left: 0; */
+  flex-shrink: 0;
   background-color: white;
 }
 
@@ -284,7 +299,7 @@
   gap: 1rem;
 }
 
-.headerChooseContainer{
+.headerChooseContainer {
   font-size: 2rem;
 }
 
@@ -431,6 +446,10 @@
   width: 100%;
   padding: 0.8rem;
   font-size: large;
+}
+
+.inputDataError{
+  border: 1px solid red;
 }
 
 .pickUpTimes {
@@ -596,6 +615,7 @@
   align-items: center;
   padding: 1rem;
   border-radius: 2rem;
+  justify-content: space-between;
 }
 
 .successAddressContainer {
@@ -604,6 +624,13 @@
   background-color: white;
   border-radius: 2rem;
   gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addressDetailWrapper{
+  display: flex;
+  gap : 1rem;
   align-items: center;
 }
 
@@ -616,55 +643,64 @@
   font-size: smaller;
 }
 
+.errorCross{
+  text-align: right;
+}
+
+.addressErrorDetail{
+  display: flex;
+  gap: 1rem;
+}
+
 
 @media (max-width: 768px) {
-  .componentDetailContainer{
+  .componentDetailContainer {
     padding: 1rem;
   }
-  .footerContainer{
+  .footerContainer {
     padding-inline: 1rem;
     z-index: 10;
   }
-  .headerSubText{
+  .headerSubText {
     font-size: small;
   }
-  .searchContainer{
+  .searchContainer {
     padding-inline: 0.8rem;
     padding-block: 0.5rem;
   }
-  .cartDetails{
+  .cartDetails {
     font-size: x-small;
   }
-  .pickUpTimes{
+  .pickUpTimes {
     font-size: x-small;
   }
-  .pickupTimeSlots{
+  .pickupTimeSlots {
     gap: 0.5rem;
     grid-template-columns: repeat(3, 1fr);
   }
-  .inputDate{
+  .inputDate {
     font-size: small;
     padding: 0.3rem;
   }
-  .footerOps{
+  .footerOps {
     z-index: 10;
     background-color: white;
   }
-  .inputFormAddressContainer{
+  .inputFormAddressContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 0.3rem;
   }
-  .inputDetails{
+  .inputDetails {
     padding-block: 0.5rem;
   }
-  .addressDiv{
+  .addressDiv {
     font-size: small;
   }
-  .navbarContainer{
+  .navbarContainer {
     display: none;
   }
-  .cartContainer{
+  .cartContainer {
     inset: 0;
     width: 24rem;
     height: 100%;

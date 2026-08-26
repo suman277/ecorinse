@@ -104,9 +104,9 @@ const ChooseItems = () => {
                     return (
                       <div className={style.detailsParentContainer}>
                         <div className={style.detailsContainer}>
-                          <div>{item.name}</div>
+                          <div>{item.item_name}</div>
                           <div className={style.priceTag}>
-                            {item.price} / {item.unit}
+                            {item.unit_price} / {item.unit}
                           </div>
                         </div>
                         {/* <div

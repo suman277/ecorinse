@@ -1,17 +1,26 @@
 import React from "react";
 import { useEffect } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Order.module.css";
+import { clearAddressDetails } from "../../redux/orders/OrderSlice";
 import { getLocationDetails } from "../../utils/mapUtils";
 
-const Address = ({ details, handleUserDetails, setuserDetails }) => {
+const Address = ({ errors, details, handleUserDetails, setuserDetails }) => {
   const dispatch = useDispatch();
   const { response, isLoading, error } = useSelector(
     (state) => state.orders.addressDetails,
   );
-  console.log("user_details", details);
-  
+
+  const handleCancelAddress = () => {
+    dispatch(clearAddressDetails());
+    setuserDetails((prev) => ({
+      ...prev,
+      longitude: null,
+      latitude: null,
+      address_details: "",
+    }));
+  };
   useEffect(() => {
     if (response) {
       setuserDetails((prev) => ({
@@ -22,6 +31,7 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
       }));
     }
   }, [response]);
+    console.log("Address comp", details);
 
   return (
     <div className={style.addressMainContainer}>
@@ -37,32 +47,48 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
           </div>
         ) : error.trim() !== "" ? (
           <div className={style.errorAddressDetailDiv}>
-            <div className={style.mapIcon}>
-              <MapPin />
+            <div className={style.addressErrorDetail}>
+              <div className={style.mapIcon}>
+                <MapPin />
+              </div>
+              <div className={style.errorText}>{error}</div>
             </div>
-            <div className={style.errorText}>{error}</div>
+            <div
+              className={style.errorCross}
+              onClick={() => handleCancelAddress()}
+            >
+              <X />
+            </div>
           </div>
         ) : response ? (
           <div className={style.successAddressContainer}>
-            <div>
-              <MapPin />
-            </div>
-            <div>
+            <div className={style.addressDetailWrapper}>
               <div>
-                <h6>DETECTED LOCATION</h6>
-                <span className={style.locationDetails}>
-                  {response.address_details}
+                <MapPin />
+              </div>
+              <div>
+                <div>
+                  <h6>DETECTED LOCATION</h6>
+                  <span className={style.locationDetails}>
+                    {response.address_details}
+                  </span>
+                </div>
+                <span>
+                  <a
+                    className={style.mapLink}
+                    target="_blank"
+                    href={`https://www.google.com/maps?q=${response.latitude},${response.longitude}`}
+                  >
+                    View Location On Google Maps
+                  </a>
                 </span>
               </div>
-              <span>
-                <a
-                  className={style.mapLink}
-                  target="_blank"
-                  href={`https://www.google.com/maps?q=${response.latitude},${response.longitude}`}
-                >
-                  View Location On Google Maps
-                </a>
-              </span>
+            </div>
+            <div
+              className={style.errorCross}
+              onClick={() => handleCancelAddress()}
+            >
+              <X />
             </div>
           </div>
         ) : (
@@ -97,7 +123,7 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
       <div className={style.inputFormAddressContainer}>
         <div className={style.inputFrom}>
           <label htmlFor="name">
-            <h5>Full Name</h5>
+            <h5>FULL NAME</h5>
           </label>
           <input
             id="name"
@@ -110,10 +136,13 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
               handleUserDetails(e);
             }}
           ></input>
+          {errors.name && (
+            <div className={style.errorDetails}>{errors.name}</div>
+          )}
         </div>
         <div className={style.inputFrom}>
           <label htmlFor="phone">
-            <h5>Phone</h5>
+            <h5>PHONE</h5>
           </label>
           <input
             id="phone"
@@ -126,34 +155,40 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
               handleUserDetails(e);
             }}
           ></input>
+          {errors.phone && (
+            <div className={style.errorDetails}>{errors.phone}</div>
+          )}
         </div>
         {details?.address_details?.trim() === "" ? (
           <div className={style.inputFrom}>
             <label htmlFor="locality">
-              <h5>Locality</h5>
+              <h5>LOCALITY</h5>
             </label>
             <input
               type="text"
               id="locality"
               placeholder="Locality"
-              name="address_details"
-              value={details?.address_details}
+              name="address"
+              value={details?.address}
               className={style.inputDetails}
               onChange={(e) => {
                 handleUserDetails(e);
               }}
             ></input>
+            {errors.address && (
+              <div className={style.errorDetails}>{errors.address}</div>
+            )}
           </div>
         ) : (
           ""
         )}
         <div className={style.inputFrom}>
-          <label htmlFor="landmakr">
+          <label htmlFor="landmark">
             <h5>FLAT / HOUSE NO.</h5>
           </label>
           <input
             type="text"
-            id="landmakr"
+            id="landmark"
             placeholder="B-07, Prestige Park ..."
             name="landmark"
             value={details?.landmark}
@@ -162,6 +197,9 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
               handleUserDetails(e);
             }}
           ></input>
+          {errors.landmark && (
+            <div className={style.errorDetails}>{errors.landmark}</div>
+          )}
         </div>
         <div className={style.inputFrom}>
           <label htmlFor="instruction">
@@ -173,6 +211,22 @@ const Address = ({ details, handleUserDetails, setuserDetails }) => {
             placeholder="Gate Code 0xxx"
             name="notes"
             value={details?.notes}
+            className={style.inputDetails}
+            onChange={(e) => {
+              handleUserDetails(e);
+            }}
+          ></input>
+        </div>
+        <div className={style.inputFrom}>
+          <label htmlFor="email">
+            <h5>EMAIL</h5>
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="hixxxxxxxxxx@gmail.com"
+            name="email"
+            value={details?.email}
             className={style.inputDetails}
             onChange={(e) => {
               handleUserDetails(e);
