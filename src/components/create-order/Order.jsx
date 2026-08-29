@@ -19,6 +19,10 @@ import NoRecordComponent from "../no-record/NoRecordComponent";
 
 const Order = () => {
   const dispatch = useDispatch();
+  const { response, isLoading, error } = useSelector(
+    (state) => state.orders.addressDetails,
+  );
+  console.log("error -", error);
   const [errors, setErrors] = useState({});
   const [details, setuserDetails] = useState({
     name: "",
@@ -331,9 +335,11 @@ const Order = () => {
             )}
             <div>
               <button
-                className={`${cartDetails.length === 0 && currentStep === components[0].id ? style.disableBtn : ""} ${style.nextBtn}`}
+                className={`${style.nextBtn} ${(cartDetails.length === 0 && currentStep === components[0].id) || error.trim() !== "" ? style.disableBtn : ""}`}
                 disabled={
-                  cartDetails.length === 0 && currentStep === components[0].id
+                  (cartDetails.length === 0 &&
+                    currentStep === components[0].id) ||
+                  error.trim() !== ""
                 }
                 onClick={() => {
                   handleNext();
