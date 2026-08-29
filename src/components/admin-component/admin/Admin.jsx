@@ -269,7 +269,7 @@ const Admin = () => {
                 </thead>
                 {data?.length === 0 ? (
                   <tr>
-                    <td colSpan={7}>
+                    <td colSpan={8}>
                       <NoRecordComponent />
                     </td>
                   </tr>
@@ -278,7 +278,7 @@ const Admin = () => {
                     {data?.map((order) => {
                       return (
                         <tr key={order.id}>
-                                                    <td>{order?.order_ref_num}</td>
+                          <td>{order?.order_ref_num}</td>
                           <td>{order.name}</td>
                           <td
                             tabIndex={order.id}

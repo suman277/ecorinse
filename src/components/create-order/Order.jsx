@@ -14,7 +14,8 @@ import { createOrderWithItem } from "../../redux/orders/OrderThunk";
 import ChooseItems from "./ChooseItems";
 import Address from "./Address";
 import Pickup from "./Pickup";
-import { SkipForward, Scooter, X, Trash2 } from "lucide-react";
+import { SkipForward, Scooter, X, Trash2, Plus } from "lucide-react";
+import NoRecordComponent from "../no-record/NoRecordComponent";
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -74,41 +75,6 @@ const Order = () => {
     leftMargin: 0,
     rightMargin: 0,
   });
-  // const validateItemDetails = () => {
-  //   const errorObj = {};
-  //   if (currentStep === 2) {
-  //     // Pickup validation
-
-  //     if (!details?.pickup_date) {
-  //       errorObj.pickup_date = "Please choose a valid pickup date";
-  //     }
-
-  //     if (!details?.pickup_time) {
-  //       errorObj.pickup_time = "Please choose a valid pickup slot";
-  //     }
-  //   }
-
-  //   if (currentStep === 3) {
-  //     // Address validation
-
-  //     if (!details?.phone || details.phone.trim() === "") {
-  //       errorObj.phone = "Please enter phone number";
-  //     } else if (details.phone.length !== 10) {
-  //       errorObj.phone = "Please enter a valid phone number";
-  //     }
-
-  //     if (!details?.address?.trim() && !details?.address_details?.trim()) {
-  //       errorObj.address_details = "Please enter a valid address";
-  //     }
-
-  //     if (!details?.name || details.name.trim() === "") {
-  //       errorObj.name = "Please enter your name";
-  //     } else if (details.name.trim().length < 3) {
-  //       errorObj.name = "Please enter a valid name";
-  //     }
-  //   }
-  //   return errorObj;
-  // };
   const validateItemDetails = () => {
     const errorObj = {};
 
@@ -156,9 +122,6 @@ const Order = () => {
     const errorList = validateItemDetails();
     setErrors(errorList);
     if (Object.keys(errorList).length > 0) {
-      console.log("RETURNING BECAUSE OF VALIDATION");
-      console.log("userDetails", details);
-      console.log("errorList:", errorList);
       return;
     }
     if (currentStep === components.length) {
@@ -169,7 +132,7 @@ const Order = () => {
         }),
       );
       dispatch(clearCart());
-      dispatch(clearAddressDetails())
+      dispatch(clearAddressDetails());
       setuserDetails({
         name: "",
         address_details: "",
@@ -212,51 +175,76 @@ const Order = () => {
                 </div>
               </div>
               <div className={style.cartItemsContainer}>
-                {cartDetails.map((item) => {
-                  return (
-                    <div className={style.cartItems}>
-                      <div>
-                        <div className={style.itemName}>{item.item_name}</div>
-                        <div className={style.priceDetails}>
-                          <div>{item.unit_price}</div>
-                          <div>x{item.quantity}</div>
+                {cartDetails?.length > 0 ? (
+                  cartDetails.map((item) => {
+                    return (
+                      <div className={style.cartItems}>
+                        <div>
+                          <div className={style.itemName}>{item.item_name}</div>
+                          <div className={style.priceDetails}>
+                            <div>{item.unit_price}</div>
+                            <div>x{item.quantity}</div>
+                          </div>
+                          <div className={style.totalPrice}>
+                            Subtotal : {item.quantity * item.unit_price}
+                          </div>
                         </div>
-                        <div className={style.totalPrice}>
-                          Subtotal : {item.quantity * item.unit_price}
+                        <div className={style.ops}>
+                          <div
+                            className={style.operationDiv}
+                            onClick={() => {
+                              dispatch(removeItem(item));
+                            }}
+                          >
+                            -
+                          </div>
+                          <div>{item.quantity}</div>
+                          <div
+                            className={style.operationDiv}
+                            onClick={() => {
+                              dispatch(addItem(item));
+                            }}
+                          >
+                            +
+                          </div>
                         </div>
-                      </div>
-                      <div className={style.ops}>
                         <div
-                          className={style.operationDiv}
+                          className={style.trashIcon}
                           onClick={() => {
-                            dispatch(removeItem(item));
+                            dispatch(deleteItem(item));
                           }}
                         >
-                          -
-                        </div>
-                        <div>{item.quantity}</div>
-                        <div
-                          className={style.operationDiv}
-                          onClick={() => {
-                            dispatch(addItem(item));
-                          }}
-                        >
-                          +
+                          <Trash2 />
                         </div>
                       </div>
+                    );
+                  })
+                ) : (
+                  <div className={style.emptyCartDetails}>
+                    <div className={style.addItemsContainer}>
                       <div
-                        className={style.trashIcon}
+                        className={style.addItem}
                         onClick={() => {
-                          dispatch(deleteItem(item));
+                          setCurrentStep(components[0].id);
+                          setHandleCart(false);
                         }}
                       >
-                        <Trash2 />
+                        <Plus />
                       </div>
+                      <div>Click to add items</div>
                     </div>
-                  );
-                })}
+                  </div>
+                )}
               </div>
-              <div className={style.totalItem}>Proceed To Checkout</div>
+              <div
+                className={style.totalItem}
+                onClick={() => {
+                  setCurrentStep(components[components.length - 1].id);
+                  setHandleCart(false);
+                }}
+              >
+                Proceed To Checkout
+              </div>
             </div>
           </div>
         </>
