@@ -143,6 +143,7 @@ export const deleteOrder = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await deleteAPI(`${baseUrl}order/${id}`);
+      console.log(response)
       thunkAPI.dispatch(
         getAlertMessage({
           message: "Order Deleted Successfuly",

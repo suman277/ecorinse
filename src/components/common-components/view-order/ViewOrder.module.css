@@ -17,7 +17,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .statusIcon{
@@ -28,12 +28,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
-  padding-right: 0.6rem;
   font-size: large;
-  background-color: #0E2E54;
   color: white;
-  border-radius: 0.5rem;
 }
 
 .layoutDetails {

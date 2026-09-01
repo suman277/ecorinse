@@ -7,6 +7,7 @@ import MainLogo from "../../../assets/images/navbar/MainLogo.jpeg";
 import Loading from "../../loader/Loading.jsx";
 import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
 import Modal from "../../modal/Modal.jsx";
+import StatusIndicator from "../../common-components/status-indicator/StatusIndicator";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getOrders,
@@ -21,18 +22,26 @@ import {
   ClockArrowLeftIcon,
   CalendarCheck2,
   Search,
-  SearchCheck,
   LocationEditIcon,
-  EllipsisVertical,
   ChevronLeft,
   ChevronRight,
   CircleDotDashed,
+  RefreshCcw,
 } from "lucide-react";
-import { FaS } from "react-icons/fa6";
 
 const Admin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [tooltip, setToolTip] = useState({
+    id: null,
+    isOpen: false,
+  });
+  const handleDispatch = () =>{
+        dispatch(getOrders());
+  }
+  const checkStatus = (status) => {
+    return status === "Delivered";
+  };
   const { data, has_next, has_previous, next_cursor, previous_cursor } =
     useSelector((store) => store.orders.orderList.response);
   const { isLoading, error } = useSelector((store) => store.orders.orderList);
@@ -216,33 +225,39 @@ const Admin = () => {
                 <option value={"Delivered"}>Delivered</option>
               </select>
             </div>
-            <div>
-              {searchModal ? (
-                <div className={style.searchWidth}>
-                  <div className={style.searchInputDiv}>
-                    <Search onClick={() => setSearchModal(false)} />
-                    <input
-                      className={style.searchInput}
-                      type="text"
-                      placeholder="Search ..."
-                      value={query?.search}
-                      onChange={(e) => {
-                        setQuery((prev) => ({
-                          ...prev,
-                          search: e.target.value,
-                        }));
-                      }}
-                    />
+            <div className={style.operationalContainer}>
+              <div>
+                {searchModal ? (
+                  <div className={style.searchWidth}>
+                    <div className={style.searchInputDiv}>
+                      <Search onClick={() => setSearchModal(false)} />
+                      <input
+                        className={style.searchInput}
+                        type="text"
+                        placeholder="Search ..."
+                        value={query?.search}
+                        onChange={(e) => {
+                          setQuery((prev) => ({
+                            ...prev,
+                            search: e.target.value,
+                          }));
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div
-                  onClick={() => setSearchModal(true)}
-                  className={style.searchIcon}
-                >
-                  <Search />
-                </div>
-              )}
+                ) : (
+                  <div
+                    onClick={() => setSearchModal(true)}
+                    className={style.searchIcon}
+                  >
+                    <Search />
+                  </div>
+                )}
+              </div>
+              <div className={style.refreshBtn} onClick={handleDispatch}>
+                <RefreshCcw />
+                <span>Refresh</span>
+              </div>
             </div>
           </div>
           <hr className={style.hr}></hr>
@@ -277,130 +292,169 @@ const Admin = () => {
                   <tbody className={style.tableRow}>
                     {data?.map((order) => {
                       return (
-                        <tr key={order.id}>
-                          <td>{order?.order_ref_num}</td>
-                          <td>{order.name}</td>
-                          <td
-                            tabIndex={order.id}
-                            className={style.statusIcon}
-                            onBlur={() =>
-                              setHandleStatus({
-                                id: "",
-                                isOpen: false,
-                                x: 0,
-                                y: 0,
-                              })
-                            }
+                        <>
+                          <tr
+                            key={order.id}
+                            className={`${style.tableData} ${checkStatus(order.status) ? style.grayBack : ""}`}
                           >
-                            <div
-                              onClick={(e) => {
-                                console.log("Got clicked");
-                                const rect =
-                                  e.currentTarget.getBoundingClientRect();
-                                setHandleStatus({
-                                  id: order.id,
-                                  isOpen: true,
-                                  x: rect.left,
-                                  y: rect.bottom,
-                                });
+                            <td
+                              className={style.orderRefNum}
+                              onClick={() => {
+                                handleOpenViewModal(order.id);
                               }}
                             >
-                              {order.status}
-                            </div>
-                            {order.id === handleStatus.id &&
-                              handleStatus.isOpen && (
-                                <div
-                                  className={style.statusListOptions}
-                                  style={{
-                                    position: "fixed",
-                                    left: handleStatus.x,
-                                    top: handleStatus.y,
-                                  }}
-                                >
-                                  {statusOptions.map((status) => {
-                                    const statusCheck =
-                                      status.name === order.status;
-                                    return (
-                                      <div
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          if (!statusCheck)
-                                            handleStatusDetails(
-                                              order.id,
-                                              status.id,
-                                            );
-                                        }}
-                                        key={status.id}
-                                        className={`${style.statusOption} ${statusCheck ? style.activeStatusColor : ""}`}
-                                      >
-                                        {status.name}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              )}
-                          </td>
-                          <td
-                            onClick={() => {
-                              window.location.href = `tel:${order.phone_number}`;
-                            }}
-                          >
-                            {order.phone_number}
-                          </td>
-                          <td>{order?.landmark}</td>
-                          {order?.latitude ? (
+                              <strong>{order?.order_ref_num}</strong>
+                            </td>
+                            <td className={style.nameDetails}>{order.name}</td>
                             <td
-                              onClick={() =>
-                                window.open(
-                                  `https://www.google.com/maps?q=${order.latitude},${order.longitude}`,
-                                  "_blank",
-                                )
+                              tabIndex={order.id}
+                              className={style.statusIcon}
+                              onBlur={() =>
+                                setHandleStatus({
+                                  id: "",
+                                  isOpen: false,
+                                  x: 0,
+                                  y: 0,
+                                })
                               }
                             >
-                              <LocationEditIcon />
+                              <div
+                                onClick={(e) => {
+                                  console.log("Got clicked");
+                                  const rect =
+                                    e.currentTarget.getBoundingClientRect();
+                                  setHandleStatus({
+                                    id: order.id,
+                                    isOpen: true,
+                                    x: rect.left,
+                                    y: rect.bottom,
+                                  });
+                                }}
+                              >
+                                <StatusIndicator status={order.status} />
+                              </div>
+                              {order.id === handleStatus.id &&
+                                handleStatus.isOpen && (
+                                  <div
+                                    className={style.statusListOptions}
+                                    style={{
+                                      position: "fixed",
+                                      left: handleStatus.x,
+                                      top: handleStatus.y,
+                                    }}
+                                  >
+                                    {statusOptions.map((status) => {
+                                      const statusCheck =
+                                        status.name === order.status;
+                                      return (
+                                        <div
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (!statusCheck)
+                                              handleStatusDetails(
+                                                order.id,
+                                                status.id,
+                                              );
+                                          }}
+                                          key={status.id}
+                                          className={`${style.statusOption} ${statusCheck ? style.activeStatusColor : ""}`}
+                                        >
+                                          {status.name}
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                )}
                             </td>
-                          ) : (
-                            <td>{order?.pickup_address}</td>
-                          )}
-                          <td>
-                            <div className={style.dateTime}>
-                              <span>{order.pickup_date}</span>
-                              <span>{order.pickup_time}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <button
-                              className={style.actnBtn}
-                              onBlur={() => setView(initalStateOptionMenu)}
-                              onClick={() => handleOptionMenu(order.id)}
+                            <td
+                              onClick={() => {
+                                window.location.href = `tel:${order.phone_number}`;
+                              }}
                             >
-                              <EllipsisVertical />
-                              {order.id === view.id && view.isOpen && (
-                                <div className={style.dropDownIcon}>
+                              {order.phone_number}
+                            </td>
+                            <td>{order?.landmark}</td>
+                            {order?.latitude ? (
+                              <td
+                                onClick={() =>
+                                  window.open(
+                                    `https://www.google.com/maps?q=${order.latitude},${order.longitude}`,
+                                    "_blank",
+                                  )
+                                }
+                              >
+                                <LocationEditIcon />
+                              </td>
+                            ) : (
+                              <td className={style.addressDetails}>
+                                <div
+                                  onMouseEnter={(e) => {
+                                    const rect =
+                                      e.currentTarget.getBoundingClientRect();
+
+                                    setToolTip({
+                                      id: order.id,
+                                      isOpen: true,
+                                      x: rect.left,
+                                      y: rect.top,
+                                    });
+                                  }}
+                                  onMouseLeave={() => {
+                                    setToolTip({
+                                      id: null,
+                                      isOpen: false,
+                                      x: 0,
+                                      y: 0,
+                                    });
+                                  }}
+                                  className={style.toolTipShow}
+                                >
                                   <div
-                                    onClick={() => {
-                                      handleOpenViewModal(order.id);
-                                    }}
-                                    className={style.actionBtns}
-                                  >
-                                    View
-                                  </div>
-                                  <div
-                                    className={style.actionBtns}
-                                    onClick={() => {
-                                      setHandleDeleteModal({
-                                        id: order.id,
-                                        isOpen: true,
-                                      });
+                                    style={{
+                                      width: "200px",
+                                      whiteSpace: "nowrap",
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
                                     }}
                                   >
-                                    Delete
+                                    {order?.pickup_address}
                                   </div>
+                                  {tooltip && order?.id === tooltip.id && (
+                                    <div
+                                      className={style.tooltip}
+                                      style={{
+                                        position: "fixed",
+                                        left: tooltip.x,
+                                        top: tooltip.y - 50,
+                                      }}
+                                    >
+                                      {order?.pickup_address}
+                                    </div>
+                                  )}
                                 </div>
-                              )}
-                            </button>
-                          </td>
-                        </tr>
+                              </td>
+                            )}
+                            <td>
+                              <div className={style.dateTime}>
+                                <span>{order?.pickup_date}</span>
+                                <span className={style.pickupTime}>{order?.pickup_time}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <button
+                                className={style.deleteBtn}
+                                onClick={() => {
+                                  setHandleDeleteModal({
+                                    id: order.id,
+                                    isOpen: true,
+                                  });
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        </>
                       );
                     })}
                   </tbody>

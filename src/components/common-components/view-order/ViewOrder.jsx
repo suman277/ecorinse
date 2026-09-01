@@ -6,6 +6,7 @@ import { FcCancel } from "react-icons/fc";
 import Orders from "../orders/Orders";
 import PrevOrder from "../../admin-component/prev-order/PrevOrder";
 import { getOrder } from "../../../redux/orders/OrderThunk.js";
+import StatusIndicator from "../status-indicator/StatusIndicator.jsx";
 import { ListOrdered, History, Dot } from "lucide-react";
 
 const ViewOrder = ({ handleClose, orderId }) => {
@@ -21,11 +22,10 @@ const ViewOrder = ({ handleClose, orderId }) => {
     <div className={style.mainContainer}>
       <div className={style.headerDetails}>
         <div className={style.headerMenu}>
-          <div className={style.containerHeader}>Order Details</div>
+          <div className={style.containerHeader}><strong>Order</strong> #{response?.order_ref_num}</div>
           <div>+91 {response?.phone_number}</div>
           <div className={style.statusDetails}>
-            <Dot className={style.statusIcon} />
-            <span>{response?.status}</span>
+            <StatusIndicator status={response?.status} />
           </div>
         </div>
         <div

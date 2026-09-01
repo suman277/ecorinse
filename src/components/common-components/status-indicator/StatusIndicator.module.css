@@ -1,0 +1,23 @@
+.bullet{
+    font-weight : 900;
+}
+
+/* .statusInd{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+} */
+
+.statusInd {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

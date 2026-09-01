@@ -5,6 +5,7 @@ import {
   createOrderItems,
   getOrderItemDetails,
 } from "../../../redux/orders/OrderThunk.js";
+import StatusIndicator from "../status-indicator/StatusIndicator.jsx";
 import { useDispatch, useSelector } from "react-redux";
 
 const Orders = ({ orderId }) => {
