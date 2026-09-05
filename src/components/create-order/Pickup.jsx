@@ -46,8 +46,8 @@ const Pickup = ({
             <input
               className={`${style.inputDate} ${errors.pickup_date ? style.inputDataError : ""}`}
               type="date"
-              min={minDate}
-              max={maxDate}
+              // min={minDate}
+              // max={maxDate}
               name="pickup_date"
               value={details?.pickup_date}
               onChange={(e) => {

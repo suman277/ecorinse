@@ -92,6 +92,12 @@ export const createOrderItems = createAsyncThunk(
         `${baseUrl}order/items/${orderId}`,
         payload,
       );
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Items Updated successfully",
+          isError: false,
+        }),
+      );
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -143,7 +149,7 @@ export const deleteOrder = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await deleteAPI(`${baseUrl}order/${id}`);
-      console.log(response)
+      console.log(response);
       thunkAPI.dispatch(
         getAlertMessage({
           message: "Order Deleted Successfuly",
@@ -180,7 +186,7 @@ export const validateAddress = createAsyncThunk(
 export const createOrderWithItem = createAsyncThunk(
   "create-order-with-item",
   async (payload, thunkAPI) => {
-    console.log("Inside the thunk function")
+    console.log("Inside the thunk function");
     try {
       const resposne = await postAPI(`${baseUrl}order/itemsss`, payload);
       thunkAPI.dispatch(

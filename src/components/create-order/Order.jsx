@@ -62,6 +62,11 @@ const Order = () => {
       component: Address,
     },
   ];
+  const now = new Date();
+  const maxDay = new Date(now);
+  maxDay.setDate(maxDay.getDate() + 7);
+  const minDate = now.toISOString().split("T")[0];
+  const maxDate = maxDay.toISOString().split("T")[0];
   const ActiveComponent = components[currentStep - 1].component;
   const handleUserDetails = (e) => {
     const { name, value } = e.target;
@@ -116,6 +121,13 @@ const Order = () => {
 
       if (!details?.address?.trim() && !details?.address_details?.trim()) {
         errorObj.address = "Please enter a valid address";
+        return errorObj;
+      }
+      if (
+        details?.pickup_date?.trim() > maxDate ||
+        details?.pickup_date?.trim() < minDate
+      ) {
+        errorObj.pickup_date = `Accepting orders between ${minDate} and ${maxDate}`;
         return errorObj;
       }
     }

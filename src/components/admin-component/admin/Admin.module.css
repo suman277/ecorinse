@@ -26,7 +26,7 @@
   z-index: 1000000;
 }
 
-.operationalContainer{
+.operationalContainer {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -54,7 +54,6 @@
   position: relative;
 }
 
-
 .tooltip {
   position: absolute;
   z-index: 10;
@@ -64,7 +63,6 @@
   border-radius: 0.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-
 
 .navBar {
   background-color: #f7f7f7;
@@ -224,11 +222,11 @@
   align-items: center;
 }
 
-.refreshBtn{
+.refreshBtn {
   display: flex;
   gap: 0.5rem;
   cursor: pointer;
-  background-color: #F0F6ED;
+  background-color: #f0f6ed;
   align-items: center;
   padding: 0.5rem;
   border: none;
@@ -396,8 +394,9 @@ tbody > tr {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 96%;
-  z-index: 9999;
+  width: 95%;
+  height: 95%;
+  z-index: 999;
 }
 
 .overlay {
