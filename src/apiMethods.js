@@ -1,4 +1,4 @@
-export const getAPI = async (url, query = {}) => {
+export const getAPI = async (url, query = {}, responseType = "json") => {
   try {
     const queryObj = {};
     for (const [key, value] of Object.entries(query)) {
@@ -23,6 +23,29 @@ export const getAPI = async (url, query = {}) => {
       const errorData = await response.json();
       throw new Error(errorData.detail);
     }
+    if (responseType === "blob") {
+      const blob = await response.blob();
+      console.log("File Data response", response);
+
+      const contentDisposition = response.headers.get("Content-Disposition");
+      console.log("content_disposition", contentDisposition);
+
+      let fileName = "invoice.pdf";
+
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="?([^"]+)"?/);
+
+        if (match) {
+          fileName = match[1];
+        }
+      }
+
+      return {
+        blob,
+        fileName,
+      };
+    }
+
     return await response.json();
   } catch (error) {
     console.error(error.message);

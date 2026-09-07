@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import style from "./Order.module.css";
-import { Trash2 } from "lucide-react";
+import { Trash2, Download } from "lucide-react";
 import {
   createOrderItems,
   getOrderItemDetails,
+  getInvoice,
+  generateInvoice,
+  downloadInvoice,
 } from "../../../redux/orders/OrderThunk.js";
 import { useDispatch, useSelector } from "react-redux";
 import { itemCategories } from "../../../utils/UtilsData.js";
@@ -45,6 +48,42 @@ const Orders = ({ orderId }) => {
   const response = useSelector(
     (state) => state.orders.orderItemDetailsList.response.order_details,
   );
+  const invoiceDetails = useSelector(
+    (state) => state.orders.checkInvoice.response,
+  );
+  console.log(invoiceDetails);
+  // const handleDownloadFile = () => {
+  //   if (orderId && !invoiceDetails) {
+  //     dispatch(generateInvoice(orderId));
+  //   } else {
+  //     dispatch(downloadInvoice(orderId));
+  //   }
+  // };
+  const handleDownloadFile = async () => {
+    if (!orderId) {
+      return;
+    }
+    try {
+      if (!invoiceDetails) {
+        await dispatch(generateInvoice(orderId)).unwrap();
+        return;
+      }
+      const { blob, fileName } = await dispatch(
+        downloadInvoice(orderId),
+      ).unwrap();
+      console.log(fileName);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Invoice operation failed:", error);
+    }
+  };
   const categoriesList = Object.keys(itemCategories);
   const initialItemDetails = {
     item_name: "",
@@ -57,8 +96,9 @@ const Orders = ({ orderId }) => {
   useEffect(() => {
     if (orderId) {
       dispatch(getOrderItemDetails(orderId));
+      dispatch(getInvoice(orderId));
     }
-  }, [dispatch]);
+  }, [dispatch, orderId]);
   useEffect(() => {
     if (response) {
       setItemDetails(response);
@@ -119,6 +159,8 @@ const Orders = ({ orderId }) => {
       ...prev.slice(0, index),
       ...prev.slice(index + 1),
     ]);
+    setItemIndex(null);
+    setIsFormDirty(true);
   };
 
   const handleChange = (e, index) => {
@@ -142,7 +184,6 @@ const Orders = ({ orderId }) => {
       return updated;
     });
   };
-  console.log("isDirty", isFormDirty);
   const catWiseItemDetails = (index) => {
     const category = Object.values(itemCategories).filter(
       (itemCat) => itemDetails[index].service_name === itemCat.categoryName,
@@ -153,8 +194,6 @@ const Orders = ({ orderId }) => {
     <div className={style.mainContainer}>
       <div className={style.addItemContainer}>
         {itemDetails?.map((item, index) => {
-          console.log("itemIndex:", itemIndex);
-          console.log("current index:", index);
           return (
             <div className={style.itemDetails}>
               <div className={style.inputContainer}>
@@ -360,14 +399,24 @@ const Orders = ({ orderId }) => {
           <button className={style.addBtn} onClick={() => addItem()}>
             Add
           </button>
-
-          <button
-            className={`${style.addBtn} ${!isFormDirty || itemIndex ? style.disabled : ""}`}
-            disabled={!isFormDirty || itemIndex}
-            onClick={() => saveItems()}
-          >
-            Save Changes
-          </button>
+          <div className={style.mergedBtns}>
+            <div
+              className={style.downloadBtn}
+              onClick={() => {
+                handleDownloadFile();
+              }}
+            >
+              <Download color="white" size={"1rem"} />{" "}
+              {invoiceDetails ? "Download" : "Generate"}
+            </div>
+            <button
+              className={`${style.addBtn} ${!isFormDirty || itemIndex ? style.disabled : ""}`}
+              disabled={!isFormDirty || itemIndex}
+              onClick={() => saveItems()}
+            >
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
     </div>

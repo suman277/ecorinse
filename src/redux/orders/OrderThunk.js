@@ -201,3 +201,53 @@ export const createOrderWithItem = createAsyncThunk(
     }
   },
 );
+
+export const getInvoice = createAsyncThunk(
+  "get-invoice",
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await getAPI(`${baseUrl}order/check-invoice/${orderId}`);
+      return response;
+    } catch (error) {
+      console.log("An Internal Error Occured");
+    }
+  },
+);
+
+export const generateInvoice = createAsyncThunk(
+  "generate-invoice",
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await getAPI(
+        `${baseUrl}order/generate-invoice/${orderId}`,
+      );
+      console.log("getInvoice", response);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Invoice generation in progress, please wait",
+          isError: false,
+        }),
+      );
+      return response;
+    } catch (error) {
+      console.log("An Internal Error Occured");
+    }
+  },
+);
+
+export const downloadInvoice = createAsyncThunk(
+  "download-invoice",
+  async (orderId, thunkAPI) => {
+    try {
+      const response = await getAPI(
+        `${baseUrl}order/invoice/${orderId}`,
+        {},
+        "blob",
+      );
+
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

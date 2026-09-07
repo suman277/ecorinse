@@ -178,3 +178,20 @@
 .categoryName:hover {
   background-color: aliceblue;
 }
+
+.mergedBtns{
+  display: flex;
+  gap: 1rem;
+}
+
+.downloadBtn{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background-color: #4d8731;
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: small;
+  cursor: pointer;
+}

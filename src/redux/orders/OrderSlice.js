@@ -5,6 +5,9 @@ import {
   getOrder,
   getDashboardDetails,
   validateAddress,
+  getInvoice,
+  downloadInvoice,
+  generateInvoice
 } from "./OrderThunk";
 
 const initialState = {
@@ -33,6 +36,21 @@ const initialState = {
     isLoading: false,
     error: "",
   },
+  checkInvoice: {
+    response: null,
+    isLoading: false,
+    error: "",
+  },
+  invoiceDetails: {
+    response: {},
+    isLoading: false,
+    error: "",
+  },
+  generateInvoiceDetails : {
+    response : {},
+    isLoading : false,
+    error : ""
+  }
 };
 
 export const orderSlice = createSlice({
@@ -122,6 +140,45 @@ export const orderSlice = createSlice({
         state.addressDetails.isLoading = false;
         state.addressDetails.error = action.payload || "";
         state.addressDetails.response = null;
+      })
+      .addCase(getInvoice.pending, (state) => {
+        state.checkInvoice.isLoading = true;
+        state.checkInvoice.error = "";
+      })
+      .addCase(getInvoice.fulfilled, (state, action) => {
+        state.checkInvoice.isLoading = true;
+        state.checkInvoice.error = "";
+        state.checkInvoice.response = action.payload.invoice_details;
+      })
+      .addCase(getInvoice.rejected, (state, action) => {
+        state.checkInvoice.isLoading = false;
+        state.checkInvoice.error = action.payload || "";
+      })
+      .addCase(downloadInvoice.pending, (state) => {
+        state.invoiceDetails.isLoading = true;
+        state.invoiceDetails.error = "";
+      })
+      .addCase(downloadInvoice.fulfilled, (state, action) => {
+        state.invoiceDetails.isLoading = false;
+        state.invoiceDetails.error = "";
+        state.invoiceDetails.response = action.payload;
+      })
+      .addCase(downloadInvoice.rejected, (state, action) => {
+        state.invoiceDetails.isLoading = false;
+        state.invoiceDetails.error = action.payload || "";
+      })
+        .addCase(generateInvoice.pending, (state) => {
+        state.generateInvoiceDetails.isLoading = true;
+        state.generateInvoiceDetails.error = "";
+      })
+      .addCase(generateInvoice.fulfilled, (state, action) => {
+        state.generateInvoiceDetails.isLoading = false;
+        state.generateInvoiceDetails.error = "";
+        state.generateInvoiceDetails.response = action.payload;
+      })
+      .addCase(generateInvoice.rejected, (state, action) => {
+        state.generateInvoiceDetails.isLoading = false;
+        state.generateInvoiceDetails.error = action.payload || "";
       });
   },
 });
