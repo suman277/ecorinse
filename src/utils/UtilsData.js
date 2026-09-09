@@ -735,7 +735,8 @@ export const itemCategories = {
         categoryDetailName: "Regular",
         items: [
           { id: 1, item_name: "Wash & Fold", unit_price: 80, unit: "kg" },
-          { id: 2, item_name: "Wash and Stream Iron", unit_price: 110, unit: "kg" },
+          { id: 2, item_name: "Wash and Stream Iron", unit_price: 100, unit: "kg" },
+          { id: 37, item_name: "Stream Iron", unit_price: 12, unit: "piece" },
         ],
       },
     ],

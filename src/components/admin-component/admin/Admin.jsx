@@ -37,7 +37,8 @@ const Admin = () => {
     isOpen: false,
   });
   const handleDispatch = () =>{
-        dispatch(getOrders());
+        dispatch(getOrders())
+        dispatch(getDashboardDetails())
   }
   const checkStatus = (status) => {
     return status === "Delivered";

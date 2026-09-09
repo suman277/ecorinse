@@ -7,7 +7,7 @@ import {
   validateAddress,
   getInvoice,
   downloadInvoice,
-  generateInvoice
+  generateInvoice,
 } from "./OrderThunk";
 
 const initialState = {
@@ -46,11 +46,11 @@ const initialState = {
     isLoading: false,
     error: "",
   },
-  generateInvoiceDetails : {
-    response : {},
-    isLoading : false,
-    error : ""
-  }
+  generateInvoiceDetails: {
+    response: {},
+    isLoading: false,
+    error: "",
+  },
 };
 
 export const orderSlice = createSlice({
@@ -167,7 +167,7 @@ export const orderSlice = createSlice({
         state.invoiceDetails.isLoading = false;
         state.invoiceDetails.error = action.payload || "";
       })
-        .addCase(generateInvoice.pending, (state) => {
+      .addCase(generateInvoice.pending, (state) => {
         state.generateInvoiceDetails.isLoading = true;
         state.generateInvoiceDetails.error = "";
       })

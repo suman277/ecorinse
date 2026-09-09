@@ -221,7 +221,6 @@ export const generateInvoice = createAsyncThunk(
       const response = await getAPI(
         `${baseUrl}order/generate-invoice/${orderId}`,
       );
-      console.log("getInvoice", response);
       thunkAPI.dispatch(
         getAlertMessage({
           message: "Invoice generation in progress, please wait",

@@ -45,33 +45,29 @@ const Orders = ({ orderId }) => {
     };
   }, []);
   const dispatch = useDispatch();
-  const response = useSelector(
+  const orderItems = useSelector(
     (state) => state.orders.orderItemDetailsList.response.order_details,
   );
-  const invoiceDetails = useSelector(
+  const invoiceExists = useSelector(
     (state) => state.orders.checkInvoice.response,
   );
-  console.log(invoiceDetails);
-  // const handleDownloadFile = () => {
-  //   if (orderId && !invoiceDetails) {
-  //     dispatch(generateInvoice(orderId));
-  //   } else {
-  //     dispatch(downloadInvoice(orderId));
-  //   }
-  // };
+  const isDownloading = useSelector((state) => state.orders.invoiceDetails);
+  const generateDetails = useSelector(
+    (state) => state.orders.generateInvoiceDetails,
+  );
+  console.log("Downloading state", isDownloading);
   const handleDownloadFile = async () => {
     if (!orderId) {
       return;
     }
     try {
-      if (!invoiceDetails) {
+      if (!invoiceExists) {
         await dispatch(generateInvoice(orderId)).unwrap();
         return;
       }
       const { blob, fileName } = await dispatch(
         downloadInvoice(orderId),
       ).unwrap();
-      console.log(fileName);
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
@@ -100,17 +96,19 @@ const Orders = ({ orderId }) => {
     }
   }, [dispatch, orderId]);
   useEffect(() => {
-    if (response) {
-      setItemDetails(response);
+    if (orderItems) {
+      setItemDetails(orderItems);
     }
-  }, [response]);
+  }, [orderItems]);
   const saveItems = async () => {
     const indexVal = validateForm(itemDetails);
     if (indexVal !== undefined) {
       setItemIndex(indexVal);
       return;
     }
+    console.log("Item Details", itemDetails);
     const item_details = itemDetails?.map((item) => ({
+        ...(item.id ? { id: item.id } : {}),
       item_name: item.item_name,
       service_name: item.service_name,
       quantity: Number(item.quantity),
@@ -407,7 +405,13 @@ const Orders = ({ orderId }) => {
               }}
             >
               <Download color="white" size={"1rem"} />{" "}
-              {invoiceDetails ? "Download" : "Generate"}
+              {isDownloading.isLoading
+                ? "Downloading ..."
+                : generateDetails.isLoading
+                  ? "Generating ..."
+                  : invoiceExists
+                    ? "Download"
+                    : "Generate"}
             </div>
             <button
               className={`${style.addBtn} ${!isFormDirty || itemIndex ? style.disabled : ""}`}
