@@ -761,8 +761,8 @@ export const itemCategories = {
       {
         categoryDetailName: "Women",
         items: [
-          { id: 13, item_name: "Plazo Plain", unit_price: 100, unit: "piece" },
-          { id: 14, item_name: "Kurta Plain", unit_price: 100, unit: "piece" },
+          { id: 13, item_name: "Plazo Plain", unit_price: 80, unit: "piece" },
+          { id: 14, item_name: "Kurta Plain", unit_price: 80, unit: "piece" },
           { id: 15, item_name: "Saree", unit_price: 200, unit: "piece" },
           { id: 16, item_name: "Blouse", unit_price: 60, unit: "piece" },
           { id: 17, item_name: "Dress Plain", unit_price: 180, unit: "piece" },
