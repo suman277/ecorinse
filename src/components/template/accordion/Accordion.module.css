@@ -1,0 +1,60 @@
+.accordionMainDiv {
+  border: 1px solid #e2e6e5;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftSideContainer {
+  /* padding-inline: 0.5rem; */
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rightSideContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.downIcon {
+  text-align: center;
+}
+
+.stepHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.editBtn:hover {
+  font-size: small;
+  background-color: rgb(154, 181, 154);
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+}
+
+.editBtn {
+  font-size: small;
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+  border-radius: 1rem;
+}
+
+.deleteBtn {
+  font-size: small;
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+  border-radius: 1rem;
+}
+
+.deleteBtn:hover {
+  font-size: small;
+  background-color: rgb(149, 101, 101);
+  color: white;
+}

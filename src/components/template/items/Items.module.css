@@ -1,0 +1,66 @@
+.itemDetails {
+  border: 1px solid #e2e6e5;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.price {
+  color: burlywood;
+  font-weight: bold;
+  font-size: small;
+}
+
+.editBtn:hover {
+  font-size: small;
+  background-color: rgb(154, 181, 154);
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+}
+
+.editBtn {
+  font-size: small;
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+  border-radius: 1rem;
+}
+
+.deleteBtn {
+  font-size: small;
+  padding-inline: 0.5rem;
+  padding-block: 0.2rem;
+  border-radius: 1rem;
+}
+
+.deleteBtn:hover {
+  font-size: small;
+  background-color: rgb(149, 101, 101);
+  color: white;
+}
+
+.itemdataDetails {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.unit {
+  text-transform: capitalize;
+  font-size: small;
+}

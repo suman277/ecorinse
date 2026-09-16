@@ -13,6 +13,7 @@ import CreateOrder from "./components/admin-component/create-order/CreateOrder";
 import ViewOrder from "./components/common-components/view-order/ViewOrder";
 import AlertComponent from "./components/alert-component/AlertComponent";
 import Order from "./components/create-order/Order";
+import Template from "./components/template/template-builder/Template";
 function App() {
   return (
     <>
@@ -28,9 +29,10 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
           <Route path="create-order" element={<CreateOrder />} />
         </Route>
-          <Route path="create-orders" element={<Order />} />
+        <Route path="create-orders" element={<Order />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="view-order" element={<ViewOrder />} />
+        <Route path="/template" element={<Template />} />
       </Routes>
     </>
   );

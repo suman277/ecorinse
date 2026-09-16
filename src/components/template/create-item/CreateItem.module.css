@@ -1,0 +1,65 @@
+.addItem {
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  border-radius: 1rem;
+}
+
+.opsItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.itemNameContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.itemName {
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.otherItems {
+  display: flex;
+  gap: 1rem;
+}
+
+.unit,
+.unitPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.itemBtn {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.cancel {
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  border: 1px solid gainsboro;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+}
+
+.addItembtn {
+  padding: 0.3rem;
+  background-color: #488b36;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 0.3rem;
+  border: none;
+}
