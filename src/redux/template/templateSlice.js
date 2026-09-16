@@ -3,141 +3,141 @@ import { createSlice } from "@reduxjs/toolkit";
 export const templateDetails = createSlice({
   name: "templateDetails",
   initialState: {
-    // response: [],
-    response: [
-      {
-        id: 1,
-        name: "Ecorinse",
-        steps: [
-          {
-            id: 1,
-            name: "Laundry",
-            sections: [
-              {
-                id: 1,
-                name: "Regular",
-                items: [
-                  {
-                    id: 1,
-                    item_name: "Wash and Iron",
-                    item_unit: "kg",
-                    unit_price: 70,
-                  },
-                  {
-                    id: 2,
-                    item_name: "Wash and Steam Iron",
-                    item_unit: "kg",
-                    unit_price: 100,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "Eco Rinse 2",
-        steps: [
-          {
-            id: 2,
-            name: "Others",
-            sections: [
-              {
-                id: 2,
-                name: "Others 1",
-                items: [
-                  {
-                    id: 1,
-                    item_name: "Wash and Iron",
-                    item_unit: "kg",
-                    unit_price: 70,
-                  },
-                  {
-                    id: 2,
-                    item_name: "Wash and Steam Iron",
-                    item_unit: "kg",
-                    unit_price: 100,
-                  },
-                ],
-              },
-              {
-                id: 3,
-                name: "Others 2",
-                items: [
-                  {
-                    id: 3,
-                    item_name: "Shirt",
-                    item_unit: "piece",
-                    unit_price: 70,
-                  },
-                  {
-                    id: 4,
-                    item_name: "Pant",
-                    item_unit: "piece",
-                    unit_price: 80,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "Ecorinse 3",
-        steps: [
-          {
-            id: 3,
-            name: "Women",
-            sections: [
-              {
-                id: 4,
-                name: "Regular",
-                items: [
-                  {
-                    id: 5,
-                    item_name: "Wash and Iron",
-                    item_unit: "kg",
-                    unit_price: 70,
-                  },
-                  {
-                    id: 6,
-                    item_name: "Wash and Steam Iron",
-                    item_unit: "kg",
-                    unit_price: 100,
-                  },
-                ],
-              },
-              {
-                id: 5,
-                name: "Men",
-                items: [
-                  {
-                    id: 1,
-                    item_name: "Shirt",
-                    item_unit: "piece",
-                    unit_price: 70,
-                  },
-                  {
-                    id: 2,
-                    item_name: "Pant",
-                    item_unit: "piece",
-                    unit_price: 80,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    response: [],
+    // response: [
+    //   {
+    //     id: 1,
+    //     name: "Ecorinse",
+    //     steps: [
+    //       {
+    //         id: 1,
+    //         name: "Laundry",
+    //         sections: [
+    //           {
+    //             id: 1,
+    //             name: "Regular",
+    //             items: [
+    //               {
+    //                 id: 1,
+    //                 item_name: "Wash and Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 70,
+    //               },
+    //               {
+    //                 id: 2,
+    //                 item_name: "Wash and Steam Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 100,
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "Eco Rinse 2",
+    //     steps: [
+    //       {
+    //         id: 2,
+    //         name: "Others",
+    //         sections: [
+    //           {
+    //             id: 2,
+    //             name: "Others 1",
+    //             items: [
+    //               {
+    //                 id: 1,
+    //                 item_name: "Wash and Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 70,
+    //               },
+    //               {
+    //                 id: 2,
+    //                 item_name: "Wash and Steam Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 100,
+    //               },
+    //             ],
+    //           },
+    //           {
+    //             id: 3,
+    //             name: "Others 2",
+    //             items: [
+    //               {
+    //                 id: 3,
+    //                 item_name: "Shirt",
+    //                 item_unit: "piece",
+    //                 unit_price: 70,
+    //               },
+    //               {
+    //                 id: 4,
+    //                 item_name: "Pant",
+    //                 item_unit: "piece",
+    //                 unit_price: 80,
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 3,
+    //     name: "Ecorinse 3",
+    //     steps: [
+    //       {
+    //         id: 3,
+    //         name: "Women",
+    //         sections: [
+    //           {
+    //             id: 4,
+    //             name: "Regular",
+    //             items: [
+    //               {
+    //                 id: 5,
+    //                 item_name: "Wash and Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 70,
+    //               },
+    //               {
+    //                 id: 6,
+    //                 item_name: "Wash and Steam Iron",
+    //                 item_unit: "kg",
+    //                 unit_price: 100,
+    //               },
+    //             ],
+    //           },
+    //           {
+    //             id: 5,
+    //             name: "Men",
+    //             items: [
+    //               {
+    //                 id: 1,
+    //                 item_name: "Shirt",
+    //                 item_unit: "piece",
+    //                 unit_price: 70,
+    //               },
+    //               {
+    //                 id: 2,
+    //                 item_name: "Pant",
+    //                 item_unit: "piece",
+    //                 unit_price: 80,
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ],
     isLoading: "",
     error: "",
   },
   reducers: {
     addTemplate: (state, action) => {
-      state.response = state.response.push(action.payload.newTemplate);
+      state.response.push(action.payload.newTemplate);
     },
     updateTemplate: (state, action) => {
       console.log(action.payload);

@@ -7,6 +7,7 @@ import {
   addSection,
   updateStep,
   updateSection,
+  addTemplate,
 } from "../../../redux/template/templateSlice";
 import { useDispatch } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
@@ -111,7 +112,14 @@ const CreateEditStepSection = ({ showModal, setShowModal }) => {
                       }),
                     )
                   : showModal.type === "template"
-                    ? dispatch(addTemplate())
+                    ? dispatch(
+                        addTemplate({
+                          newTemplate: {
+                            id: uuidV4(),
+                            name: name,
+                          },
+                        }),
+                      )
                     : null;
 
             setShowModal(false);
