@@ -14,7 +14,7 @@ export const CreateItem = ({ edit, setShowModal, showModal }) => {
   const [item, setitemDetails] = useState({
     item_name: "",
     item_unit: "",
-    unit_price: "",
+    item_price: "",
   });
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -52,8 +52,8 @@ export const CreateItem = ({ edit, setShowModal, showModal }) => {
             <h5>Unit Price (₹)</h5>
             <input
               className={style.itemName}
-              name="unit_price"
-              value={item.unit_price}
+              name="item_price"
+              value={item.item_price}
               placeholder="Unit Price"
               onChange={(e) => handleOnChange(e)}
             />

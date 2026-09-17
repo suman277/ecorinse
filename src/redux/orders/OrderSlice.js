@@ -78,6 +78,7 @@ export const orderSlice = createSlice({
       .addCase(getOrders.pending, (state, action) => {
         state.orderList.isLoading = true;
         state.orderList.error = "";
+        state.orderList.response = []
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.orderList.response = action.payload;
@@ -104,6 +105,7 @@ export const orderSlice = createSlice({
       .addCase(getOrder.pending, (state, action) => {
         state.order.isLoading = true;
         state.order.error = "";
+        state.order.response = null;
       })
       .addCase(getOrder.fulfilled, (state, action) => {
         state.order.response = action.payload;

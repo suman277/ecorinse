@@ -36,10 +36,10 @@ const Admin = () => {
     id: null,
     isOpen: false,
   });
-  const handleDispatch = () =>{
-        dispatch(getOrders())
-        dispatch(getDashboardDetails())
-  }
+  const handleDispatch = () => {
+    dispatch(getOrders());
+    dispatch(getDashboardDetails());
+  };
   const checkStatus = (status) => {
     return status === "Delivered";
   };
@@ -157,7 +157,7 @@ const Admin = () => {
             </div>
             <button
               className={style.orderBtn}
-              onClick={() => navigate("/create-order")}
+              onClick={() => navigate("/create-orders")}
             >
               <GitPullRequestCreate size={"1rem"} />
               Create Order
@@ -427,6 +427,9 @@ const Admin = () => {
                                         position: "fixed",
                                         left: tooltip.x,
                                         top: tooltip.y - 50,
+                                        fontSize: "small",
+                                        maxWidth:"15rem",
+                                        textWrap : "wrap"
                                       }}
                                     >
                                       {order?.pickup_address}
@@ -438,7 +441,9 @@ const Admin = () => {
                             <td>
                               <div className={style.dateTime}>
                                 <span>{order?.pickup_date}</span>
-                                <span className={style.pickupTime}>{order?.pickup_time}</span>
+                                <span className={style.pickupTime}>
+                                  {order?.pickup_time}
+                                </span>
                               </div>
                             </td>
                             <td>

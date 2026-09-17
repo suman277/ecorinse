@@ -9,14 +9,14 @@ export const getOrders = createAsyncThunk(
   async (query, thunkAPI) => {
     try {
       const response = await getAPI(`${baseUrl}order/`, query);
-      thunkAPI.dispatch(
-        getAlertMessage({
-          message: "Order Fetched Successfully",
-          isError: false,
-        }),
-      );
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -29,6 +29,12 @@ export const getDashboardDetails = createAsyncThunk(
       const response = await getAPI(`${baseUrl}order/dashboard`);
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -41,6 +47,12 @@ export const getOrderItemDetails = createAsyncThunk(
       const response = await getAPI(`${baseUrl}order/item-details/${orderId}`);
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -53,6 +65,12 @@ export const getOrder = createAsyncThunk(
       const response = await getAPI(`${baseUrl}order/${orderId}`);
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -100,6 +118,12 @@ export const createOrderItems = createAsyncThunk(
       );
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -115,6 +139,12 @@ export const updateOrderItems = createAsyncThunk(
       );
       return response;
     } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -177,7 +207,12 @@ export const validateAddress = createAsyncThunk(
       const response = await getAPI(`${baseUrl}order/validate`, query);
       return response;
     } catch (error) {
-      console.log("error:", error);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -197,7 +232,12 @@ export const createOrderWithItem = createAsyncThunk(
       );
       return resposne;
     } catch (error) {
-      console.log("An internal error occured");
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
     }
   },
 );
@@ -209,7 +249,12 @@ export const getInvoice = createAsyncThunk(
       const response = await getAPI(`${baseUrl}order/check-invoice/${orderId}`);
       return response;
     } catch (error) {
-      console.log("An Internal Error Occured");
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
     }
   },
 );
@@ -229,7 +274,12 @@ export const generateInvoice = createAsyncThunk(
       );
       return response;
     } catch (error) {
-      console.log("An Internal Error Occured");
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
     }
   },
 );
@@ -246,7 +296,12 @@ export const downloadInvoice = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
     }
   },
 );

@@ -29,8 +29,9 @@
   padding-top: 2rem;
   display: flex;
   max-width: 60rem;
+  width: 100%;
   margin: 0 auto;
-  height: 100vh;
+  height: 100dvh;
   background-color: #f1f4f3;
   gap: 1rem;
   flex-direction: column;
@@ -48,6 +49,11 @@
   cursor: pointer;
   font-weight: bold;
   font-size: small;
+  border: none;
+}
+
+.disabled{
+  background-color: gray;
 }
 
 .templateHeader {
@@ -82,6 +88,7 @@
 .templateDetailsContainer {
   border-radius: 1rem;
   width: 100%;
+  min-height: 0;
   flex: 1;
   overflow-y: auto;
 }
@@ -89,9 +96,8 @@
 .footer {
   display: flex;
   width: 100%;
-  margin: 0 auto;
   gap: 1rem;
-  justify-content: end;
+  justify-content: flex-end;
   padding-bottom: 1rem;
 }
 

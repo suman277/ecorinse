@@ -64,7 +64,8 @@ export const putAPI = async (url, payload) => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw data;
+      const errorDetails = await response.json();
+      throw new Error(errorDetails?.detail);
     }
     return data;
   } catch (error) {
@@ -84,7 +85,8 @@ export const postAPI = async (url, payload) => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw data;
+      const errorDetails = await response.json();
+      throw new Error(errorDetails?.detail);
     }
 
     return data;
@@ -103,9 +105,9 @@ export const deleteAPI = async (url) => {
       },
     });
     const data = await response.json();
-    console.log(response);
     if (!response.ok) {
-      throw data;
+      const errorDetails = await response.json();
+      throw new Error(errorDetails?.detail);
     }
     return data;
   } catch (error) {

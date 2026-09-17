@@ -19,7 +19,7 @@ const Items = ({
       <div className={style.rightContainer}>
         <div className={style.itemdataDetails}>
           <div className={style.unit}>{item?.item_unit}</div>
-          <div className={style.price}>₹{item?.unit_price}</div>
+          <div className={style.price}>₹{item?.item_price}</div>
         </div>
         <div
           className={style.editBtn}

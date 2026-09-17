@@ -7,6 +7,20 @@
   gap: 2rem;
   height: 100%;
 }
+
+.closeIcon {
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeIcon:hover {
+  box-shadow: 1px 3px 10px #888888;
+}
+
 .headerDetails {
   display: flex;
   justify-content: space-between;
@@ -25,10 +39,11 @@
 }
 
 .statusDetails {
+  height: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: large;
+  font-size: small;
   color: white;
 }
 

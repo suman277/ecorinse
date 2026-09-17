@@ -55,7 +55,6 @@ const Orders = ({ orderId }) => {
   const generateDetails = useSelector(
     (state) => state.orders.generateInvoiceDetails,
   );
-  console.log("Downloading state", isDownloading);
   const handleDownloadFile = async () => {
     if (!orderId) {
       return;
@@ -91,11 +90,13 @@ const Orders = ({ orderId }) => {
   const [itemDetails, setItemDetails] = useState([]);
   useEffect(() => {
     if (orderId) {
+      setItemDetails([]);
       dispatch(getOrderItemDetails(orderId));
       dispatch(getInvoice(orderId));
     }
   }, [dispatch, orderId]);
   useEffect(() => {
+    setItemDetails([])
     if (orderItems) {
       setItemDetails(orderItems);
     }
@@ -106,9 +107,8 @@ const Orders = ({ orderId }) => {
       setItemIndex(indexVal);
       return;
     }
-    console.log("Item Details", itemDetails);
     const item_details = itemDetails?.map((item) => ({
-        ...(item.id ? { id: item.id } : {}),
+      ...(item.id ? { id: item.id } : {}),
       item_name: item.item_name,
       service_name: item.service_name,
       quantity: Number(item.quantity),
@@ -361,7 +361,9 @@ const Orders = ({ orderId }) => {
                       type="number"
                       name="unit_price"
                       value={item.unit_price}
-                      readOnly
+                      onChange={(e) => {
+                        handleChange(e, index);
+                      }}
                       className={style.inputBox}
                       placeholder="Enter Service Name"
                     />

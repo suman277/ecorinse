@@ -7,6 +7,7 @@ import { CreateItem } from "../create-item/CreateItem";
 import { useDispatch, useSelector } from "react-redux";
 import CreateEditStepSection from "../CreateStep/CreateEditStepSection";
 import { Pen, Trash2, Save, Plus } from "lucide-react";
+import { getTemplate } from "../../../redux/template/templateThunk.js";
 import {
   updateTemplate,
   deleteTemplate,
@@ -15,6 +16,9 @@ import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
 
 const Template = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTemplate());
+  }, []);
   const { response } = useSelector((state) => state.template);
   const [templateDetails, setTemplateDetails] = useState([]);
   const [showModal, setShowModal] = useState({
@@ -46,33 +50,22 @@ const Template = () => {
       return newMap;
     });
   };
-  // useEffect(() => {
-  //   if (response.length > 0) {
-  //     setTemplateDetails(response);
-  //     setAccordionIds(new Map());
-  //   }
-  // }, [response, templateId]);
+
   useEffect(() => {
-    if (response.length === 0) {
+    if (!response?.id) {
       setTemplateId(null);
+      setTemplateDetails([]);
       return;
     }
 
-    const selectedTemplateExists = response.some(
-      (template) => template.id === templateId,
-    );
-    console.log(selectedTemplateExists);
-    if (!selectedTemplateExists) {
-      setTemplateId(response[0].id);
-      setAccordionIds(new Map());
-    }
+    setTemplateId(response.id);
     setTemplateDetails(response);
-  }, [response, templateId]);
-  console.log("Template Id", templateId);
-  const stepDetails = response?.find((template) => {
-    return template.id === templateId;
-  });
-  console.log("step Details", stepDetails);
+  }, [response]);
+  // const stepDetails = response?.find((template) => {
+  //   return template?.id === templateId;
+  // });
+  const stepDetails = response?.steps;
+  console.log(stepDetails);
 
   return (
     <div className={style.mainContainer}>
@@ -91,7 +84,7 @@ const Template = () => {
         </div>
       )}
       <div className={style.templateContainer}>
-        <div className={style.templateHeader}>
+        {/* <div className={style.templateHeader}>
           <div className={style.templateHeadings}>
             {response?.length > 0 ? (
               response?.map((template) => {
@@ -163,7 +156,7 @@ const Template = () => {
                     className={`${templateId === template.id ? style.activeTemplateName : ""} ${style.templateName}`}
                     onClick={() => setTemplateId(template.id)}
                   >
-                    {template.name}
+                    {response?.name}
                   </div>
                 );
               })
@@ -171,8 +164,9 @@ const Template = () => {
               <div>Create a new template</div>
             )}
           </div>
-          <div
-            className={style.addTemplate}
+          <button
+            className={`${style.addTemplate} ${response?.length === 1 ? style.disabled : ""}`}
+            disabled={response?.length === 1}
             onClick={() =>
               setShowModal({
                 isOpen: true,
@@ -182,12 +176,12 @@ const Template = () => {
           >
             <Plus size={"15px"} />
             Add Template
-          </div>
-        </div>
+          </button>
+        </div> */}
         <div className={style.templateDetailsContainer}>
           <div className={style.itemContainer}>
             {templateId !== null ? (
-              stepDetails?.steps?.map((step) => {
+              stepDetails?.map((step) => {
                 return (
                   <>
                     <Accordion

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getTemplate } from "./templateThunk";
 
 export const templateDetails = createSlice({
   name: "templateDetails",
@@ -137,231 +138,161 @@ export const templateDetails = createSlice({
   },
   reducers: {
     addTemplate: (state, action) => {
-      state.response.push(action.payload.newTemplate);
+      state.response = action.payload.newTemplate;
     },
+
     updateTemplate: (state, action) => {
-      console.log(action.payload);
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            name: action.payload.name,
-          };
-        }
-        return template;
-      });
+      if (state.response?.id === action.payload.templateId) {
+        state.response.name = action.payload.name;
+      }
     },
+
     deleteTemplate: (state, action) => {
-      state.response = state.response.filter((template) => {
-        return template.id !== action.payload.templateId;
-      });
+      if (state.response?.id === action.payload.templateId) {
+        state.response = null;
+      }
     },
     addStep: (state, action) => {
-      console.log(action);
-      state.response = state.response.map((template) => {
-        console.log("template", template);
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: [...(template.steps || []), action.payload.newStep],
-          };
-        }
-        return template;
-      });
+      if (state.response?.id === action.payload.templateId) {
+        state.response.steps.push(action.payload.newStep);
+      }
     },
+
     updateStep: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  ...action.payload.stepDetails,
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          Object.assign(step, action.payload.stepDetails);
         }
-        return template;
-      });
+      }
     },
+
     deleteStep: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.filter((step) => {
-              return step.id !== action.payload.stepId;
-            }),
-          };
-        }
-        return template;
-      });
+      if (state.response?.id === action.payload.templateId) {
+        state.response.steps = state.response.steps.filter(
+          (step) => step.id !== action.payload.stepId,
+        );
+      }
     },
     addSection: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: [
-                    ...(step.sections || []),
-                    action.payload.newSection,
-                  ],
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          step.sections.push(action.payload.newSection);
         }
-        return template;
-      });
+      }
     },
     updateSection: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: step.sections.map((section) => {
-                    return {
-                      ...section,
-                      ...action.payload.sectionDetails,
-                    };
-                  }),
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          const section = step.sections.find(
+            (section) => section.id === action.payload.sectionId,
+          );
+
+          if (section) {
+            Object.assign(section, action.payload.sectionDetails);
+          }
         }
-        return template;
-      });
+      }
     },
+
     deleteSection: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: step.sections.filter((section) => {
-                    return section.id !== action.payload.sectionId;
-                  }),
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          step.sections = step.sections.filter(
+            (section) => section.id !== action.payload.sectionId,
+          );
         }
-        return template;
-      });
+      }
     },
     addItem: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: step?.sections?.map((section) => {
-                    if (section.id === action.payload.sectionId) {
-                      return {
-                        ...section,
-                        items: [
-                          ...(section.items || []),
-                          action.payload.newItem,
-                        ],
-                      };
-                    }
-                    return section;
-                  }),
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+        if (step) {
+          const section = step.sections.find(
+            (section) => section.id === action.payload.sectionId,
+          );
+
+          if (section) {
+            section.items.push(action.payload.newItem);
+          }
         }
-        return template;
-      });
+      }
     },
     updateItem: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: step.sections.map((section) => {
-                    if (section.id === action.payload.sectionId) {
-                      return {
-                        ...section,
-                        items: section.items.map((item) => {
-                          if (item.id === action.payload.item.id) {
-                            return {
-                              ...item,
-                              ...action.payload.item,
-                            };
-                          }
-                          return item;
-                        }),
-                      };
-                    }
-                    return section;
-                  }),
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          const section = step.sections.find(
+            (section) => section.id === action.payload.sectionId,
+          );
+
+          if (section) {
+            const item = section.items.find(
+              (item) => item.id === action.payload.item.id,
+            );
+
+            if (item) {
+              Object.assign(item, action.payload.item);
+            }
+          }
         }
-        return template;
-      });
+      }
     },
     deleteItem: (state, action) => {
-      state.response = state.response.map((template) => {
-        if (template.id === action.payload.templateId) {
-          return {
-            ...template,
-            steps: template.steps.map((step) => {
-              if (step.id === action.payload.stepId) {
-                return {
-                  ...step,
-                  sections: step.sections.map((section) => {
-                    if (section.id === action.payload.sectionId) {
-                      return {
-                        ...section,
-                        items: section.items.filter((item) => {
-                          return item.id !== action.payload.itemId;
-                        }),
-                      };
-                    }
-                    return section;
-                  }),
-                };
-              }
-              return step;
-            }),
-          };
+      if (state.response?.id === action.payload.templateId) {
+        const step = state.response.steps.find(
+          (step) => step.id === action.payload.stepId,
+        );
+
+        if (step) {
+          const section = step.sections.find(
+            (section) => section.id === action.payload.sectionId,
+          );
+
+          if (section) {
+            section.items = section.items.filter(
+              (item) => item.id !== action.payload.itemId,
+            );
+          }
         }
-        return template;
-      });
+      }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getTemplate.pending, (state, action) => {
+        ((state.response = []), (state.error = ""), (state.isLoading = true));
+      })
+      .addCase(getTemplate.fulfilled, (state, action) => {
+        ((state.response = action.payload),
+          (state.error = ""),
+          (state.isLoading = false));
+      })
+      .addCase(getTemplate.rejected, (state, action) => {
+        ((state.response = []),
+          (state.error = action.payload),
+          (state.isLoading = false));
+      });
   },
 });
 

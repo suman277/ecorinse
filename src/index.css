@@ -4,6 +4,13 @@ body {
   padding: 0;
   /* width: 100vw; */
   scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 :root {

@@ -51,6 +51,13 @@ const Pickup = ({
               name="pickup_date"
               value={details?.pickup_date}
               onChange={(e) => {
+                const pickupDate = e.target.value;
+
+                if (pickupDate > maxDate || pickupDate < minDate) {
+                  errorObj.pickup_date = `Accepting orders between ${minDate} and ${maxDate}`;
+                  return;
+                }
+
                 handleUserDetails(e);
               }}
             />
