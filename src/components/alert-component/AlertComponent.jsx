@@ -21,6 +21,8 @@ const AlertComponent = () => {
   useEffect(() => {
     if (message) {
       timer.current = setTimeout(() => {
+        // let elem= document.getElementsByClassName("alertContainer")
+        // elem.classList.add("")
         handleClose();
       }, 5000);
       return () => handleClose();

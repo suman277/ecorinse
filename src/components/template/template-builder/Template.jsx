@@ -2,24 +2,43 @@ import React, { useEffect, useState } from "react";
 import Accordion from "../accordion/Accordion";
 import Items from "../items/Items";
 import style from "./Template.module.css";
-import { TemplateType } from "../../../utils/enumUtils";
 import { CreateItem } from "../create-item/CreateItem";
 import { useDispatch, useSelector } from "react-redux";
 import CreateEditStepSection from "../CreateStep/CreateEditStepSection";
-import { Pen, Trash2, Save, Plus } from "lucide-react";
 import { getTemplate } from "../../../redux/template/templateThunk.js";
-import {
-  updateTemplate,
-  deleteTemplate,
-} from "../../../redux/template/templateSlice";
 import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
+import { createUpdateTemplate } from "../../../redux/template/templateThunk.js";
 
 const Template = () => {
+  const cleanTemplateKeys = (object) => {
+    if (typeof object.id === "string") {
+      const { id, ...detailsWithoutId } = object;
+      return detailsWithoutId;
+    }
+    return object;
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTemplate());
   }, []);
   const { response } = useSelector((state) => state.template);
+  const handleUpdate = async () => {
+    const payload = {
+      ...cleanTemplateKeys(response),
+
+      steps: response.steps.map((step) => ({
+        ...cleanTemplateKeys(step),
+
+        sections: step?.sections?.map((section) => ({
+          ...cleanTemplateKeys(section),
+
+          items: section?.items?.map((item) => cleanTemplateKeys(item)),
+        })),
+      })),
+    };
+    await dispatch(createUpdateTemplate(payload))
+    dispatch(getTemplate());
+  };
   const [templateDetails, setTemplateDetails] = useState([]);
   const [showModal, setShowModal] = useState({
     stepId: null,
@@ -61,9 +80,7 @@ const Template = () => {
     setTemplateId(response.id);
     setTemplateDetails(response);
   }, [response]);
-  // const stepDetails = response?.find((template) => {
-  //   return template?.id === templateId;
-  // });
+
   const stepDetails = response?.steps;
   console.log(stepDetails);
 
@@ -293,7 +310,9 @@ const Template = () => {
         </div>
         <div className={style.footer}>
           <button className={style.cancel}>Cancel</button>
-          <button className={style.saveChanges}>Save Changes</button>
+          <button className={style.saveChanges} onClick={() => handleUpdate()}>
+            Save Changes
+          </button>
         </div>
       </div>
     </div>

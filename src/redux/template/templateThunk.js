@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAPI } from "../../apiMethods";
+import { getAPI, putAPI } from "../../apiMethods";
 import { getAlertMessage } from "../alert/alertSlice";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -8,7 +8,35 @@ export const getTemplate = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await getAPI(`${baseUrl}template`);
-      console.log(response)
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Template Updated Successfully",
+          isError: false,
+        }),
+      );
+      return response;
+    } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
+    }
+  },
+);
+
+export const createUpdateTemplate = createAsyncThunk(
+  "create-edit-template",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await putAPI(`${baseUrl}template/`, payload);
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: "Template Updated Successfully",
+          isError: false,
+        }),
+      );
       return response;
     } catch (error) {
       thunkAPI.dispatch(
