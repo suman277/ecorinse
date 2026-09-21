@@ -36,7 +36,6 @@ const Pickup = ({
       value: `${String(i).padStart(2, "0")}:00`,
     });
   }
-  console.log("PIckup comp", details);
   return (
     <>
       <div className={style.mainPickupContainer}>

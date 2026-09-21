@@ -87,10 +87,8 @@ export const createOrder = createAsyncThunk(
           isError: false,
         }),
       );
-      console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       thunkAPI.dispatch(
         getAlertMessage({
           message: error.detail || "An Internal Error Occured",
@@ -179,7 +177,6 @@ export const deleteOrder = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await deleteAPI(`${baseUrl}order/${id}`);
-      console.log(response);
       thunkAPI.dispatch(
         getAlertMessage({
           message: "Order Deleted Successfuly",
@@ -202,7 +199,6 @@ export const deleteOrder = createAsyncThunk(
 export const validateAddress = createAsyncThunk(
   "validate-address",
   async (query, thunkAPI) => {
-    console.log("inside validate api");
     try {
       const response = await getAPI(`${baseUrl}order/validate`, query);
       return response;
@@ -221,7 +217,6 @@ export const validateAddress = createAsyncThunk(
 export const createOrderWithItem = createAsyncThunk(
   "create-order-with-item",
   async (payload, thunkAPI) => {
-    console.log("Inside the thunk function");
     try {
       const resposne = await postAPI(`${baseUrl}order/itemsss`, payload);
       thunkAPI.dispatch(

@@ -771,7 +771,7 @@ export const itemCategories = {
           { id: 20, item_name: "Skirt Short", unit_price: 100, unit: "piece" },
           { id: 21, item_name: "Petticoat", unit_price: 70, unit: "piece" },
           { id: 22, item_name: "Top Plain", unit_price: 100, unit: "piece" },
-          { id: 37, item_name: "Shawl", unit_price: 170, unit: "piece" },
+          { id: 38, item_name: "Shawl", unit_price: 170, unit: "piece" },
         ],
       },
       {

@@ -102,7 +102,6 @@ const CreateOrder = () => {
   };
   const isToday = details.pickup_date === today;
   const handleSubmit = (e) => {
-    console.log(details);
     e.preventDefault();
     const errors = formValidate(details);
     if (Object.keys(errors).length > 0) {

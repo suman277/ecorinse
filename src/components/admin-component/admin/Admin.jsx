@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import ViewOrder from "../../common-components/view-order/ViewOrder";
 import style from "./Admin.module.css";
@@ -27,6 +27,7 @@ import {
   ChevronRight,
   CircleDotDashed,
   RefreshCcw,
+  ListPlusIcon,
 } from "lucide-react";
 
 const Admin = () => {
@@ -40,6 +41,12 @@ const Admin = () => {
     dispatch(getOrders());
     dispatch(getDashboardDetails());
   };
+  // const handleDownSomething = () =>{
+  //   useEffect(()=>{
+  //     console.log("Something happened");
+  //   }, [])
+  // }
+  // document.addEventListener("pointerdown", handleDownSomething)
   const checkStatus = (status) => {
     return status === "Delivered";
   };
@@ -56,7 +63,7 @@ const Admin = () => {
   const handleDelete = async () => {
     setHandleDeleteModal({ id: "", isOpen: false });
     if (handleDeleteModal.id) {
-      await dispatch(deleteOrder(Number(handleDeleteModal.id)));
+      await dispatch(deleteOrder(Number(handleDeleteModal.id))).unwrap();
     }
     dispatch(getOrders());
   };
@@ -80,7 +87,7 @@ const Admin = () => {
     });
     await dispatch(
       updateOrder({ orderId: id, payload: { status: Number(status_id) } }),
-    );
+    ).unwrap();
     dispatch(getOrders(query));
     dispatch(getDashboardDetails());
   };
@@ -155,13 +162,22 @@ const Admin = () => {
             <div className={style.details}>
               <span className={style.headingText}>Order List</span>
             </div>
-            <button
-              className={style.orderBtn}
-              onClick={() => navigate("/create-orders")}
-            >
-              <GitPullRequestCreate size={"1rem"} />
-              Create Order
-            </button>
+            <div className={style.mainHeaderButtonGroup}>
+              <button
+                className={style.orderBtn}
+                onClick={() => navigate("/template")}
+              >
+                <ListPlusIcon size={"1rem"} />
+                Template
+              </button>
+              <button
+                className={style.orderBtn}
+                onClick={() => navigate("/create-orders")}
+              >
+                <GitPullRequestCreate size={"1rem"} />
+                Create Order
+              </button>
+            </div>
           </div>
         </div>
         <div className={style.itemContainers}>
@@ -321,7 +337,6 @@ const Admin = () => {
                             >
                               <div
                                 onClick={(e) => {
-                                  console.log("Got clicked");
                                   const rect =
                                     e.currentTarget.getBoundingClientRect();
                                   setHandleStatus({
@@ -428,8 +443,8 @@ const Admin = () => {
                                         left: tooltip.x,
                                         top: tooltip.y - 50,
                                         fontSize: "small",
-                                        maxWidth:"15rem",
-                                        textWrap : "wrap"
+                                        maxWidth: "15rem",
+                                        textWrap: "wrap",
                                       }}
                                     >
                                       {order?.pickup_address}

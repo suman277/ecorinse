@@ -82,7 +82,6 @@ const Template = () => {
   }, [response]);
 
   const stepDetails = response?.steps;
-  console.log(stepDetails);
 
   return (
     <div className={style.mainContainer}>

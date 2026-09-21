@@ -14,15 +14,15 @@ import { createOrderWithItem } from "../../redux/orders/OrderThunk";
 import ChooseItems from "./ChooseItems";
 import Address from "./Address";
 import Pickup from "./Pickup";
-import { SkipForward, Scooter, X, Trash2, Plus } from "lucide-react";
-import NoRecordComponent from "../no-record/NoRecordComponent";
+import { SkipForward, X, Trash2, Plus } from "lucide-react";
 
 const Order = () => {
   const dispatch = useDispatch();
-  const { response, isLoading, error } = useSelector(
-    (state) => state.orders.addressDetails,
+  const { error } = useSelector((state) => state.orders.addressDetails);
+  const [successModal, setSuccessModal] = useState(false);
+  const successOrderDetails = useSelector(
+    (state) => state.orders.createOrderResponse.response,
   );
-  console.log("error -", error);
   const [errors, setErrors] = useState({});
   const [details, setuserDetails] = useState({
     name: "",
@@ -141,30 +141,36 @@ const Order = () => {
       return;
     }
     if (currentStep === components.length) {
-      await dispatch(
+      const response = await dispatch(
         createOrderWithItem({
           ...details,
           order_details: cartDetails,
         }),
-      );
-      dispatch(clearCart());
-      dispatch(clearAddressDetails());
-      setuserDetails({
-        name: "",
-        address_details: "",
-        address: "",
-        pickup_date: "",
-        pickup_time: "",
-        landmark: "",
-        notes: "",
-        longitude: null,
-        latitude: null,
-        email: "",
-      });
-      setCurrentStep(components[0].id);
+      ).unwrap();
+      if (response) {
+        setSuccessModal(true);
+      }
       return;
     }
     setCurrentStep((prev) => prev + 1);
+  };
+  const handleBackBtn = () => {
+    dispatch(clearCart());
+    dispatch(clearAddressDetails());
+    setuserDetails({
+      name: "",
+      address_details: "",
+      address: "",
+      pickup_date: "",
+      pickup_time: "",
+      landmark: "",
+      notes: "",
+      longitude: null,
+      latitude: null,
+      email: "",
+    });
+    setCurrentStep(components[0].id);
+    setSuccessModal(false);
   };
   useEffect(() => {
     const left = stepRef.current[0].offsetWidth / 2;
@@ -265,6 +271,57 @@ const Order = () => {
           </div>
         </>
       )}
+      {successModal && (
+        <>
+          <div className={style.commonBackDrop}>
+            <div className={style.topElem}></div>
+            <div className={style.bottomElem}></div>
+          </div>
+          <div className={style.sucessDetails}>
+            <div className={style.HeaderComp}>
+              <h1>EcoRinseLaundry</h1>
+              <h6>Eco Care For Every Wear</h6>
+            </div>
+            <div className={style.orderDetails}>
+              <div>
+                <strong>
+                  <span>Order Confirmed ✅</span>
+                </strong>
+              </div>
+              <div>
+                <span>
+                  Hi <strong>{successOrderDetails?.name || "User"}</strong>,
+                </span>
+              </div>
+              <div className={style.lastText}>
+                Your order has been successfully placed with EcoRinse. We have
+                received your request and will take care of it.
+              </div>
+            </div>
+            <div className={style.orderRefContainer}>
+              <div>Your Order Reference No.</div>
+              <div className={style.orderRefNum}>
+                {successOrderDetails?.order_ref_num}
+              </div>
+            </div>
+            <div className={style.lastText}>
+              Our team will process your order and keep you updated about the
+              next steps.
+            </div>
+            <div className={style.lastText}>
+              Thank you for choosing <strong>EcoRinse</strong>.
+            </div>
+            <div className={style.btn}>
+              <button
+                onClick={() => handleBackBtn()}
+                className={style.backMainBtn}
+              >
+                Back to Main Menu
+              </button>
+            </div>
+          </div>
+        </>
+      )}
       <div className={style.navbarContainer}>
         <Navbar
           showCart={showCart}
@@ -301,7 +358,6 @@ const Order = () => {
           </div>
         </div>
         <div className={style.compDetails}>
-          {/* <ChooseItems /> */}
           <ActiveComponent
             details={details}
             handleUserDetails={handleUserDetails}

@@ -31,7 +31,6 @@ const Address = ({ errors, details, handleUserDetails, setuserDetails }) => {
       }));
     }
   }, [response]);
-    console.log("Address comp", details);
 
   return (
     <div className={style.addressMainContainer}>

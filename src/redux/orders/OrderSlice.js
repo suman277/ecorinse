@@ -8,11 +8,17 @@ import {
   getInvoice,
   downloadInvoice,
   generateInvoice,
+  createOrderWithItem,
 } from "./OrderThunk";
 
 const initialState = {
   orderList: {
     response: [],
+    isLoading: false,
+    error: "",
+  },
+  createOrderResponse: {
+    response: {},
     isLoading: false,
     error: "",
   },
@@ -78,7 +84,7 @@ export const orderSlice = createSlice({
       .addCase(getOrders.pending, (state, action) => {
         state.orderList.isLoading = true;
         state.orderList.error = "";
-        state.orderList.response = []
+        state.orderList.response = [];
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.orderList.response = action.payload;
@@ -181,6 +187,21 @@ export const orderSlice = createSlice({
       .addCase(generateInvoice.rejected, (state, action) => {
         state.generateInvoiceDetails.isLoading = false;
         state.generateInvoiceDetails.error = action.payload || "";
+      })
+      .addCase(createOrderWithItem.pending, (state) => {
+        state.createOrderResponse.isLoading = true;
+        state.createOrderResponse.response = {};
+        state.createOrderResponse.error = "";
+      })
+      .addCase(createOrderWithItem.fulfilled, (state, action) => {
+        state.createOrderResponse.isLoading = false;
+        state.createOrderResponse.response = action.payload;
+        state.createOrderResponse.error = "";
+      })
+      .addCase(createOrderWithItem.rejected, (state, action) => {
+        state.createOrderResponse.isLoading = false;
+        state.createOrderResponse.response = {};
+        state.createOrderResponse.error = action.payload;
       });
   },
 });

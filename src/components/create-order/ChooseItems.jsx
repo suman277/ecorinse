@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import style from "./Order.module.css";
 import { Search } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { categories, itemCategories } from "../../utils/UtilsData";
+import { itemCategories } from "../../utils/UtilsData";
 import { addItem, removeItem } from "../../redux/cart/cartSlice";
 
 const ChooseItems = () => {
   const dispatch = useDispatch();
+  const childContainer = useRef();
   const [search, setSearch] = useState("");
   const itemDetails = useSelector((state) => state.cart.items);
   const ifItemExists = (id) => {
@@ -48,6 +49,16 @@ const ChooseItems = () => {
     setSearchResults(results);
   };
   const [category, setCategory] = useState(1);
+  const handleCategoryChange = (Key) => {
+    setCategory(Number(Key));
+  };
+  useEffect(() => {
+    const elem = childContainer.current;
+    if (!elem) return;
+    elem.classList.remove(style.detailsAnimation);
+    void elem.offsetWidth;
+    elem.classList.add(style.detailsAnimation);
+  }, [category]);
   return (
     <div className={style.chooseMainContainer}>
       <div>
@@ -82,7 +93,7 @@ const ChooseItems = () => {
                 <div
                   className={`${style.itemCategoryHeader} ${category === Number(Key) ? style.activeCategoryHeader : ""}`}
                   key={Key}
-                  onClick={() => setCategory(Number(Key))}
+                  onClick={() => handleCategoryChange(Key)}
                 >
                   {value.categoryName}
                 </div>
@@ -95,33 +106,26 @@ const ChooseItems = () => {
         <div className={style.categoryItems}>
           {searchResults[category]?.categoryDetail?.map((category) => {
             return (
-              <div className={style.categoryDetailContainer}>
+              <div
+                className={style.categoryDetailContainer}
+                key={category.categoryDetailName}
+              >
                 <div className={style.categoryDetailName}>
                   {category.categoryDetailName}
                 </div>
                 <div className={style.itemContainer}>
                   {category.items.map((item) => {
                     return (
-                      <div className={style.detailsParentContainer}>
+                      <div
+                        className={style.detailsParentContainer}
+                        key={item.id}
+                      >
                         <div className={style.detailsContainer}>
                           <div>{item.item_name}</div>
                           <div className={style.priceTag}>
                             {item.unit_price} / {item.unit}
                           </div>
                         </div>
-                        {/* <div
-                          className={style.itemBtn}
-                          onClick={() => {
-                            dispatch(
-                              addItem({
-                                ...item,
-                                serviceName: category.categoryDetailName,
-                              }),
-                            );
-                          }}
-                        >
-                          ADD
-                        </div> */}
                         {ifItemExists(item.id) ? (
                           <div className={style.itemOps}>
                             <div

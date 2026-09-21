@@ -1,4 +1,48 @@
 .loaderText {
-  text-align: center;
   width: 100%;
+}
+
+.imageBody::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: url("../../assets/images/Loader/WashingMachine.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.imageBody {
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loaderLeft {
+  position: absolute;
+  z-index: 1;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  animation: rotator infinite 1s linear;
+}
+
+
+.imageClass {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  padding-left: 0.1rem;
+}
+
+@keyframes rotator {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

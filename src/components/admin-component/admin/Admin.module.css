@@ -9,6 +9,11 @@
   overflow-y: auto;
 }
 
+.mainHeaderButtonGroup{
+  display: flex;
+  gap: 1rem;
+}
+
 .mainContainer {
   width: 100%;
   height: 100%;

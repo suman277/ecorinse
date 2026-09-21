@@ -20,7 +20,6 @@ const CreateEditStepSection = ({ showModal, setShowModal }) => {
       setName(showModal.item.name);
     }
   }, [showModal]);
-  console.log(showModal);
   return (
     <div className={style.mainHeader}>
       <div className={style.header}>

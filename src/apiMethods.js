@@ -25,21 +25,14 @@ export const getAPI = async (url, query = {}, responseType = "json") => {
     }
     if (responseType === "blob") {
       const blob = await response.blob();
-      console.log("File Data response", response);
-
       const contentDisposition = response.headers.get("Content-Disposition");
-      console.log("content_disposition", contentDisposition);
-
       let fileName = "invoice.pdf";
-
       if (contentDisposition) {
         const match = contentDisposition.match(/filename="?([^"]+)"?/);
-
         if (match) {
           fileName = match[1];
         }
       }
-
       return {
         blob,
         fileName,
@@ -83,7 +76,9 @@ export const postAPI = async (url, payload) => {
       },
       body: JSON.stringify(payload),
     });
+    console.log("Response from POSTAPI", response);
     const data = await response.json();
+    console.log("Date from POSTAPI after JSON conversion", data);
     if (!response.ok) {
       const errorDetails = await response.json();
       throw new Error(errorDetails?.detail);

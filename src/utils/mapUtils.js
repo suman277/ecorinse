@@ -5,13 +5,8 @@ export const getLocationDetails = (dispatch) => {
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      console.log("Location received");
-
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-
-      console.log("Latitude:", latitude);
-      console.log("Longitude:", longitude);
 
       dispatch(
         validateAddress({
@@ -24,7 +19,6 @@ export const getLocationDetails = (dispatch) => {
     (error) => {
       console.log("Geolocation error:", error);
       console.log("Error code:", error.code);
-      console.log("Error message:", error.message);
     },
 
     {
