@@ -5,9 +5,12 @@ import style from "./Template.module.css";
 import { CreateItem } from "../create-item/CreateItem";
 import { useDispatch, useSelector } from "react-redux";
 import CreateEditStepSection from "../CreateStep/CreateEditStepSection";
-import { getTemplate } from "../../../redux/template/templateThunk.js";
-import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
-import { createUpdateTemplate } from "../../../redux/template/templateThunk.js";
+import {
+  getTemplates,
+  getTemplateDetails,
+  createUpdateTemplate,
+} from "../../../redux/template/templateThunk.js";
+import { Plus, Pen, Trash2, Save, X } from "lucide-react";
 
 const Template = () => {
   const cleanTemplateKeys = (object) => {
@@ -17,29 +20,39 @@ const Template = () => {
     }
     return object;
   };
+  const [originalTemplate, setOriginalTemplate] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTemplate());
+    dispatch(getTemplates());
   }, []);
-  const { response } = useSelector((state) => state.template);
-  const handleUpdate = async () => {
-    const payload = {
-      ...cleanTemplateKeys(response),
+  const { response: templates } = useSelector(
+    (state) => state.template.templates,
+  );
+  const [templateId, setTemplateId] = useState(null);
+  const handleGetTemplateDetails = async (template_id) => {
+    setTemplateId(template_id);
 
-      steps: response.steps.map((step) => ({
-        ...cleanTemplateKeys(step),
+    const response = await dispatch(
+      getTemplateDetails({ template_id }),
+    ).unwrap();
 
-        sections: step?.sections?.map((section) => ({
-          ...cleanTemplateKeys(section),
-
-          items: section?.items?.map((item) => cleanTemplateKeys(item)),
-        })),
-      })),
-    };
-    await dispatch(createUpdateTemplate(payload))
-    dispatch(getTemplate());
+    setOriginalTemplate(structuredClone(response));
   };
-  const [templateDetails, setTemplateDetails] = useState([]);
+  const [editId, seteditId] = useState(0);
+  const [templateName, setTemplateName] = useState("");
+  const handleUpdateTemplateName = async (template_id) => {
+    await dispatch(
+      createUpdateTemplate({ id: template_id, name: templateName }),
+    ).unwrap();
+    setTemplateId(0);
+    dispatch(getTemplates());
+  };
+  const { response: templateDetails } = useSelector(
+    (state) => state.template.templatedetails,
+  );
+  // useEffect(() => {
+  //   setTemplateResponse(structuredClone(templateDetails));
+  // }, [templateDetails]);
   const [showModal, setShowModal] = useState({
     stepId: null,
     templateId: null,
@@ -48,14 +61,6 @@ const Template = () => {
     isOpen: false,
     type: null,
     isEdit: false,
-  });
-  const handleTemplateModal = (templateType) => {
-    setShowModal(true);
-  };
-  const [templateId, setTemplateId] = useState(null);
-  const [templateEditId, setTemplateEditId] = useState({
-    id: null,
-    name: "",
   });
   const [accordionIds, setAccordionIds] = useState(new Map());
   const handleToggle = (id) => {
@@ -69,19 +74,31 @@ const Template = () => {
       return newMap;
     });
   };
+  const handleUpdate = async () => {
+    const payload = {
+      ...cleanTemplateKeys(templateDetails),
+      steps: templateDetails.steps.map((step) => ({
+        ...cleanTemplateKeys(step),
+        sections: step?.sections?.map((section) => ({
+          ...cleanTemplateKeys(section),
+          items: section?.items?.map((item) => cleanTemplateKeys(item)),
+        })),
+      })),
+    };
+    await dispatch(createUpdateTemplate(payload)).unwrap();
+    setAccordionIds(new Map());
+    dispatch(getTemplates());
+  };
 
-  useEffect(() => {
-    if (!response?.id) {
-      setTemplateId(null);
-      setTemplateDetails([]);
-      return;
-    }
+  const handleCancel = () => {
+    dispatch(getTemplateDetails({ template_id: templateId }));
+  };
+  const hasChanges =
+    JSON.stringify(originalTemplate) !== JSON.stringify(templateDetails);
 
-    setTemplateId(response.id);
-    setTemplateDetails(response);
-  }, [response]);
-
-  const stepDetails = response?.steps;
+  console.log("ORIGINAL:", originalTemplate);
+  console.log("CURRENT:", templateDetails);
+  console.log("HAS CHANGES:", hasChanges);
 
   return (
     <div className={style.mainContainer}>
@@ -100,89 +117,53 @@ const Template = () => {
         </div>
       )}
       <div className={style.templateContainer}>
-        {/* <div className={style.templateHeader}>
+        <div className={style.templateHeader}>
           <div className={style.templateHeadings}>
-            {response?.length > 0 ? (
-              response?.map((template) => {
-                return template.id === templateId ? (
-                  <div
-                    key={template.id}
-                    className={`${templateId === template.id ? style.activeTemplateName : ""} ${style.templateName}`}
-                    onClick={() => setTemplateId(template.id)}
-                  >
-                    {templateEditId.id === template.id ? (
-                      <input
-                        name="name"
-                        value={templateEditId.name}
-                        onChange={(e) => {
-                          setTemplateEditId((prev) => ({
-                            ...prev,
-                            name: e.target.value,
-                          }));
-                        }}
-                      />
-                    ) : (
-                      template.name
-                    )}
-                    <div>
-                      {templateEditId.id === template.id ? (
-                        <Save
-                          size="15px"
-                          className={style.editIcon}
+            {templates?.map((template) => {
+              return editId === template?.id && templateId === template?.id ? (
+                <div className={style.itemOps}>
+                  <input
+                    name="name"
+                    value={templateName}
+                    onChange={(e) => setTemplateName(e.target.value)}
+                  />
+                  <Save
+                    size={"1rem"}
+                    onClick={() => handleUpdateTemplateName(template?.id)}
+                  />
+                  <X size={"1rem"} onClick={() => seteditId(0)} />
+                </div>
+              ) : (
+                <div
+                  key={template?.id}
+                  className={`${style.templateName} ${templateId === template?.id ? style.activeTemplateName : ""}`}
+                  onClick={() => {
+                    handleGetTemplateDetails(template.id);
+                  }}
+                >
+                  {template?.name}
+                  {templateId === template?.id && (
+                    <div className={style.actionItems}>
+                      <div className={style.iconDetails}>
+                        <Pen
+                          size={"1rem"}
                           onClick={() => {
-                            dispatch(
-                              updateTemplate({
-                                templateId: templateEditId.id,
-                                name: templateEditId.name,
-                              }),
-                            );
-
-                            setTemplateEditId({
-                              id: null,
-                              name: "",
-                            });
+                            (seteditId(template?.id),
+                              setTemplateName(template?.name));
                           }}
                         />
-                      ) : (
-                        <Pen
-                          size={"15px"}
-                          className={style.editIcon}
-                          onClick={() =>
-                            setTemplateEditId({
-                              id: template.id,
-                              name: template.name,
-                            })
-                          }
-                        />
-                      )}
+                      </div>
+                      <div className={style.iconDetails}>
+                        <Trash2 size={"1rem"} />
+                      </div>
                     </div>
-                    <div>
-                      <Trash2
-                        size={"15px"}
-                        className={style.editIcon}
-                        onClick={() =>
-                          dispatch(deleteTemplate({ templateId: templateId }))
-                        }
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    key={template.id}
-                    className={`${templateId === template.id ? style.activeTemplateName : ""} ${style.templateName}`}
-                    onClick={() => setTemplateId(template.id)}
-                  >
-                    {response?.name}
-                  </div>
-                );
-              })
-            ) : (
-              <div>Create a new template</div>
-            )}
+                  )}
+                </div>
+              );
+            })}
           </div>
           <button
-            className={`${style.addTemplate} ${response?.length === 1 ? style.disabled : ""}`}
-            disabled={response?.length === 1}
+            className={style.addTemplate}
             onClick={() =>
               setShowModal({
                 isOpen: true,
@@ -193,11 +174,11 @@ const Template = () => {
             <Plus size={"15px"} />
             Add Template
           </button>
-        </div> */}
+        </div>
         <div className={style.templateDetailsContainer}>
           <div className={style.itemContainer}>
             {templateId !== null ? (
-              stepDetails?.map((step) => {
+              templateDetails?.steps?.map((step) => {
                 return (
                   <>
                     <Accordion
@@ -285,8 +266,8 @@ const Template = () => {
                 );
               })
             ) : (
-              <div className={style.noRecordComponent}>
-                <NoRecordComponent />
+              <div className={style.noTemplateSelection}>
+                <div>Select a template to get started</div>
               </div>
             )}
             {templateId !== null ? (
@@ -307,12 +288,22 @@ const Template = () => {
             )}
           </div>
         </div>
-        <div className={style.footer}>
-          <button className={style.cancel}>Cancel</button>
-          <button className={style.saveChanges} onClick={() => handleUpdate()}>
-            Save Changes
-          </button>
-        </div>
+        {templateId && (
+          <div className={style.footer}>
+            <button className={style.cancel} onClick={() => handleCancel()}>
+              Cancel
+            </button>
+            <button
+              className={`${style.saveChanges} ${
+                !hasChanges ? style.disabled : ""
+              }`}
+              onClick={() => handleUpdate()}
+              disabled={!hasChanges}
+            >
+              Save Changes
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

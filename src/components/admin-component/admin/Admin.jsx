@@ -41,12 +41,15 @@ const Admin = () => {
     dispatch(getOrders());
     dispatch(getDashboardDetails());
   };
-  // const handleDownSomething = () =>{
-  //   useEffect(()=>{
-  //     console.log("Something happened");
-  //   }, [])
-  // }
-  // document.addEventListener("pointerdown", handleDownSomething)
+  // useEffect(()=>{
+  //   const handleDownSomething = () =>{
+  //     console.log("Something Happened");
+  //   }
+
+  //   document.addEventListener("pointerdown", handleDownSomething)
+  //   return () => document.removeEventListener("pointerdown", handleDownSomething)
+
+  // }, [])
   const checkStatus = (status) => {
     return status === "Delivered";
   };

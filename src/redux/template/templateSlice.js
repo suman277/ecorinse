@@ -1,166 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTemplate } from "./templateThunk";
+import { getTemplateDetails, getTemplates } from "./templateThunk";
 
-export const templateDetails = createSlice({
-  name: "templateDetails",
-  initialState: {
+const initialState = {
+  templatedetails: {
     response: [],
-    // response: [
-    //   {
-    //     id: 1,
-    //     name: "Ecorinse",
-    //     steps: [
-    //       {
-    //         id: 1,
-    //         name: "Laundry",
-    //         sections: [
-    //           {
-    //             id: 1,
-    //             name: "Regular",
-    //             items: [
-    //               {
-    //                 id: 1,
-    //                 item_name: "Wash and Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 70,
-    //               },
-    //               {
-    //                 id: 2,
-    //                 item_name: "Wash and Steam Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 100,
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "Eco Rinse 2",
-    //     steps: [
-    //       {
-    //         id: 2,
-    //         name: "Others",
-    //         sections: [
-    //           {
-    //             id: 2,
-    //             name: "Others 1",
-    //             items: [
-    //               {
-    //                 id: 1,
-    //                 item_name: "Wash and Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 70,
-    //               },
-    //               {
-    //                 id: 2,
-    //                 item_name: "Wash and Steam Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 100,
-    //               },
-    //             ],
-    //           },
-    //           {
-    //             id: 3,
-    //             name: "Others 2",
-    //             items: [
-    //               {
-    //                 id: 3,
-    //                 item_name: "Shirt",
-    //                 item_unit: "piece",
-    //                 unit_price: 70,
-    //               },
-    //               {
-    //                 id: 4,
-    //                 item_name: "Pant",
-    //                 item_unit: "piece",
-    //                 unit_price: 80,
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "Ecorinse 3",
-    //     steps: [
-    //       {
-    //         id: 3,
-    //         name: "Women",
-    //         sections: [
-    //           {
-    //             id: 4,
-    //             name: "Regular",
-    //             items: [
-    //               {
-    //                 id: 5,
-    //                 item_name: "Wash and Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 70,
-    //               },
-    //               {
-    //                 id: 6,
-    //                 item_name: "Wash and Steam Iron",
-    //                 item_unit: "kg",
-    //                 unit_price: 100,
-    //               },
-    //             ],
-    //           },
-    //           {
-    //             id: 5,
-    //             name: "Men",
-    //             items: [
-    //               {
-    //                 id: 1,
-    //                 item_name: "Shirt",
-    //                 item_unit: "piece",
-    //                 unit_price: 70,
-    //               },
-    //               {
-    //                 id: 2,
-    //                 item_name: "Pant",
-    //                 item_unit: "piece",
-    //                 unit_price: 80,
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    // ],
-    isLoading: "",
+    isLoading: false,
     error: "",
   },
+  templates: {
+    response: [],
+    isLoading: false,
+    error: "",
+  },
+};
+export const templateDetails = createSlice({
+  name: "templateDetails",
+  initialState,
   reducers: {
     addTemplate: (state, action) => {
-      state.response = action.payload.newTemplate;
+      state.templatedetails.response = action.payload.newTemplate;
     },
 
     updateTemplate: (state, action) => {
       if (state.response?.id === action.payload.templateId) {
-        state.response.name = action.payload.name;
+        state.templatedetails.response.name = action.payload.name;
       }
     },
 
     deleteTemplate: (state, action) => {
       if (state.response?.id === action.payload.templateId) {
-        state.response = null;
+        state.templatedetails.templatedetailste.response = null;
       }
     },
     addStep: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        state.response.steps.push(action.payload.newStep);
+      console.log("Inside the addStep", action.payload);
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        state.templatedetails.response.steps.push(action.payload.newStep);
+        console.log("after response ", state.templatedetails.response);
       }
     },
 
     updateStep: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
@@ -171,26 +53,27 @@ export const templateDetails = createSlice({
     },
 
     deleteStep: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        state.response.steps = state.response.steps.filter(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        state.templatedetails.response.steps = state.templatedetails.response.steps.filter(
           (step) => step.id !== action.payload.stepId,
         );
       }
     },
     addSection: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
         if (step) {
-          step.sections.push(action.payload.newSection);
+          step.sections ??= [];
+          step?.sections.push(action.payload.newSection);
         }
       }
     },
     updateSection: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
@@ -207,8 +90,8 @@ export const templateDetails = createSlice({
     },
 
     deleteSection: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
@@ -220,8 +103,8 @@ export const templateDetails = createSlice({
       }
     },
     addItem: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
         if (step) {
@@ -230,14 +113,15 @@ export const templateDetails = createSlice({
           );
 
           if (section) {
+            section.items ??= []
             section.items.push(action.payload.newItem);
           }
         }
       }
     },
     updateItem: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
@@ -259,8 +143,8 @@ export const templateDetails = createSlice({
       }
     },
     deleteItem: (state, action) => {
-      if (state.response?.id === action.payload.templateId) {
-        const step = state.response.steps.find(
+      if (state.templatedetails.response?.id === action.payload.templateId) {
+        const step = state.templatedetails.response.steps.find(
           (step) => step.id === action.payload.stepId,
         );
 
@@ -280,18 +164,35 @@ export const templateDetails = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getTemplate.pending, (state, action) => {
-        ((state.response = []), (state.error = ""), (state.isLoading = true));
+      .addCase(getTemplateDetails.pending, (state, action) => {
+        ((state.templatedetails.response = []),
+          (state.templatedetails.isLoading = true),
+          (state.templatedetails.error = ""));
       })
-      .addCase(getTemplate.fulfilled, (state, action) => {
-        ((state.response = action.payload),
-          (state.error = ""),
-          (state.isLoading = false));
+      .addCase(getTemplateDetails.fulfilled, (state, action) => {
+        ((state.templatedetails.response = action.payload),
+          (state.templatedetails.error = ""),
+          (state.templatedetails.isLoading = false));
       })
-      .addCase(getTemplate.rejected, (state, action) => {
-        ((state.response = []),
-          (state.error = action.payload),
-          (state.isLoading = false));
+      .addCase(getTemplateDetails.rejected, (state, action) => {
+        ((state.templatedetails.response = []),
+          (state.templatedetails.error = action.payload),
+          (state.templatedetails.isLoading = false));
+      })
+      .addCase(getTemplates.pending, (state, action) => {
+        ((state.templates.response = []),
+          (state.templates.error = ""),
+          (state.templates.isLoading = true));
+      })
+      .addCase(getTemplates.fulfilled, (state, action) => {
+        ((state.templates.response = action.payload.templates),
+          (state.templates.error = ""),
+          (state.templates.isLoading = false));
+      })
+      .addCase(getTemplates.rejected, (state, action) => {
+        ((state.templates.response = []),
+          (state.templates.error = action.payload),
+          (state.templates.isLoading = false));
       });
   },
 });

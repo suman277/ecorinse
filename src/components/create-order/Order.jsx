@@ -285,7 +285,7 @@ const Order = () => {
             <div className={style.orderDetails}>
               <div>
                 <strong>
-                  <span>Order Confirmed ✅</span>
+                  <span>Order Placed ✅</span>
                 </strong>
               </div>
               <div>

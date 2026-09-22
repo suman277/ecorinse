@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { MapPin, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -103,21 +102,6 @@ const Address = ({ errors, details, handleUserDetails, setuserDetails }) => {
             <span>Get Current Location</span>
           </div>
         )}
-        {/* <div
-          className={`${style.addressDiv} ${isLoading ? style.disbaleDiv : ""}`}
-          onClick={() => {
-            getLocationDetails(dispatch);
-          }}
-        >
-          <div className={style.mapIcon}>
-            <MapPin />
-          </div>
-          <span>
-            {isLoading
-              ? "Getting Current Location ..."
-              : "Use Current Location"}
-          </span>
-        </div> */}
       </div>
       <div className={style.inputFormAddressContainer}>
         <div className={style.inputFrom}>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, updateItem } from "../../../redux/template/templateSlice";
+import { retry } from "@reduxjs/toolkit/query";
 export const CreateItem = ({ edit, setShowModal, showModal }) => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,6 +42,7 @@ export const CreateItem = ({ edit, setShowModal, showModal }) => {
           <div className={style.unit}>
             <h5>Unit</h5>
             <input
+              type="string"
               className={style.itemName}
               name="item_unit"
               value={item.item_unit}
@@ -51,6 +53,7 @@ export const CreateItem = ({ edit, setShowModal, showModal }) => {
           <div className={style.unitPrice}>
             <h5>Unit Price (₹)</h5>
             <input
+              type="number"
               className={style.itemName}
               name="item_price"
               value={item.item_price}
@@ -65,7 +68,10 @@ export const CreateItem = ({ edit, setShowModal, showModal }) => {
           Cancel
         </button>
         <button
-          className={style.addItembtn}
+          className={`${style.addItembtn} ${style.disabled}`}
+          disabled={Object.values(item).some(
+            (value) => typeof value === "string" && value.trim() === "",
+          )}
           onClick={() => {
             showModal?.item
               ? dispatch(

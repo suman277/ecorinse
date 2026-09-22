@@ -1,12 +1,13 @@
 import style from "./CreateStep.module.css";
 import React from "react";
-import { TemplateType } from "../../../utils/enumUtils";
+import { createUpdateTemplate, getTemplates } from "../../../redux/template/templateThunk";
 import { useEffect, useState } from "react";
 import {
   addStep,
   addSection,
   updateStep,
   updateSection,
+  updateTemplate,
   addTemplate,
 } from "../../../redux/template/templateSlice";
 import { useDispatch } from "react-redux";
@@ -45,7 +46,7 @@ const CreateEditStepSection = ({ showModal, setShowModal }) => {
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder={`Enter ${showModal.type === TemplateType.SECTION ? "Section" : showModal.type === TemplateType.TEMPLATE ? "Template" : "Step"}`}
+          placeholder={`Enter ${showModal.type === "section" ? "Section" : showModal.type === "template" ? "Template" : "Step"} Name`}
         />
       </div>
       <div className={style.editOps}>
@@ -112,12 +113,11 @@ const CreateEditStepSection = ({ showModal, setShowModal }) => {
                     )
                   : showModal.type === "template"
                     ? dispatch(
-                        addTemplate({
-                          newTemplate: {
-                            id: uuidV4(),
-                            name: name,
-                          },
-                        }),
+                        createUpdateTemplate({
+                          name: name,
+                        }).unwrap(),
+                        dispatch(getTemplates())
+                        ,
                       )
                     : null;
 

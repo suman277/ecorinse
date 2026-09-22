@@ -37,6 +37,16 @@
   flex-direction: column;
 }
 
+.itemOps{
+  display: flex;
+  background-color: #488b36;
+  padding-inline: 1rem;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-radius: 1rem;
+}
+
 .addTemplate {
   padding-block: 1rem;
   display: flex;
@@ -54,6 +64,44 @@
 
 .disabled{
   background-color: gray;
+  cursor: not-allowed;
+}
+
+.saveChanges:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.actionItems{
+  display: flex;
+  gap: 1rem;
+}
+
+.iconDetails{
+display: flex;
+align-items: center;
+}
+
+.noTemplateSelection{
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: jumper 1.5s infinite ease-in;
+}
+
+@keyframes jumper {
+  0% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
 }
 
 .templateHeader {

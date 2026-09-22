@@ -76,9 +76,7 @@ export const postAPI = async (url, payload) => {
       },
       body: JSON.stringify(payload),
     });
-    console.log("Response from POSTAPI", response);
     const data = await response.json();
-    console.log("Date from POSTAPI after JSON conversion", data);
     if (!response.ok) {
       const errorDetails = await response.json();
       throw new Error(errorDetails?.detail);
