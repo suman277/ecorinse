@@ -14,6 +14,7 @@ import ViewOrder from "./components/common-components/view-order/ViewOrder";
 import AlertComponent from "./components/alert-component/AlertComponent";
 import Order from "./components/create-order/Order";
 import Template from "./components/template/template-builder/Template";
+import Login from "./components/login/Login";
 function App() {
   return (
     <>
@@ -33,6 +34,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="view-order" element={<ViewOrder />} />
         <Route path="/template" element={<Template />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
