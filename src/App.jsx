@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Layout from "./components/oultet/Layout";
 import HomePage from "./components/home/HomePage";
 import OurService from "./components/our-services/OurService";
@@ -15,11 +16,92 @@ import AlertComponent from "./components/alert-component/AlertComponent";
 import Order from "./components/create-order/Order";
 import Template from "./components/template/template-builder/Template";
 import Login from "./components/login/Login";
+import { authService } from "./service/authService";
+
+const getStoredTokenDetails = () => {
+  try {
+    return JSON.parse(localStorage.getItem("tokenDetails"));
+  } catch {
+    return null;
+  }
+};
+
+const isValidTokenDetails = (tokenDetails) =>
+  Boolean(tokenDetails?.access_token);
+
+const setAuthServiceToken = (tokenDetails) => {
+  authService.setToken(
+    tokenDetails.scheme,
+    tokenDetails.access_token,
+    tokenDetails.id_token,
+    tokenDetails.refresh_token,
+    tokenDetails.created_at,
+    tokenDetails.expired_at,
+  );
+};
+
+const storedTokenDetails = getStoredTokenDetails();
+if (isValidTokenDetails(storedTokenDetails)) {
+  setAuthServiceToken(storedTokenDetails);
+}
+
+const ProtectedRoute = ({ children }) => {
+  const { response } = useSelector((state) => state.login);
+  const tokenDetails = isValidTokenDetails(response)
+    ? response
+    : getStoredTokenDetails();
+
+  return isValidTokenDetails(tokenDetails) ? (
+    children
+  ) : (
+    <Navigate to="/login" replace />
+  );
+};
+
 function App() {
+  const { response } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    const tokenDetails = isValidTokenDetails(response)
+      ? response
+      : getStoredTokenDetails();
+
+    if (isValidTokenDetails(tokenDetails)) {
+      if (isValidTokenDetails(response)) {
+        localStorage.setItem("tokenDetails", JSON.stringify(response));
+      }
+      setAuthServiceToken(tokenDetails);
+    }
+  }, [response]);
+
   return (
     <>
       <AlertComponent />
       <Routes>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/view-order"
+          element={
+            <ProtectedRoute>
+              <ViewOrder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/template"
+          element={
+            <ProtectedRoute>
+              <Template />
+            </ProtectedRoute>
+          }
+        />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="our-services" element={<OurService />} />
@@ -30,10 +112,14 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
           <Route path="create-order" element={<CreateOrder />} />
         </Route>
-        <Route path="create-orders" element={<Order />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="view-order" element={<ViewOrder />} />
-        <Route path="/template" element={<Template />} />
+        <Route
+          path="create-orders"
+          element={
+            <ProtectedRoute>
+              <Order />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>

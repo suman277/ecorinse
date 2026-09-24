@@ -33,10 +33,8 @@ export const templateDetails = createSlice({
       }
     },
     addStep: (state, action) => {
-      console.log("Inside the addStep", action.payload);
       if (state.templatedetails.response?.id === action.payload.templateId) {
         state.templatedetails.response.steps.push(action.payload.newStep);
-        console.log("after response ", state.templatedetails.response);
       }
     },
 

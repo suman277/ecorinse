@@ -93,9 +93,6 @@ const Template = () => {
   const hasChanges =
     JSON.stringify(originalTemplate) !== JSON.stringify(templateDetails);
 
-  console.log("ORIGINAL:", originalTemplate);
-  console.log("CURRENT:", templateDetails);
-  console.log("HAS CHANGES:", hasChanges);
 
   return (
     <div className={style.mainContainer}>

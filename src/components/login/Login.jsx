@@ -1,10 +1,24 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import EcoRinseSquare from "../../assets/images/background/EcoRinseSquare.jpeg";
 import EcoLogo from "../../assets/images/navbar/EcoLogo.png";
 import style from "./Login.module.css";
 import { User, Lock, Eye, EyeClosed } from "lucide-react";
+import { loginThunk } from "../../redux/login/loginThunk";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    try {
+      await dispatch(loginThunk(userDetails)).unwrap();
+      navigate("/admin");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+  const { response, isLoading, error } = useSelector((state) => state.login);
   const [showPassword, setShowPassword] = useState(false);
   const handleEyeBtn = () => {
     setShowPassword((prev) => !prev);
@@ -27,9 +41,9 @@ const Login = () => {
       </div>
       <div className={style.rightContainer}>
         <div className={style.credContainer}>
-                    <div className={style.topContainer}>
-          <img className={style.ecoLogo} src={EcoLogo} />
-        </div>
+          <div className={style.topContainer}>
+            <img className={style.ecoLogo} src={EcoLogo} />
+          </div>
           <span className={style.header}>Sign in to your EcoRinse account</span>
           <span className={style.subDetails}>
             Welcome back! Please enter your details
@@ -60,7 +74,13 @@ const Login = () => {
                 {showPassword ? <Eye /> : <EyeClosed />}
               </div>
             </div>
-            <button className={style.logIn}>Log In</button>
+            <button
+              className={style.logIn}
+              onClick={() => handleSubmit()}
+              disabled={isLoading}
+            >
+              {isLoading ? "Logging In..." : "Log In"}
+            </button>
           </div>
         </div>
       </div>

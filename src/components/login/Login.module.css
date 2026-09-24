@@ -59,11 +59,17 @@
 
 .logIn {
   width: 100%;
+  cursor: pointer;
   background-color: #4f913f;
   border: none;
   color: white;
   border-radius: 0.3rem;
   padding-block: 0.5rem;
+}
+
+.logIn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
 .credContainer {
@@ -99,8 +105,8 @@
   font-size: small;
 }
 
-.topContainer{
-    display: none;
+.topContainer {
+  display: none;
 }
 
 .header {
@@ -123,36 +129,36 @@
     width: 100%;
     height: 100%;
   }
-  .topContainer{
+  .topContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     display: block;
   }
-  .ecoLogo{
+  .ecoLogo {
     width: 100%;
     height: 100%;
   }
-  .header{
+  .header {
     text-align: center;
   }
-  .subDetails{
+  .subDetails {
     text-align: center;
   }
-  .credContainer{
+  .credContainer {
     animation: slideToTop 1s ease-in;
   }
   @keyframes slideToTop {
-  from {
-    transform: translateY(300px);
-    opacity: 0.3;
+    from {
+      transform: translateY(300px);
+      opacity: 0.3;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
   }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-.mainContainer{
+  .mainContainer {
     overflow-y: hidden;
-}
+  }
 }

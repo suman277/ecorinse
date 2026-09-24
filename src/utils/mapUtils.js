@@ -1,8 +1,6 @@
 import { validateAddress } from "../redux/orders/OrderThunk";
 
 export const getLocationDetails = (dispatch) => {
-  console.log("Got clicked");
-
   navigator.geolocation.getCurrentPosition(
     (position) => {
       const latitude = position.coords.latitude;
@@ -12,7 +10,7 @@ export const getLocationDetails = (dispatch) => {
         validateAddress({
           latitude,
           longitude,
-        })
+        }),
       );
     },
 
@@ -25,6 +23,6 @@ export const getLocationDetails = (dispatch) => {
       enableHighAccuracy: true,
       timeout: 10000,
       maximumAge: 0,
-    }
+    },
   );
 };

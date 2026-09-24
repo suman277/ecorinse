@@ -1,3 +1,5 @@
+import { authService } from "./service/authService";
+
 export const getAPI = async (url, query = {}, responseType = "json") => {
   try {
     const queryObj = {};
@@ -14,11 +16,15 @@ export const getAPI = async (url, query = {}, responseType = "json") => {
     const finalUrl = queryParam ? `${url}?${queryParam}` : url;
     const response = await fetch(finalUrl, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "true",
-      },
+      headers: await authService.getHeaders(),
     });
+    if (response.status === 401) {
+      authService.clearToken();
+      localStorage.removeItem("tokenDetails");
+      window.location.replace("/login");
+
+      throw new Error("Session expired. Please log in again.");
+    }
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.detail);
@@ -50,15 +56,18 @@ export const putAPI = async (url, payload) => {
   try {
     const response = await fetch(url, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: await authService.getHeaders(),
       body: JSON.stringify(payload),
     });
     const data = await response.json();
+    if (response.status === 401) {
+      authService.clearToken();
+      localStorage.removeItem("tokenDetails");
+      window.location.replace("/login");
+      throw new Error("Session expired. Please log in again.");
+    }
     if (!response.ok) {
-      const errorDetails = await response.json();
-      throw new Error(errorDetails?.detail);
+      throw new Error(data?.detail);
     }
     return data;
   } catch (error) {
@@ -71,17 +80,19 @@ export const postAPI = async (url, payload) => {
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: await authService.getHeaders(),
       body: JSON.stringify(payload),
     });
     const data = await response.json();
-    if (!response.ok) {
-      const errorDetails = await response.json();
-      throw new Error(errorDetails?.detail);
+    if (response.status === 401) {
+      authService.clearToken();
+      localStorage.removeItem("tokenDetails");
+      window.location.replace("/login");
+      throw new Error("Session expired. Please log in again.");
     }
-
+    if (!response.ok) {
+      throw new Error(data?.detail);
+    }
     return data;
   } catch (error) {
     console.error("An internal error occurred:", error.message);
@@ -93,14 +104,17 @@ export const deleteAPI = async (url) => {
   try {
     const response = await fetch(url, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: await authService.getHeaders(),
     });
     const data = await response.json();
+    if (response.status === 401) {
+      authService.clearToken();
+      localStorage.removeItem("tokenDetails");
+      window.location.replace("/login");
+      throw new Error("Session expired. Please log in again.");
+    }
     if (!response.ok) {
-      const errorDetails = await response.json();
-      throw new Error(errorDetails?.detail);
+      throw new Error(data?.detail);
     }
     return data;
   } catch (error) {

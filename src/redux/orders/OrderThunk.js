@@ -35,7 +35,7 @@ export const getDashboardDetails = createAsyncThunk(
           isError: true,
         }),
       );
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -167,7 +167,7 @@ export const updateOrder = createAsyncThunk(
           isError: true,
         }),
       );
-      thunkAPI.rejectWithValue("An internal error occured");
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -191,7 +191,7 @@ export const deleteOrder = createAsyncThunk(
           isError: true,
         }),
       );
-      console.error("An intenal error occured", error.detail);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -233,6 +233,7 @@ export const createOrderWithItem = createAsyncThunk(
           isError: true,
         }),
       );
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -250,6 +251,7 @@ export const getInvoice = createAsyncThunk(
           isError: true,
         }),
       );
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -275,6 +277,7 @@ export const generateInvoice = createAsyncThunk(
           isError: true,
         }),
       );
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
@@ -297,6 +300,7 @@ export const downloadInvoice = createAsyncThunk(
           isError: true,
         }),
       );
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
