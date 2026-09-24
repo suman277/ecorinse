@@ -112,14 +112,7 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
           <Route path="create-order" element={<CreateOrder />} />
         </Route>
-        <Route
-          path="create-orders"
-          element={
-            <ProtectedRoute>
-              <Order />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="create-orders" element={<Order />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
