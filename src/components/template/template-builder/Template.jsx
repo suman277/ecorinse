@@ -50,9 +50,6 @@ const Template = () => {
   const { response: templateDetails } = useSelector(
     (state) => state.template.templatedetails,
   );
-  // useEffect(() => {
-  //   setTemplateResponse(structuredClone(templateDetails));
-  // }, [templateDetails]);
   const [showModal, setShowModal] = useState({
     stepId: null,
     templateId: null,
