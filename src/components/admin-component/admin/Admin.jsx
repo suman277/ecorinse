@@ -37,19 +37,10 @@ const Admin = () => {
     id: null,
     isOpen: false,
   });
-  const handleDispatch = () => {
-    dispatch(getOrders());
+  const handleDispatch = async() => {
+    await dispatch(getOrders()).unwrap();
     dispatch(getDashboardDetails());
   };
-  // useEffect(()=>{
-  //   const handleDownSomething = () =>{
-  //     console.log("Something Happened");
-  //   }
-
-  //   document.addEventListener("pointerdown", handleDownSomething)
-  //   return () => document.removeEventListener("pointerdown", handleDownSomething)
-
-  // }, [])
   const checkStatus = (status) => {
     return status === "Delivered";
   };

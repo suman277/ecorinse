@@ -7,7 +7,7 @@ class AuthService {
     this.id_token = "";
     this.refresh_token = "";
     this.created_at = 0;
-    this.expired_at = 0;
+    this.expires_at = 0;
   }
   setToken(
     scheme,
@@ -15,14 +15,14 @@ class AuthService {
     id_token,
     refresh_token,
     created_at,
-    expired_at,
+    expires_at,
   ) {
     this.scheme = scheme;
     this.access_token = access_token;
     this.id_token = id_token;
     this.refresh_token = refresh_token;
     this.created_at = created_at;
-    this.expired_at = expired_at;
+    this.expires_at = expires_at;
   }
   clearToken() {
     this.setToken(null, null, null, null, null, null);
@@ -39,8 +39,11 @@ class AuthService {
   }
   async getAccessToken() {
     const now = Math.floor(Date.now() / 1000);
+    const expiresAt = Math.floor(new Date(this.expires_at).getTime() / 1000);
+    console.log(now);
+    console.log(expiresAt);
     if (this.access_token) {
-      if (this.expired_at <= now + 30) {
+      if (expiresAt <= now + 30) {
         const response = await fetch(`${baseUrl}auth/token`, {
           method: "POST",
           headers: {
@@ -59,7 +62,7 @@ class AuthService {
             tokenDetails.id_token,
             tokenDetails.refresh_token,
             tokenDetails.created_at,
-            tokenDetails.expired_at,
+            tokenDetails.expires_at,
           );
           localStorage.setItem("tokenDetails", JSON.stringify(tokenDetails));
         } else {

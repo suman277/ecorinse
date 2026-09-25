@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Accordion from "../accordion/Accordion";
 import Items from "../items/Items";
 import style from "./Template.module.css";
+import { useNavigate } from "react-router-dom";
 import { CreateItem } from "../create-item/CreateItem";
 import { useDispatch, useSelector } from "react-redux";
 import CreateEditStepSection from "../CreateStep/CreateEditStepSection";
@@ -10,9 +11,10 @@ import {
   getTemplateDetails,
   createUpdateTemplate,
 } from "../../../redux/template/templateThunk.js";
-import { Plus, Pen, Trash2, Save, X } from "lucide-react";
+import { Plus, Pen, Trash2, Save, X, ArrowLeftCircle } from "lucide-react";
 
 const Template = () => {
+  const navigate = useNavigate()
   const cleanTemplateKeys = (object) => {
     if (typeof object.id === "string") {
       const { id, ...detailsWithoutId } = object;
@@ -93,9 +95,14 @@ const Template = () => {
   const hasChanges =
     JSON.stringify(originalTemplate) !== JSON.stringify(templateDetails);
 
-
   return (
     <div className={style.mainContainer}>
+      <div className={style.templateNavBar}>
+        <div className={style.arrowIcon} onClick={()=>navigate(-1)}>
+          <ArrowLeftCircle />
+        </div>
+        <div><h3>Template Builder</h3></div>
+      </div>
       {showModal.isOpen && (
         <div className={style.overLay}>
           {showModal.type === "template" ||

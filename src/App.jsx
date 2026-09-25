@@ -36,7 +36,7 @@ const setAuthServiceToken = (tokenDetails) => {
     tokenDetails.id_token,
     tokenDetails.refresh_token,
     tokenDetails.created_at,
-    tokenDetails.expired_at,
+    tokenDetails.expires_at,
   );
 };
 
