@@ -1,6 +1,9 @@
 import style from "./CreateStep.module.css";
 import React from "react";
-import { createUpdateTemplate, getTemplates } from "../../../redux/template/templateThunk";
+import {
+  createUpdateTemplate,
+  getTemplates,
+} from "../../../redux/template/templateThunk";
 import { useEffect, useState } from "react";
 import {
   addStep,
@@ -15,6 +18,19 @@ import { v4 as uuidV4 } from "uuid";
 
 const CreateEditStepSection = ({ showModal, setShowModal }) => {
   const dispatch = useDispatch();
+  const handleCreateTemplate = async () => {
+    try {
+      await dispatch(
+        createUpdateTemplate({
+          name: name,
+        }),
+      ).unwrap();
+
+      await dispatch(getTemplates()).unwrap();
+    } catch (error) {
+      console.error("Failed to create template:", error);
+    }
+  };
   const [name, setName] = useState("");
   useEffect(() => {
     if (showModal.item) {
@@ -112,13 +128,7 @@ const CreateEditStepSection = ({ showModal, setShowModal }) => {
                       }),
                     )
                   : showModal.type === "template"
-                    ? dispatch(
-                        createUpdateTemplate({
-                          name: name,
-                        }).unwrap(),
-                        dispatch(getTemplates())
-                        ,
-                      )
+                    ? handleCreateTemplate()
                     : null;
 
             setShowModal(false);

@@ -10,11 +10,10 @@
 
 .mainContainer {
   position: relative;
-  height: 100dvh;
   width: 100%;
 }
 
-.templateNavBar{
+.templateNavBar {
   display: flex;
   height: 5rem;
   background-color: white;
@@ -23,12 +22,11 @@
   gap: 2rem;
 }
 
-.arrowIcon{
+.arrowIcon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 .editIcon {
   cursor: pointer;
@@ -50,9 +48,10 @@
   background-color: #f1f4f3;
   gap: 1rem;
   flex-direction: column;
+  height: calc(100dvh - 5rem);
 }
 
-.itemOps{
+.itemOps {
   display: flex;
   background-color: #488b36;
   padding-inline: 1rem;
@@ -77,7 +76,7 @@
   border: none;
 }
 
-.disabled{
+.disabled {
   background-color: gray;
   cursor: not-allowed;
 }
@@ -87,17 +86,17 @@
   cursor: not-allowed;
 }
 
-.actionItems{
+.actionItems {
   display: flex;
   gap: 1rem;
 }
 
-.iconDetails{
-display: flex;
-align-items: center;
+.iconDetails {
+  display: flex;
+  align-items: center;
 }
 
-.noTemplateSelection{
+.noTemplateSelection {
   height: 5rem;
   display: flex;
   justify-content: center;
@@ -247,4 +246,10 @@ align-items: center;
   cursor: pointer;
   background-color: #488b36;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .templateContainer {
+    padding-inline: 1rem;
+  }
 }
