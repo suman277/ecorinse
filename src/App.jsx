@@ -17,6 +17,7 @@ import Order from "./components/create-order/Order";
 import Template from "./components/template/template-builder/Template";
 import Login from "./components/login/Login";
 import { authService } from "./service/authService";
+import { useLocation } from "react-router-dom";
 
 const getStoredTokenDetails = () => {
   try {
@@ -60,6 +61,17 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   const { response } = useSelector((state) => state.login);
+  const location = useLocation();
+  useEffect(() => {
+    const tokenDetails = isValidTokenDetails(response)
+      ? response
+      : getStoredTokenDetails();
+    if (location.pathname === "/login") {
+      if (isValidTokenDetails(tokenDetails)) {
+        window.location.replace("/admin");
+      }
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const tokenDetails = isValidTokenDetails(response)
