@@ -82,11 +82,26 @@
   height: 4rem;
 }
 
+.logOut{
+  display: flex;
+  align-items: center;
+  color: #4D8731;
+}
+
+.iconOps{
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
+
 .notiWrapper {
   padding-inline: 1rem;
   padding-block: 0.5rem;
   background-color: lightgrey;
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .dashboardContainer {

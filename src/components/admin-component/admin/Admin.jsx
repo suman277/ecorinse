@@ -28,7 +28,9 @@ import {
   CircleDotDashed,
   RefreshCcw,
   ListPlusIcon,
+  LogOut,
 } from "lucide-react";
+import { authService } from "../../../service/authService.js";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const Admin = () => {
     id: null,
     isOpen: false,
   });
-  const handleDispatch = async() => {
+  const handleDispatch = async () => {
     await dispatch(getOrders()).unwrap();
     dispatch(getDashboardDetails());
   };
@@ -119,18 +121,11 @@ const Admin = () => {
   useEffect(() => {
     dispatch(getDashboardDetails());
   }, [dispatch]);
-  const initalStateOptionMenu = {
-    id: "",
-    isOpen: "",
-  };
   const [searchModal, setSearchModal] = useState(false);
-  const [view, setView] = useState(initalStateOptionMenu);
-  const handleOptionMenu = (id) => {
-    if (id === view.id) {
-      setView(initalStateOptionMenu);
-    } else {
-      setView({ id: id, isOpen: true });
-    }
+  const handleLogOut = () => {
+    localStorage.clear();
+    authService.clearToken();
+    navigate("/login");
   };
   return (
     <div className={style.mainContainer}>
@@ -147,8 +142,14 @@ const Admin = () => {
           <div>
             <img className={style.imgSpecs} src={MainLogo} />
           </div>
-          <div className={style.notiWrapper}>
-            <MessageSquareDotIcon color="#498E38" />
+          <div className={style.iconOps}>
+            <div className={style.notiWrapper} onClick={() => handleLogOut()}>
+              <LogOut color="#498E38" />
+              <strong className={style.logOut}>Logout</strong>
+            </div>
+            <div className={style.notiWrapper}>
+              <MessageSquareDotIcon color="#498E38" />
+            </div>
           </div>
         </div>
         <div className={style.dashboardContainer}>
@@ -506,7 +507,13 @@ const Admin = () => {
                 className={style.clickBtns}
                 disabled={!has_next}
                 onClick={() =>
-                  setQuery((prev) => ({ ...prev, cursor: next_cursor }))
+                  setQuery((prev) => {
+                    const { is_reverse, ...rest } = prev;
+                    return {
+                      ...rest,
+                      cursor: next_cursor,
+                    };
+                  })
                 }
               >
                 <ChevronRight />
