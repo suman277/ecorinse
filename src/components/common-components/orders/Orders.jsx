@@ -10,6 +10,8 @@ import {
 } from "../../../redux/orders/OrderThunk.js";
 import { useDispatch, useSelector } from "react-redux";
 import { itemCategories } from "../../../utils/UtilsData.js";
+import Loading from "../../loader/Loading.jsx";
+import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
 
 const Orders = ({ orderId }) => {
   const [isFormDirty, setIsFormDirty] = useState(false);
@@ -45,9 +47,11 @@ const Orders = ({ orderId }) => {
     };
   }, []);
   const dispatch = useDispatch();
-  const orderItems = useSelector(
-    (state) => state.orders.orderItemDetailsList.response.order_details,
-  );
+  const {
+    response: orderItems,
+    isLoading,
+    error,
+  } = useSelector((state) => state.orders.orderItemDetailsList);
   const invoiceExists = useSelector(
     (state) => state.orders.checkInvoice.response,
   );
@@ -96,7 +100,7 @@ const Orders = ({ orderId }) => {
     }
   }, [dispatch, orderId]);
   useEffect(() => {
-    setItemDetails([])
+    setItemDetails([]);
     if (orderItems) {
       setItemDetails(orderItems);
     }
@@ -188,88 +192,31 @@ const Orders = ({ orderId }) => {
     );
     return category[0]?.categoryDetail;
   };
-  return (
+  return isLoading ? (
+    <div className={style.centerElement}>
+      <Loading />
+    </div>
+  ) : (
     <div className={style.mainContainer}>
-      <div className={style.addItemContainer}>
-        {itemDetails?.map((item, index) => {
-          return (
-            <div className={style.itemDetails}>
-              <div className={style.inputContainer}>
-                <div
-                  className={style.inputDetails}
-                  ref={
-                    showDropdown.index === index &&
-                    showDropdown.show &&
-                    showDropdown.div === "categories"
-                      ? activeDropdownRef
-                      : null
-                  }
-                >
-                  <label id="serviceName">
-                    {" "}
-                    <h5>Service Name</h5>
-                  </label>
-                  <input
-                    type="text"
-                    onFocus={() => {
-                      setShowDropDown({
-                        index: index,
-                        show: true,
-                        div: "categories",
-                      });
-                    }}
-                    className={style.inputBox}
-                    value={item.service_name}
-                    placeholder="Enter Service Name"
-                  />
-                  {showDropdown.index === index &&
-                    showDropdown.show &&
-                    showDropdown.div === "categories" && (
-                      <div className={style.categorisList}>
-                        {categoriesList.map((category) => {
-                          return (
-                            <div
-                              className={style.categoryName}
-                              onClick={() => {
-                                setItemDetails((prev) => {
-                                  const updated = [...prev];
-                                  updated[index] = Object.fromEntries(
-                                    Object.keys(updated[index]).map((key) => [
-                                      key,
-                                      key === "service_name"
-                                        ? itemCategories[category].categoryName
-                                        : "",
-                                    ]),
-                                  );
-                                  return updated;
-                                });
-                                setShowDropDown({
-                                  index: "",
-                                  show: false,
-                                  div: "",
-                                });
-                              }}
-                            >
-                              {itemCategories[category].categoryName}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                </div>
-                <div className={style.otherInputContainers}>
+      {itemDetails?.order_details?.length > 0 ? (
+        <div className={style.addItemContainer}>
+          {itemDetails?.order_details?.map((item, index) => {
+            return (
+              <div className={style.itemDetails}>
+                <div className={style.inputContainer}>
                   <div
                     className={style.inputDetails}
                     ref={
                       showDropdown.index === index &&
                       showDropdown.show &&
-                      showDropdown.div === "items"
+                      showDropdown.div === "categories"
                         ? activeDropdownRef
                         : null
                     }
                   >
                     <label id="serviceName">
-                      <h5>Item Name</h5>
+                      {" "}
+                      <h5>Service Name</h5>
                     </label>
                     <input
                       type="text"
@@ -277,123 +224,189 @@ const Orders = ({ orderId }) => {
                         setShowDropDown({
                           index: index,
                           show: true,
-                          div: "items",
+                          div: "categories",
                         });
                       }}
-                      value={item.item_name}
                       className={style.inputBox}
+                      value={item.service_name}
                       placeholder="Enter Service Name"
                     />
                     {showDropdown.index === index &&
                       showDropdown.show &&
-                      showDropdown.div === "items" && (
-                        <div className={style.itemNameDetails}>
-                          <div className={style.catDetails}>
-                            {catWiseItemDetails(index)?.map((cat) => {
-                              return (
-                                <div
-                                  onMouseEnter={() => {
-                                    setHoveredCategory({
-                                      catName: cat.categoryDetailName,
-                                      items: cat.items,
-                                    });
-                                  }}
-                                  className={`${style.catNames} ${cat.categoryDetailName === hoveredCategory.catName ? style.activeCatName : ""}`}
-                                >
-                                  {cat.categoryDetailName}
-                                </div>
-                              );
-                            })}
-                          </div>
-                          <div className={style.detailsNameContainer}>
-                            {hoveredCategory &&
-                              hoveredCategory?.items?.map((item) => {
-                                return (
-                                  <div
-                                    className={style.detailsName}
-                                    onClick={() => {
-                                      setItemDetails((prev) => {
-                                        const updated = [...prev];
-                                        updated[index] = {
-                                          ...updated[index],
-                                          item_name: item.item_name,
-                                          quantity: 1,
-                                          unit_price: item.unit_price,
-                                          total_price: item.unit_price * 1,
-                                        };
-                                        return updated;
-                                      });
-                                      setShowDropDown({
-                                        div: "",
-                                        index: "",
-                                        show: false,
-                                      });
-                                    }}
-                                  >
-                                    {item.item_name}
-                                  </div>
-                                );
-                              })}
-                          </div>
+                      showDropdown.div === "categories" && (
+                        <div className={style.categorisList}>
+                          {categoriesList.map((category) => {
+                            return (
+                              <div
+                                className={style.categoryName}
+                                onClick={() => {
+                                  setItemDetails((prev) => {
+                                    const updated = [...prev];
+                                    updated[index] = Object.fromEntries(
+                                      Object.keys(updated[index]).map((key) => [
+                                        key,
+                                        key === "service_name"
+                                          ? itemCategories[category]
+                                              .categoryName
+                                          : "",
+                                      ]),
+                                    );
+                                    return updated;
+                                  });
+                                  setShowDropDown({
+                                    index: "",
+                                    show: false,
+                                    div: "",
+                                  });
+                                }}
+                              >
+                                {itemCategories[category].categoryName}
+                              </div>
+                            );
+                          })}
                         </div>
                       )}
                   </div>
-                  <div className={style.inputDetails}>
-                    <label id="serviceName">
-                      <h5>Quantity</h5>
-                    </label>
-                    <input
-                      type="number"
-                      name="quantity"
-                      value={item.quantity}
-                      onChange={(e) => {
-                        handleChange(e, index);
-                      }}
-                      className={style.inputBox}
-                      placeholder="Enter Service Name"
-                    />
+                  <div className={style.otherInputContainers}>
+                    <div
+                      className={style.inputDetails}
+                      ref={
+                        showDropdown.index === index &&
+                        showDropdown.show &&
+                        showDropdown.div === "items"
+                          ? activeDropdownRef
+                          : null
+                      }
+                    >
+                      <label id="serviceName">
+                        <h5>Item Name</h5>
+                      </label>
+                      <input
+                        type="text"
+                        onFocus={() => {
+                          setShowDropDown({
+                            index: index,
+                            show: true,
+                            div: "items",
+                          });
+                        }}
+                        value={item.item_name}
+                        className={style.inputBox}
+                        placeholder="Enter Service Name"
+                      />
+                      {showDropdown.index === index &&
+                        showDropdown.show &&
+                        showDropdown.div === "items" && (
+                          <div className={style.itemNameDetails}>
+                            <div className={style.catDetails}>
+                              {catWiseItemDetails(index)?.map((cat) => {
+                                return (
+                                  <div
+                                    onMouseEnter={() => {
+                                      setHoveredCategory({
+                                        catName: cat.categoryDetailName,
+                                        items: cat.items,
+                                      });
+                                    }}
+                                    className={`${style.catNames} ${cat.categoryDetailName === hoveredCategory.catName ? style.activeCatName : ""}`}
+                                  >
+                                    {cat.categoryDetailName}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                            <div className={style.detailsNameContainer}>
+                              {hoveredCategory &&
+                                hoveredCategory?.items?.map((item) => {
+                                  return (
+                                    <div
+                                      className={style.detailsName}
+                                      onClick={() => {
+                                        setItemDetails((prev) => {
+                                          const updated = [...prev];
+                                          updated[index] = {
+                                            ...updated[index],
+                                            item_name: item.item_name,
+                                            quantity: 1,
+                                            unit_price: item.unit_price,
+                                            total_price: item.unit_price * 1,
+                                          };
+                                          return updated;
+                                        });
+                                        setShowDropDown({
+                                          div: "",
+                                          index: "",
+                                          show: false,
+                                        });
+                                      }}
+                                    >
+                                      {item.item_name}
+                                    </div>
+                                  );
+                                })}
+                            </div>
+                          </div>
+                        )}
+                    </div>
+                    <div className={style.inputDetails}>
+                      <label id="serviceName">
+                        <h5>Quantity</h5>
+                      </label>
+                      <input
+                        type="number"
+                        name="quantity"
+                        value={item.quantity}
+                        onChange={(e) => {
+                          handleChange(e, index);
+                        }}
+                        className={style.inputBox}
+                        placeholder="Enter Service Name"
+                      />
+                    </div>
+                    <div className={style.inputDetails}>
+                      <label id="serviceName">
+                        <h5>Unit Price</h5>
+                      </label>
+                      <input
+                        type="number"
+                        name="unit_price"
+                        value={item.unit_price}
+                        onChange={(e) => {
+                          handleChange(e, index);
+                        }}
+                        className={style.inputBox}
+                        placeholder="Enter Service Name"
+                      />
+                    </div>
+                    <div className={style.inputDetails}>
+                      <label id="serviceName">
+                        <h5>Sub Total</h5>
+                      </label>
+                      <input
+                        type="text"
+                        className={style.inputBox}
+                        value={item.total_price || 0}
+                        placeholder="Enter Service Name"
+                        readOnly
+                      />
+                    </div>
                   </div>
-                  <div className={style.inputDetails}>
-                    <label id="serviceName">
-                      <h5>Unit Price</h5>
-                    </label>
-                    <input
-                      type="number"
-                      name="unit_price"
-                      value={item.unit_price}
-                      onChange={(e) => {
-                        handleChange(e, index);
-                      }}
-                      className={style.inputBox}
-                      placeholder="Enter Service Name"
-                    />
-                  </div>
-                  <div className={style.inputDetails}>
-                    <label id="serviceName">
-                      <h5>Sub Total</h5>
-                    </label>
-                    <input
-                      type="text"
-                      className={style.inputBox}
-                      value={item.total_price || 0}
-                      placeholder="Enter Service Name"
-                      readOnly
-                    />
-                  </div>
+                  {itemIndex === index && (
+                    <div className={style.errorDetails}>
+                      Please fill the details completely
+                    </div>
+                  )}
                 </div>
-                {itemIndex === index && (
-                  <div className={style.errorDetails}>
-                    Please fill the details completely
-                  </div>
-                )}
+                <div className={style.trashIcon}>
+                  <Trash2 color="red" onClick={() => handleDelete(index)} />
+                </div>
               </div>
-              <div className={style.trashIcon}>
-                <Trash2 color="red" onClick={() => handleDelete(index)} />
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      ) : (
+        <NoRecordComponent />
+      )}
       <div className={style.footer}>
         <div className={style.itemBtns}>
           <button className={style.addBtn} onClick={() => addItem()}>

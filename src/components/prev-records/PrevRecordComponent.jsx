@@ -3,6 +3,7 @@ import { useState } from "react";
 import style from "./PrevRecord.module.css";
 import { ChevronDownCircleIcon, ChevronUpCircle } from "lucide-react";
 import StatusIndicator from "../common-components/status-indicator/StatusIndicator";
+import NoRecordComponent from "../../components/no-record/NoRecordComponent.jsx";
 import { Phone, MapPin, LocateIcon } from "lucide-react";
 
 const PrevRecordComponent = ({
@@ -62,29 +63,33 @@ const PrevRecordComponent = ({
               )}
             </div>
           </div>
-          <table className={style.table}>
-            <thead>
-              <tr>
-                <th>Service Name</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
+          {orderItemDetails?.response?.order_details?.length > 0 ? (
+            <table className={style.table}>
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Item Name</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {orderItemDetails?.response?.order_details?.map(
-                (order, index) => (
-                  <tr key={order.id ?? index}>
-                    <td>{order.service_name}</td>
-                    <td>{order.item_name}</td>
-                    <td>{order.quantity}</td>
-                    <td>{order.total_price}</td>
-                  </tr>
-                ),
-              )}
-            </tbody>
-          </table>
+              <tbody>
+                {orderItemDetails?.response?.order_details?.map(
+                  (order, index) => (
+                    <tr key={order.id ?? index}>
+                      <td>{order.service_name}</td>
+                      <td>{order.item_name}</td>
+                      <td>{order.quantity}</td>
+                      <td>{order.total_price}</td>
+                    </tr>
+                  ),
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <NoRecordComponent />
+          )}
         </div>
       )}
     </div>

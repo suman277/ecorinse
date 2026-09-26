@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPreviousOrders } from "../../../redux/orders/adminThunk";
 import Loading from "../../loader/Loading.jsx";
 import { getOrderItemDetails } from "../../../redux/orders/OrderThunk.js";
+import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
 
 const PrevOrder = ({ orderDetails }) => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const PrevOrder = ({ orderDetails }) => {
     <div className={style.loadingContainer}>
       <Loading />
     </div>
-  ) : (
+  ) : prevOrderResponses?.length > 0 ? (
     <div className={style.mainContainer}>
       {prevOrderResponses?.map((prevOrder) => {
         return (
@@ -56,6 +57,11 @@ const PrevOrder = ({ orderDetails }) => {
           />
         );
       })}
+    </div>
+  ) : (
+    <div className={style.loadingContainer}>
+      {" "}
+      <NoRecordComponent />
     </div>
   );
 };
