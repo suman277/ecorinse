@@ -62,7 +62,7 @@ const ViewOrder = ({ handleClose, orderId }) => {
           </div>
         </div>
         <div className={style.layoutComps}>
-          {menu === "orders" ? <Orders orderId={orderId} /> : <PrevOrder />}
+          {menu === "orders" ? <Orders orderId={orderId} /> : <PrevOrder orderDetails = {response} />}
         </div>
       </div>
     </div>
