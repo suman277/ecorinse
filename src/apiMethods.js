@@ -106,19 +106,24 @@ export const deleteAPI = async (url) => {
       method: "DELETE",
       headers: await authService.getHeaders(),
     });
-    const data = await response.json();
+
     if (response.status === 401) {
       authService.clearToken();
       localStorage.removeItem("tokenDetails");
       window.location.replace("/login");
+
       throw new Error("Session expired. Please log in again.");
     }
+    if (response.status === 204) {
+      return null;
+    }
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.detail);
+      throw new Error(data?.detail || "Delete failed");
     }
     return data;
   } catch (error) {
-    console.error("An internal error occured", error.message);
+    console.error("An internal error occurred:", error.message);
     throw error;
   }
 };

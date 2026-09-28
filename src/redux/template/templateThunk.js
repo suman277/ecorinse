@@ -59,3 +59,20 @@ export const createUpdateTemplate = createAsyncThunk(
     }
   },
 );
+
+export const defaultTemplate = createAsyncThunk(
+  "default-templates",
+  async (_, thunkAPI) => {
+    try {
+      const response = await getAPI(`${baseUrl}template/default`);
+      return response;
+    } catch (error) {
+      thunkAPI.dispatch(
+        getAlertMessage({
+          message: error.detail,
+          isError: true,
+        }),
+      );
+    }
+  },
+);

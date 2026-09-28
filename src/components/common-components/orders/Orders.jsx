@@ -52,6 +52,7 @@ const Orders = ({ orderId }) => {
     isLoading,
     error,
   } = useSelector((state) => state.orders.orderItemDetailsList);
+  console.log("orderItemDetails", orderItems);
   const invoiceExists = useSelector(
     (state) => state.orders.checkInvoice.response,
   );
@@ -198,9 +199,9 @@ const Orders = ({ orderId }) => {
     </div>
   ) : (
     <div className={style.mainContainer}>
-      {itemDetails?.order_details?.length > 0 ? (
+      {itemDetails?.length > 0 ? (
         <div className={style.addItemContainer}>
-          {itemDetails?.order_details?.map((item, index) => {
+          {itemDetails?.map((item, index) => {
             return (
               <div className={style.itemDetails}>
                 <div className={style.inputContainer}>

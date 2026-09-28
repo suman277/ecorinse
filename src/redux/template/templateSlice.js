@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTemplateDetails, getTemplates } from "./templateThunk";
+import {
+  getTemplateDetails,
+  getTemplates,
+  defaultTemplate,
+} from "./templateThunk";
 
 const initialState = {
   templatedetails: {
@@ -8,6 +12,11 @@ const initialState = {
     error: "",
   },
   templates: {
+    response: [],
+    isLoading: false,
+    error: "",
+  },
+  defaultTemplate: {
     response: [],
     isLoading: false,
     error: "",
@@ -52,9 +61,10 @@ export const templateDetails = createSlice({
 
     deleteStep: (state, action) => {
       if (state.templatedetails.response?.id === action.payload.templateId) {
-        state.templatedetails.response.steps = state.templatedetails.response.steps.filter(
-          (step) => step.id !== action.payload.stepId,
-        );
+        state.templatedetails.response.steps =
+          state.templatedetails.response.steps.filter(
+            (step) => step.id !== action.payload.stepId,
+          );
       }
     },
     addSection: (state, action) => {
@@ -111,7 +121,7 @@ export const templateDetails = createSlice({
           );
 
           if (section) {
-            section.items ??= []
+            section.items ??= [];
             section.items.push(action.payload.newItem);
           }
         }
@@ -191,6 +201,21 @@ export const templateDetails = createSlice({
         ((state.templates.response = []),
           (state.templates.error = action.payload),
           (state.templates.isLoading = false));
+      })
+      .addCase(defaultTemplate.pending, (state, action) => {
+        ((state.defaultTemplate.response = []),
+          (state.defaultTemplate.error = ""),
+          (state.defaultTemplate.isLoading = true));
+      })
+      .addCase(defaultTemplate.fulfilled, (state, action) => {
+        ((state.defaultTemplate.response = action.payload.steps),
+          (state.defaultTemplate.error = ""),
+          (state.defaultTemplate.isLoading = false));
+      })
+      .addCase(defaultTemplate.rejected, (state, action) => {
+        ((state.defaultTemplate.response = []),
+          (state.defaultTemplate.error = action.payload),
+          (state.defaultTemplate.isLoading = false));
       });
   },
 });

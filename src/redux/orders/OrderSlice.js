@@ -100,7 +100,7 @@ export const orderSlice = createSlice({
         state.orderItemDetailsList.error = "";
       })
       .addCase(getOrderItemDetails.fulfilled, (state, action) => {
-        state.orderItemDetailsList.response = action.payload;
+        state.orderItemDetailsList.response = action.payload.order_details;
         state.orderItemDetailsList.isLoading = false;
         state.orderItemDetailsList.error = "";
       })

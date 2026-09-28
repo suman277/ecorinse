@@ -3,8 +3,9 @@ import style from "./Order.module.css";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemCategories } from "../../utils/UtilsData";
 import { addItem, removeItem } from "../../redux/cart/cartSlice";
+import { defaultTemplate } from "../../redux/template/templateThunk";
+import Loading from "../loader/Loading";
 
 const ChooseItems = () => {
   const dispatch = useDispatch();
@@ -14,44 +15,36 @@ const ChooseItems = () => {
   const ifItemExists = (id) => {
     return itemDetails.find((item) => item.id === id);
   };
-  const [searchResults, setSearchResults] = useState(itemCategories);
-  const resultItems = (search) => {
-    const searchText = search.trim().toLowerCase();
-    if (searchText === "") {
-      setSearchResults(itemCategories);
-      return;
-    }
-    const results = {};
-    Object.entries(itemCategories).forEach(([key, value]) => {
-      const categoryDetails = value.categoryDetail
-        .map((category) => {
-          const filteredItems = category.items.filter((item) =>
-            item.name.toLowerCase().includes(searchText),
-          );
-
-          if (filteredItems.length > 0) {
-            return {
-              ...category,
-              items: filteredItems,
-            };
-          }
-          return null;
-        })
-        .filter(Boolean);
-      if (categoryDetails.length > 0) {
-        results[key] = {
-          ...value,
-          categoryDetail: categoryDetails,
-        };
-      }
-    });
-
-    setSearchResults(results);
-  };
   const [category, setCategory] = useState(1);
-  const handleCategoryChange = (Key) => {
-    setCategory(Number(Key));
+  const handleCategoryChange = (id) => {
+    setCategory(id);
   };
+  useEffect(() => {
+    dispatch(defaultTemplate());
+  }, []);
+  const {
+    response: itemCats,
+    isLoading,
+    error,
+  } = useSelector((state) => state.template.defaultTemplate);
+  const selectedStep = itemCats.find((step) => step.id === category);
+
+  const searchText = search.trim().toLowerCase();
+
+  const stepDetails = searchText
+    ? itemCats.flatMap((step) =>
+        step.sections
+          .map((section) => ({
+            ...section,
+            categoryName: step.name,
+            items: section.items.filter((item) =>
+              item.item_name.toLowerCase().includes(searchText),
+            ),
+          }))
+          .filter((section) => section.items.length > 0),
+      )
+    : (selectedStep?.sections ?? []);
+
   useEffect(() => {
     const elem = childContainer.current;
     if (!elem) return;
@@ -79,7 +72,6 @@ const ChooseItems = () => {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
-              resultItems(e.target.value);
             }}
           />
         </div>
@@ -87,15 +79,14 @@ const ChooseItems = () => {
       <div className={style.itemDetailsContainer}>
         {search.trim() === "" ? (
           <div className={style.categoryHeaders}>
-            {Object.entries(itemCategories).map(([Key, value]) => {
-              const itemValue = value.categoryName;
+            {itemCats.map((item) => {
               return (
                 <div
-                  className={`${style.itemCategoryHeader} ${category === Number(Key) ? style.activeCategoryHeader : ""}`}
-                  key={Key}
-                  onClick={() => handleCategoryChange(Key)}
+                  className={`${style.itemCategoryHeader} ${category === item?.id ? style.activeCategoryHeader : ""}`}
+                  key={item?.id}
+                  onClick={() => handleCategoryChange(item?.id)}
                 >
-                  {value.categoryName}
+                  {item.name}
                 </div>
               );
             })}
@@ -103,82 +94,90 @@ const ChooseItems = () => {
         ) : (
           ""
         )}
-        <div className={style.categoryItems}>
-          {searchResults[category]?.categoryDetail?.map((category) => {
-            return (
-              <div
-                className={style.categoryDetailContainer}
-                key={category.categoryDetailName}
-              >
-                <div className={style.categoryDetailName}>
-                  {category.categoryDetailName}
-                </div>
-                <div className={style.itemContainer}>
-                  {category.items.map((item) => {
-                    return (
-                      <div
-                        className={style.detailsParentContainer}
-                        key={item.id}
-                      >
-                        <div className={style.detailsContainer}>
-                          <div>{item.item_name}</div>
-                          <div className={style.priceTag}>
-                            {item.unit_price} / {item.unit}
-                          </div>
-                        </div>
-                        {ifItemExists(item.id) ? (
-                          <div className={style.itemOps}>
-                            <div
-                              className={style.removeBtn}
-                              onClick={() =>
-                                dispatch(
-                                  removeItem({
-                                    ...item,
-                                    service_name: category.categoryDetailName,
-                                  }),
-                                )
-                              }
-                            >
-                              -
-                            </div>
-                            <div>{ifItemExists(item.id)?.quantity}</div>
-                            <div
-                              className={style.addBtn}
-                              onClick={() =>
-                                dispatch(
-                                  addItem({
-                                    ...item,
-                                    service_name: category.categoryDetailName,
-                                  }),
-                                )
-                              }
-                            >
-                              +
-                            </div>
-                          </div>
-                        ) : (
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className={style.categoryItems}>
+            {stepDetails?.length > 0 ? (
+              stepDetails?.map((section) => {
+                return (
+                  <div
+                    className={style.categoryDetailContainer}
+                    key={section?.id}
+                  >
+                    <div className={style.categoryDetailName}>
+                      {section?.name}
+                    </div>
+                    <div className={style.itemContainer}>
+                      {section.items.map((item) => {
+                        return (
                           <div
-                            className={style.itemBtn}
-                            onClick={() => {
-                              dispatch(
-                                addItem({
-                                  ...item,
-                                  service_name: category.categoryDetailName,
-                                }),
-                              );
-                            }}
+                            className={style.detailsParentContainer}
+                            key={item.id}
                           >
-                            ADD
+                            <div className={style.detailsContainer}>
+                              <div>{item.item_name}</div>
+                              <div className={style.priceTag}>
+                                {item.item_price} / {item.item_unit}
+                              </div>
+                            </div>
+                            {ifItemExists(item.id) ? (
+                              <div className={style.itemOps}>
+                                <div
+                                  className={style.removeBtn}
+                                  onClick={() =>
+                                    dispatch(
+                                      removeItem({
+                                        ...item,
+                                        service_name: section?.name,
+                                      }),
+                                    )
+                                  }
+                                >
+                                  -
+                                </div>
+                                <div>{ifItemExists(item.id)?.quantity}</div>
+                                <div
+                                  className={style.addBtn}
+                                  onClick={() =>
+                                    dispatch(
+                                      addItem({
+                                        ...item,
+                                        service_name: section?.name,
+                                      }),
+                                    )
+                                  }
+                                >
+                                  +
+                                </div>
+                              </div>
+                            ) : (
+                              <div
+                                className={style.itemBtn}
+                                onClick={() => {
+                                  dispatch(
+                                    addItem({
+                                      ...item,
+                                      service_name: section?.name,
+                                    }),
+                                  );
+                                }}
+                              >
+                                ADD
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className={style.noItemsFound}>No Items Found</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

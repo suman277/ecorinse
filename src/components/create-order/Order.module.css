@@ -42,6 +42,24 @@
   overflow: hidden;
 }
 
+.noItemsFound {
+  width: 100%;
+  text-align: center;
+  padding-block: 1rem;
+  border: 2px dashed #488b36;
+}
+
+.backdropLoad {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
 .sucessDetails {
   position: absolute;
   top: 50%;

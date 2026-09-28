@@ -15,13 +15,14 @@ import ChooseItems from "./ChooseItems";
 import Address from "./Address";
 import Pickup from "./Pickup";
 import { SkipForward, X, Trash2, Plus } from "lucide-react";
+import Loading from "../loader/Loading";
 
 const Order = () => {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.orders.addressDetails);
   const [successModal, setSuccessModal] = useState(false);
   const successOrderDetails = useSelector(
-    (state) => state.orders.createOrderResponse.response,
+    (state) => state.orders.createOrderResponse,
   );
   const [errors, setErrors] = useState({});
   const [details, setuserDetails] = useState({
@@ -37,8 +38,9 @@ const Order = () => {
     email: "",
   });
   const cartDetails = useSelector((state) => state.cart.items);
+  console.log("Cart details", cartDetails);
   const totalPrice = cartDetails.reduce(
-    (total, item) => total + item.unit_price * item.quantity,
+    (total, item) => total + item.item_price * item.quantity,
     0,
   );
   const [currentStep, setCurrentStep] = useState(1);
@@ -204,11 +206,11 @@ const Order = () => {
                         <div>
                           <div className={style.itemName}>{item.item_name}</div>
                           <div className={style.priceDetails}>
-                            <div>{item.unit_price}</div>
+                            <div>{item.item_price}</div>
                             <div>x{item.quantity}</div>
                           </div>
                           <div className={style.totalPrice}>
-                            Subtotal : {item.quantity * item.unit_price}
+                            Subtotal : {item.quantity * item.item_price}
                           </div>
                         </div>
                         <div className={style.ops}>
@@ -290,7 +292,11 @@ const Order = () => {
               </div>
               <div>
                 <span>
-                  Hi <strong>{successOrderDetails?.name || "User"}</strong>,
+                  Hi{" "}
+                  <strong>
+                    {successOrderDetails?.response?.name || "User"}
+                  </strong>
+                  ,
                 </span>
               </div>
               <div className={style.lastText}>
@@ -301,7 +307,7 @@ const Order = () => {
             <div className={style.orderRefContainer}>
               <div>Your Order Reference No.</div>
               <div className={style.orderRefNum}>
-                {successOrderDetails?.order_ref_num}
+                {successOrderDetails?.response?.order_ref_num}
               </div>
             </div>
             <div className={style.lastText}>
@@ -321,6 +327,11 @@ const Order = () => {
             </div>
           </div>
         </>
+      )}
+      {successOrderDetails?.isLoading && (
+        <div className={style.backdropLoad}>
+          <Loading />
+        </div>
       )}
       <div className={style.navbarContainer}>
         <Navbar

@@ -11,7 +11,7 @@ const Pickup = ({
 }) => {
   const itemDetails = useSelector((state) => state.cart.items);
   const totalPrice = itemDetails.reduce(
-    (total, item) => total + item.unit_price * item.quantity,
+    (total, item) => total + item.item_price * item.quantity,
     0,
   );
   const now = new Date();
@@ -114,7 +114,7 @@ const Pickup = ({
                       <span className={style.itemNameQuantity}>
                         {item?.quantity} x {item?.item_name}
                       </span>
-                      <div>{`₹ ${item?.unit_price * item?.quantity}`}</div>
+                      <div>{`₹ ${item?.item_price * item?.quantity}`}</div>
                     </div>
                   );
                 })}

@@ -1,5 +1,6 @@
 .loaderText {
   width: 100%;
+  background-color: inherit;
 }
 
 .imageBody::before {
@@ -9,6 +10,7 @@
   background: url("../../assets/images/Loader/WashingMachine.png");
   background-size: contain;
   background-position: center;
+  background-color: inherit;
   background-repeat: no-repeat;
 }
 
@@ -27,6 +29,7 @@
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  background-color: inherit;
   animation: rotator infinite 1s linear;
 }
 
