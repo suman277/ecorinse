@@ -14,7 +14,7 @@ import {
 import { Plus, Pen, Trash2, Save, X, ArrowLeftCircle } from "lucide-react";
 
 const Template = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const cleanTemplateKeys = (object) => {
     if (typeof object.id === "string") {
       const { id, ...detailsWithoutId } = object;
@@ -22,6 +22,9 @@ const Template = () => {
     }
     return object;
   };
+  const { isLoading } = useSelector(
+    (state) => state.template.createUpdateTemplate,
+  );
   const [originalTemplate, setOriginalTemplate] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -98,10 +101,12 @@ const Template = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.templateNavBar}>
-        <div className={style.arrowIcon} onClick={()=>navigate(-1)}>
+        <div className={style.arrowIcon} onClick={() => navigate(-1)}>
           <ArrowLeftCircle />
         </div>
-        <div><h3>Template Builder</h3></div>
+        <div>
+          <h3>Template Builder</h3>
+        </div>
       </div>
       {showModal.isOpen && (
         <div className={style.overLay}>
@@ -115,6 +120,11 @@ const Template = () => {
           ) : (
             <CreateItem setShowModal={setShowModal} showModal={showModal} />
           )}
+        </div>
+      )}
+      {isLoading && (
+        <div className={style.overLay}>
+          <Loading />
         </div>
       )}
       <div className={style.templateContainer}>

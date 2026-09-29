@@ -3,6 +3,7 @@ import {
   getTemplateDetails,
   getTemplates,
   defaultTemplate,
+  createUpdateTemplate,
 } from "./templateThunk";
 
 const initialState = {
@@ -17,6 +18,11 @@ const initialState = {
     error: "",
   },
   defaultTemplate: {
+    response: [],
+    isLoading: false,
+    error: "",
+  },
+  createUpdateTemplate: {
     response: [],
     isLoading: false,
     error: "",
@@ -216,6 +222,21 @@ export const templateDetails = createSlice({
         ((state.defaultTemplate.response = []),
           (state.defaultTemplate.error = action.payload),
           (state.defaultTemplate.isLoading = false));
+      })
+      .addCase(createUpdateTemplate.pending, (state, action) => {
+        ((state.createUpdateTemplate.response = []),
+          (state.createUpdateTemplate.error = ""),
+          (state.createUpdateTemplate.isLoading = true));
+      })
+      .addCase(createUpdateTemplate.fulfilled, (state, action) => {
+        ((state.createUpdateTemplate.response = action.payload),
+          (state.createUpdateTemplate.error = ""),
+          (state.createUpdateTemplate.isLoading = false));
+      })
+      .addCase(createUpdateTemplate.rejected, (state, action) => {
+        ((state.createUpdateTemplate.response = []),
+          (state.createUpdateTemplate.error = action.payload),
+          (state.createUpdateTemplate.isLoading = false));
       });
   },
 });
