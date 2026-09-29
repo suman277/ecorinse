@@ -12,6 +12,7 @@ import {
   createUpdateTemplate,
 } from "../../../redux/template/templateThunk.js";
 import { Plus, Pen, Trash2, Save, X, ArrowLeftCircle } from "lucide-react";
+import Loading from "../../loader/Loading.jsx";
 
 const Template = () => {
   const navigate = useNavigate();
