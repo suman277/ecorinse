@@ -1,23 +1,29 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { LogIn } from "lucide-react";
 import style from "./Floating.module.css";
 import { useNavigate } from "react-router-dom";
 const FloatingAction = () => {
   const navigate = useNavigate();
   return (
-    <div className={style.container}>
-      <a
-        href="https://wa.me/919900388956?text=Hi%20EcoRinse%20Laundry,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
-        target="_blank"
-        rel="noreferrer"
-        className={style.whatsapp}
-      >
-        <FaWhatsapp size={30} color="white" />
-      </a>
-      <div className={style.bookNow} onClick={() => navigate("/order")}>
-        Schedule A Pickup
+    <>
+      <div className={style.login} onClick={()=>navigate("/login")}>
+        <LogIn />
       </div>
-    </div>
+      <div className={style.container}>
+        <a
+          href="https://wa.me/919900388956?text=Hi%20EcoRinse%20Laundry,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+          target="_blank"
+          rel="noreferrer"
+          className={style.whatsapp}
+        >
+          <FaWhatsapp size={30} color="white" />
+        </a>
+        <div className={style.bookNow} onClick={() => navigate("/order")}>
+          Schedule A Pickup
+        </div>
+      </div>
+    </>
   );
 };
 

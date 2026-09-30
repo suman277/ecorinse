@@ -28,6 +28,16 @@
   text-decoration: none;
 }
 
+.login{
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .bookNow {
   display: none;
 }
