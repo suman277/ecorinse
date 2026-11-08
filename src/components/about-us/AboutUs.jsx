@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AboutUs1 from "../../assets/images/about-us/AboutUs.jpeg";
 import CommunityImg from "../../assets/images/about-us/CommunityImg.png";
 import TeamGoal from "../../assets/images/about-us/TeamGoal.jpg";
-import Aboutus from "../../assets/images/about-us/AboutUs.png";
+import AboutUs from "../../assets/images/about-us/AboutUs.png";
 import AboutUsHero from "../../assets/images/about-us/AboutUsHero.png";
 import { ChevronRight } from "lucide-react";
 import { AboutUsTagLine, whyWeStand } from "../../utils/UtilsData";
