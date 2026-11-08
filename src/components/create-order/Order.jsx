@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import style from "./Order.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,11 +10,11 @@ import {
 } from "../../redux/cart/cartSlice";
 import { clearAddressDetails } from "../../redux/orders/OrderSlice";
 import { createOrderWithItem } from "../../redux/orders/OrderThunk";
-import ChooseItems from "./ChooseItems";
-import Address from "./Address";
-import Pickup from "./Pickup";
 import { SkipForward, X, Trash2, Plus } from "lucide-react";
 import Loading from "../loader/Loading";
+const ChooseItems = lazy(() => import("./ChooseItems"));
+const Address = lazy(() => import("./Address"));
+const Pickup = lazy(() => import("./Pickup"));
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -369,13 +368,15 @@ const Order = () => {
           </div>
         </div>
         <div className={style.compDetails}>
-          <ActiveComponent
-            details={details}
-            handleUserDetails={handleUserDetails}
-            setuserDetails={setuserDetails}
-            setHandleCart={setHandleCart}
-            errors={errors}
-          />
+          <Suspense fallback={<Loading />}>
+            <ActiveComponent
+              details={details}
+              handleUserDetails={handleUserDetails}
+              setuserDetails={setuserDetails}
+              setHandleCart={setHandleCart}
+              errors={errors}
+            />
+          </Suspense>
         </div>
       </div>
       <div className={style.footerContainer}>

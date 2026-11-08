@@ -24,6 +24,12 @@
   z-index: 10;
 }
 
+.extraOption{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* .navbarContainer {
   position: relative;
 }
@@ -63,7 +69,7 @@
 
 .firstSubContainer {
   display: flex;
-  padding-inline: 5rem;
+  padding-inline: 2rem;
   padding-block: 0.3rem;
   display: flex;
   justify-content: space-between;

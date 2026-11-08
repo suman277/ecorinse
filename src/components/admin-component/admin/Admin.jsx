@@ -1,13 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
-import ViewOrder from "../../common-components/view-order/ViewOrder";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import style from "./Admin.module.css";
 import { useNavigate } from "react-router-dom";
 import MainLogo from "../../../assets/images/navbar/MainLogo.jpeg";
-import Loading from "../../loader/Loading.jsx";
-import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
 import Modal from "../../modal/Modal.jsx";
-import StatusIndicator from "../../common-components/status-indicator/StatusIndicator";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getOrders,
@@ -31,6 +26,16 @@ import {
   LogOut,
 } from "lucide-react";
 import { authService } from "../../../service/authService.js";
+import Loading from "../../loader/Loading.jsx";
+const StatusIndicator = lazy(
+  () => import("../../common-components/status-indicator/StatusIndicator.jsx"),
+);
+const NoRecordComponent = lazy(
+  () => import("../../no-record/NoRecordComponent.jsx"),
+);
+const ViewOrder = lazy(
+  () => import("../../common-components/view-order/ViewOrder.jsx"),
+);
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -297,7 +302,9 @@ const Admin = () => {
                 {data?.length === 0 ? (
                   <tr>
                     <td colSpan={8}>
-                      <NoRecordComponent />
+                      <Suspense fallback={<Loading />}>
+                        <NoRecordComponent />
+                      </Suspense>
                     </td>
                   </tr>
                 ) : (
@@ -342,7 +349,9 @@ const Admin = () => {
                                   });
                                 }}
                               >
-                                <StatusIndicator status={order.status} />
+                                <Suspense fallback={<Loading />}>
+                                  <StatusIndicator status={order.status} />
+                                </Suspense>
                               </div>
                               {order.id === handleStatus.id &&
                                 handleStatus.isOpen && (
@@ -525,7 +534,9 @@ const Admin = () => {
       {openModal && (
         <div className={style.overlay}>
           <div className={style.popUpContainer}>
-            <ViewOrder handleClose={handleCloseViewModal} orderId={orderId} />
+            <Suspense fallback={<Loading />}>
+              <ViewOrder handleClose={handleCloseViewModal} orderId={orderId} />
+            </Suspense>
           </div>
         </div>
       )}

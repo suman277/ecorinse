@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { motion } from "motion/react";
 import style from "./Laundry.module.css";
 import { categories, LaundryPricing } from "../../../utils/UtilsData";
 
@@ -32,12 +33,64 @@ const LaundryDetails = () => {
           </div>
         </div>
         <div className={style.categoryDetails}>
-          {items.map((item) => {
+          {items.map((item, index) => {
             return (
-              <div className={style.priceDetails}>
-                <div className={style.itemType}>{item.type}</div>
-                <div className={style.itemCost}>{item.price}</div>
-              </div>
+              <motion.div
+                key={index + item.type}
+                className={style.priceDetails}
+                initial={{
+                  opacity: 0,
+                  y: -50,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: `0.${index}`,
+                  duration: 1,
+                  ease: "easeIn",
+                }}
+              >
+                <motion.div
+                  key={index + item.type}
+                  initial={{
+                    opacity: 0,
+                    y: -50,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: `0.${index}`,
+                    duration: 1,
+                    ease: "easeIn",
+                  }}
+                  className={style.itemType}
+                >
+                  {item.type}
+                </motion.div>
+                <motion.div
+                  key={index + item.type}
+                  initial={{
+                    opacity: 0,
+                    y: -50,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: `0.${index}`,
+                    duration: 1,
+                    ease: "easeIn",
+                  }}
+                  className={style.itemCost}
+                >
+                  {item.price}
+                </motion.div>
+              </motion.div>
             );
           })}
         </div>

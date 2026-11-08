@@ -1,16 +1,24 @@
 .heroContainer {
   position: relative;
   width: 100%;
-  z-index: 1;
+  padding-block: 2rem;
+  z-index: 2;
   color: white;
-  padding: 4rem;
-  padding: 10rem;
-  text-align: center;
   font-size: 2rem;
   overflow: hidden;
+  isolation: isolate;
   display: flex;
-  flex-direction: column;
   gap: 2rem;
+  background-color: #deecf5;
+}
+
+.mainContainer {
+  background-color: #deecf5;
+  overflow: hidden;
+}
+
+.contTag {
+  color: #498b36;
 }
 
 .heading {
@@ -19,13 +27,12 @@
   text-align: center;
 }
 
-.contentHeading{
+.contentHeading {
   color: #0b1b2b;
 }
 
 .heroContainer h1 {
   font-size: var(--heading-font-size);
-  color: #0b1b2b;
 }
 
 .bar {
@@ -36,6 +43,33 @@
   align-self: center;
 }
 
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.introHeader {
+  color: #0f2e54;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 5rem;
+}
+
+.heroLine {
+  color: #0f2e54;
+}
+
+.aboutTagLines {
+  display: flex;
+  gap: 1rem;
+}
+
 .heroContainer::before {
   content: "";
   background: url("../../assets/images/background/BackgroundImage.jpeg");
@@ -44,14 +78,30 @@
   background-size: cover;
   position: absolute;
   display: block;
-  object-fit: fill;
-  z-index: -1;
-  filter: blur(10px);
+  z-index: -2;
 }
 
-.heroDetail {
-  font-size: 1rem;
-  color: #0b1b2b;
+.heroContent {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(223, 237, 249, 0.95) 0%,
+    rgba(223, 237, 249, 0.7) 35%,
+    rgba(223, 237, 249, 0.3) 65%,
+    transparent 100%
+  );
 }
 
 .heroDetails {
@@ -63,8 +113,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding-block: 2rem;
+  gap: 1rem;
+  animation: slideInFromUpper 1s ease-in;
 }
 
 .contentDetails h1 {
@@ -72,13 +122,34 @@
 }
 
 .getFormDetail {
-  padding: 5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #deecf5;
 }
 
-.heroDetail {
-  display: block;
-  width: 60rem;
-  margin: 0 auto;
+.inTouchTag {
+  color: #498b36;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.contentInForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textMap {
+  font-size: 1.3rem;
+  color: gray;
+}
+
+.messageText {
+  color: #0f2e54;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .formWorks {
@@ -86,7 +157,7 @@
   gap: 2rem;
 }
 
-.errorStyle{
+.errorStyle {
   gap: 1rem;
 }
 
@@ -94,28 +165,36 @@
   gap: 2rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   min-height: 25rem;
   justify-content: center;
+  padding: 2rem;
 }
 
 .inputFromWrapper {
   gap: 2rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  border: #f2f2f2 solid 1px;
-  border-top: 5px solid var(--bg-color);
   border-radius: 1rem;
   min-height: 25rem;
+  background-color: white;
   justify-content: center;
 }
 
 .contactWays {
   width: 40%;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.contactContainer {
+  border-radius: 2rem;
+  background-color: red;
+  width: 100%;
 }
 
 .inputFromWrapper {
@@ -124,9 +203,29 @@
   font-size: 0.8rem;
 }
 
+.details {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.iconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.iconWrapper {
+  display: flex;
+}
+
 .inputTextField {
   height: 3rem;
-  border-radius: 0.4rem;
+  outline: none;
   font-size: larger;
   padding: 0.5rem;
 }
@@ -140,10 +239,9 @@
 }
 
 .contactWrapper {
-  border: var(--bg-color) solid 2px;
-  border-top: var(--bg-color) solid 5px;
   padding: 1rem;
   border-radius: 12px;
+  background-color: rgb(241, 245, 241);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,27 +255,89 @@
 
 .mapContainer {
   width: 100%;
-  height: 450px;
+  height: 300px;
+  background-color: #f7fbfe;
   overflow: hidden;
+  display: flex;
   border-radius: 12px;
-  padding-inline: 5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-inline: 2rem;
+}
+
+.mapWrapper {
+  padding-inline: 2rem;
 }
 
 .mapContainer iframe {
+  display: flex;
+  border-radius: 1rem;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 4rem);
   border: 0;
+}
+
+.contactHeading {
+  font-size: large;
+  font-weight: 700;
+  color: #0f2e54;
+}
+
+.contactSubHeading {
+  font-size: smaller;
+  color: #0f2e54;
+  font-weight: 400;
+}
+
+.mapItemContainer {
+  display: flex;
+  width: 30%;
+  gap: 1rem;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.openInMap {
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f2e54;
+  outline: none;
+  border-radius: 0.3rem;
+  border: none;
+  color: white;
+  padding-right: 1rem;
+  cursor: pointer;
+}
+
+.locationHeader {
+  color: #498b36;
+}
+
+.subLocationHeading {
+  font-size: 1rem;
 }
 
 .error {
   color: red;
 }
 
+.locationHeading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0f2e54;
+  animation: slideInFromLeft 1s 0.2s ease-in;
+}
+
 .askedQuestionsContainer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 5rem;
+  padding: 2rem;
 }
 
 .askedQuestionsContainer h1 {
@@ -195,6 +355,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  background-color: white;
   padding: 1rem;
   border: #f2f2f2 solid 1px;
   border-top: var(--bg-color) solid 5px;
@@ -214,30 +375,64 @@
   font-weight: bold;
 }
 
-.aboutHeading {
-  font-size: var(--heading-font-size);
-  font-weight: bold;
-  color: #0e2e54;
-}
-
 .supportHours {
-  background-color: #0b1b2b;
-  padding: 5rem;
+  padding: 2rem;
 }
 
 .reachUsContainer {
-  padding: 5rem;
+  padding: 2rem;
 }
 
+/* @keyframes slideInFromRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromUpper {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+} */
+
 @media (max-width: 768px) {
-  .heroContainer h1{
+  .heroContainer h1 {
     font-size: 1rem;
   }
-  .heroContainer{
+  .heroContainer {
     padding: 5rem;
-  }
-  .heroDetail {
-    width: 10rem;
   }
   .getFormDetail {
     padding: 1.5rem;
@@ -275,7 +470,7 @@
     width: 100%;
   }
 
-  .mapContainer{
+  .mapContainer {
     padding: 1.5rem;
   }
 
@@ -287,3 +482,63 @@
     justify-items: center;
   }
 }
+
+/* slideInFromLeft */
+/* initial = {{
+  opacity : 0,
+  x : -100
+}}
+whileInView = {{
+  opacity: 1,
+  x : 0
+}}
+transition = {{
+  delay : 0.1,
+  duration : 1,
+  ease : "easeIn"
+}} */
+
+/* SlideInFromRight */
+/* initial = {{
+  opacity : 0,
+  x : 100
+}}
+whileInView = {{
+  opacity: 1,
+  x : 0
+}}
+transition = {{
+  delay : 0.1,
+  duration : 1,
+  ease : "easeIn"
+}} */
+
+/* SlideInFromTop */
+/* initial = {{
+  opacity : 0,
+  y : 50
+}}
+whileInView = {{
+  opacity: 1,
+  y : 0
+}}
+transition = {{
+  delay : 0.1,
+  duration : 1,
+  ease : "easeIn"
+}} */
+
+/* SlideInFromBottom */
+/* initial = {{
+  opacity : 0,
+  y : -50
+}}
+whileInView = {{
+  opacity: 1,
+  y : 0
+}}
+transition = {{
+  delay : 0.1,
+  duration : 1,
+  ease : "easeIn"
+}} */

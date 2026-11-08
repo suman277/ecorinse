@@ -17,6 +17,7 @@ export const getLocationDetails = (dispatch) => {
     (error) => {
       console.log("Geolocation error:", error);
       console.log("Error code:", error.code);
+      alert(alert);
     },
 
     {

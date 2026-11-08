@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import style from "./PrevOrder.module.css";
 import PrevRecordComponent from "../../prev-records/PrevRecordComponent";
 import { useEffect, useState } from "react";
@@ -7,6 +7,13 @@ import { getPreviousOrders } from "../../../redux/orders/adminThunk";
 import Loading from "../../loader/Loading.jsx";
 import { getOrderItemDetails } from "../../../redux/orders/OrderThunk.js";
 import NoRecordComponent from "../../no-record/NoRecordComponent.jsx";
+
+const PrevRecordComponent = lazy(
+  () => import("../../prev-records/PrevRecordComponent.jsx"),
+);
+const NoRecordComponent = lazy(
+  () => import("../../no-record/NoRecordComponent.jsx"),
+);
 
 const PrevOrder = ({ orderDetails }) => {
   const dispatch = useDispatch();
@@ -47,21 +54,24 @@ const PrevOrder = ({ orderDetails }) => {
     <div className={style.mainContainer}>
       {prevOrderResponses?.map((prevOrder) => {
         return (
-          <PrevRecordComponent
-            key={prevOrder?.id}
-            id={prevOrder?.id}
-            prevOrder={prevOrder}
-            handleSetAccordion={handleSetAccordion}
-            accordionId={accordionId}
-            orderItemDetails={orderItemDetails}
-          />
+          <Suspense fallback={<Loading />}>
+            <PrevRecordComponent
+              key={prevOrder?.id}
+              id={prevOrder?.id}
+              prevOrder={prevOrder}
+              handleSetAccordion={handleSetAccordion}
+              accordionId={accordionId}
+              orderItemDetails={orderItemDetails}
+            />
+          </Suspense>
         );
       })}
     </div>
   ) : (
     <div className={style.loadingContainer}>
-      {" "}
-      <NoRecordComponent />
+      <Suspense fallback={<Loading />}>
+        <NoRecordComponent />
+      </Suspense>
     </div>
   );
 };

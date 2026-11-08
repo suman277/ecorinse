@@ -3,6 +3,7 @@ import { FooterUtils } from "../../utils/UtilsData";
 import style from "./Footer.module.css";
 import { useNavigate } from "react-router-dom";
 import { FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
+import FooterBackGround from "../../assets/images/Footer/FooterBackGround.png"
 
 const Footer = () => {
   const navigate = useNavigate();

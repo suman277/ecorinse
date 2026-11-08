@@ -1,7 +1,5 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import style from "./CreateOrder.module.css";
-import BackgroundImage from "../../../assets/images/background/BackgroundImage.jpeg";
 import { createOrder } from "../../../redux/orders/OrderThunk.js";
 import { useDispatch } from "react-redux";
 import {
@@ -10,20 +8,8 @@ import {
   MessageCircleMore,
   PhoneCall,
   Mail,
-  LocationEditIcon,
   LandmarkIcon,
-  Calendar1Icon,
-  Timer,
 } from "lucide-react";
-
-// const date = now.toISOString().split("T")[0];
-// const hour = String(now.getHours()).padStart(2, "0");
-// const minute = String(now.getMinutes()).padStart(2, "0");
-// const second = String(now.getSeconds()).padStart(2, "0");
-
-// const time = `${hour}:${minute}:${second}`;
-
-// console.log(time);
 
 const CreateOrder = () => {
   const [error, setError] = useState({});
@@ -87,13 +73,6 @@ const CreateOrder = () => {
       errorObj.phone_number = "Please provide a valid phone number";
     }
 
-    // if (details.latitude === null) {
-    //   errorObj.latitude = "Latitude is missing";
-    // }
-
-    // if (details.longitude === null) {
-    //   errorObj.longitude = "Longitude is missing";
-    // }
     if (details.landmark.trim() === "" || details.landmark.trim().length < 3) {
       errorObj.landmark = "Please Enter correct landmark";
     }
@@ -209,83 +188,6 @@ const CreateOrder = () => {
                 </div>
               </div>
             </section>
-            {/* <section className={style.addressDetails}>
-              <h2>Address Details</h2>
-              <hr></hr>
-              <div className={style.nameDetails}>
-                <div className={style.iconDetailContainer}>
-                  <MapPinIcon color="#0E2E54" />
-                  <span>Address *</span>
-                </div>
-                <div className={style.locationDiv}>
-                  <div
-                    onClick={() => {
-                      setaddressDiv(true);
-                    }}
-                    className={style.addressInput}
-                  >
-                    <input
-                      className={style.inputText}
-                      className={style.inputClass}
-                      type="text"
-                      placeholder="Enter Address"
-                      name="search"
-                      onBlur={() => {
-                        setaddressDiv(false);
-                      }}
-                      onChange={(e) => {
-                        setSearch(e.target.value);
-                      }}
-                    ></input>
-                    <MapPinIcon color="#0E2E54" />
-                    {addressDiv && search.trim() && (
-                      <div className={style.locationDetails}>
-                        <div>{addressDetails?.details}</div>
-                        {addressDetails?.map((feature) => {
-                          return (
-                            <div
-                              id={feature.geometry.coordinates}
-                              onClick={() => {
-                                console.log("Clicked");
-                                console.log(feature.geometry.coordinates);
-                                setDetails((prev) => ({
-                                  ...prev,
-                                  longitude: feature.geometry.coordinates[0],
-                                  latitude: feature.geometry.coordinates[1],
-                                }));
-                              }}
-                              className={style.locItems}
-                            >
-                              {[
-                                feature.properties.name,
-                                feature?.properties?.district,
-                                feature?.properties?.state,
-                                feature?.properties?.country,
-                              ].join(", ")}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                  <div className={style.nameDetails}>
-                    <div className={style.iconDetailContainer}>
-                      <LandmarkIcon color="#0E2E54" />
-                      <span>Landmark *</span>
-                    </div>
-                    <div>
-                      <input
-                        className={style.inputText}
-                        type="text"
-                        placeholder="Enter Landmark"
-                        name="landmark"
-                        value={details.landmark}
-                      ></input>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section> */}
             <section className={style.addressDetails}>
               <h2>Address Details</h2>
               <hr />
@@ -328,40 +230,6 @@ const CreateOrder = () => {
                       onClick={() => getLocation()}
                     />
                   </div>
-                  {/* {addressDiv && search.trim() && (
-                      <div className={style.locationDetails}>
-                        {addressDetails?.map((feature) => {
-                          const address = [
-                            feature.properties.name,
-                            feature.properties.district,
-                            feature.properties.state,
-                            feature.properties.country,
-                          ]
-                            .filter(Boolean)
-                            .join(", ");
-
-                          return (
-                            <div
-                              key={feature.geometry.coordinates.join(",")}
-                              className={style.locItems}
-                              onMouseDown={() => {
-                                setDetails((prev) => ({
-                                  ...prev,
-                                  pickup_address: address,
-                                  longitude: feature.geometry.coordinates[0],
-                                  latitude: feature.geometry.coordinates[1],
-                                }));
-
-                                setSearch(address);
-                                setaddressDiv(false);
-                              }}
-                            >
-                              {address}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )} */}
                   <div className={style.nameDetails}>
                     <div className={style.iconDetailContainer}>
                       <LandmarkIcon color="#0E2E54" />
@@ -387,9 +255,6 @@ const CreateOrder = () => {
                 </div>
               )}
             </section>
-            {/* <section className={style.dateDetails}>
-              <input type="date" min={today} max={maxDate}></input>
-            </section> */}
             <section className={style.dateDetails}>
               <h2>Pickup Schedule</h2>
               <hr />

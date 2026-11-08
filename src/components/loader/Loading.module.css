@@ -1,6 +1,16 @@
 .loaderText {
   width: 100%;
   background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .imageBody::before {
@@ -12,6 +22,7 @@
   background-position: center;
   background-color: inherit;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .imageBody {
@@ -20,6 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .loaderLeft {
   position: absolute;
@@ -31,14 +43,15 @@
   border-radius: 50%;
   background-color: inherit;
   animation: rotator infinite 1s linear;
+  overflow: hidden;
 }
-
 
 .imageClass {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
   padding-left: 0.1rem;
+  overflow: hidden;
 }
 
 @keyframes rotator {

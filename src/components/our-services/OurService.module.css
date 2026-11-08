@@ -1,15 +1,248 @@
 .laundryProcess {
   background-color: black;
   border-radius: 2rem;
-  padding: 5rem;;
-}
-
-.serviceDetails{
   padding: 5rem;
 }
 
-.chooseOurService{
-  padding: 5rem;
+.serviceDetails {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.serviceDetailSection {
+  padding: 2rem;
+}
+
+.serviceHero {
+  width: 100%;
+  inset: 0;
+  isolation: isolate;
+  position: relative;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.imageServiceHero {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+  height: 100%;
+  z-index: -2;
+  overflow-x: hidden;
+}
+
+.heroHeader {
+  font-size: large;
+  color: #498b36;
+  font-weight: 700;
+  overflow-x: hidden;
+}
+
+.detailHeader {
+  max-width: 40rem;
+  font-size: 1.5rem;
+  color: #0f2e54;
+}
+
+.btnSection {
+  display: flex;
+}
+
+.quickAccessButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #488b36;
+  color: white;
+  border: none;
+  font-size: medium;
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding-block: 1rem;
+  cursor: pointer;
+}
+
+.exploreBtnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #04143f;
+  outline: none;
+  border: #04143f 2px 2px;
+  font-size: medium;
+  font-weight: bold;
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+  padding-block: 1rem;
+  cursor: pointer;
+}
+
+.overlay {
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  background: radial-gradient(
+    circle at 0% 55%,
+    #ecf8fe 10%,
+    #f2f9fe 30%,
+    transparent 75%
+  );
+}
+
+.mainHeader {
+  font-size: 5rem;
+  color: #0f2e54;
+  font-weight: 700;
+  line-height: 3rem;
+}
+
+.wow {
+  color: #498b36;
+}
+
+.heroContent {
+  position: relative;
+  color: black;
+  z-index: 1;
+  padding-inline: 2rem;
+  padding-block: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  overflow-x: hidden;
+}
+
+.imageServiceHero img {
+  width: 100%;
+  inset: 0;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.aboutTagLines {
+  display: flex;
+  gap: 1rem;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.theLaundryProcess {
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+  isolation: isolate;
+}
+
+.imgLaundryProcess {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+  height: 100%;
+}
+
+.midHeading {
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+.indexWrapper {
+  font-size: 1.5rem;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.iconWrapper {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.processWrapper {
+  max-width: 13%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lastHeading {
+  font-size: 1.2rem;
+}
+
+.processContent {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.washHeading {
+  color: #ecf8fe;
+  font-size: 1.3rem;
+}
+
+.washProcessContent {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.whiteBar {
+  position: absolute;
+  top: 40px;
+  border-top: 1px dotted white;
+  z-index: 0;
+}
+
+.Washcontent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imgLaundryProcess img {
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+}
+
+.processOverlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .serviceExcel {
@@ -56,7 +289,9 @@
 .serviceHeader {
   text-align: center;
   font-weight: bold;
-  font-size: var(--heading-font-size);
+  font-size: 1.2rem;
+  color: #488b36;
+  text-transform: uppercase;
 }
 
 .serviceWrapper {
@@ -68,11 +303,11 @@
 
 /* serviceCategories */
 .serviceCategories {
-  padding: 5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   background-color: #f8fafc;
 }
 
@@ -83,46 +318,108 @@
 }
 
 .categoryHeading {
+  color: #002048;
+  font-weight: 900;
   font-size: larger;
-  text-align: center;
 }
 
 .categoryWrapper {
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    border-bottom: var(--bg-color) solid 5px;
-    min-width: 15rem
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 1rem;
+  border-radius: 1rem;
+  min-width: 20rem
 }
 
-.detailCheck{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.serviceSubHeader{
+font-size: 2rem;
+color: #002048;
+font-weight: 700;
 }
 
-.categoryService{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.detailIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media(max-width : 768px){
-  .serviceWrapper{
+.imageWrapper{
+  height: 10rem;
+  width: 100%;
+}
+
+.imageWrapper img{
+  border-radius: 1rem;
+  height: 100%;
+  width: 100%;
+
+}
+
+.detailCheck {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.categoryService {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .serviceWrapper {
     flex-direction: column;
   }
-  .serviceDetails{
+  .serviceDetails {
     padding: 1rem;
   }
-  .serviceCategoryWrapper{
+  .serviceCategoryWrapper {
     flex-direction: column;
     gap: 2rem;
   }
-  .laundryProcess, .chooseOurService, .serviceExcel, .serviceCategories{
+  .laundryProcess,
+  .chooseOurService,
+  .serviceExcel,
+  .serviceCategories {
     padding: 1rem;
   }
-
 }
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+

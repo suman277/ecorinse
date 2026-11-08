@@ -1,0 +1,22 @@
+import { useEffect, useState, useRef } from "react";
+const useIntersectionObserver = () => {
+  const elementRef = useRef();
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.unobserve(element);
+      }
+    });
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+  return { visible, elementRef };
+};
+
+export default useIntersectionObserver;

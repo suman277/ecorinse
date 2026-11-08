@@ -1,16 +1,42 @@
 @import "../../common-components/common.module.css";
 
 .processSection {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 1rem;
   width: 100%;
+  padding: 2rem;
   align-items: center;
   background-color: inherit;
 }
 
+.withBackground {
+  background-color: #f8fafc;
+  border-radius: 1rem;
+}
+
+.withImage {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.backgroundImage {
+  position: absolute;
+  border-radius: 1rem;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  width: 100%;
+}
+
 .includeBorderRadius {
   border-radius: 2rem;
+  overflow: hidden;
 }
 
 .featureHeading {
@@ -32,8 +58,14 @@
 }
 
 .processHeader {
-  font-size: var(--heading-font-size);
+  font-size: 3rem;
   font-weight: bold;
+  margin: 0;
+}
+
+.featureSubHeading {
+  font-size: 1.4rem;
+  font-weight: 300;
 }
 
 .processDetailWrapper {
@@ -45,30 +77,38 @@
 }
 
 .processWrapper {
-  max-width: 15rem;
+  flex: 1 1 12rem;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 1.3rem;
   border: #e2e8f0 solid 1px;
   border-radius: 1rem;
   transition:
     box-shadow 0.4s ease-in-out,
     transform 0.4s ease;
+  animation: slideUP 1s ease-in;
 }
 
 .processWrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 2px 12px 50px var(--bg-color);
+  box-shadow: 2px 12px 30px rgb(23 50 77 / 12%);
+}
+
+.stringClass {
+  color: #498b36;
 }
 
 .processIcon {
   height: 5rem;
   width: 5rem;
-  background-color: var(--bg-color);
+  flex-shrink: 0;
+  animation: slideUP 1s ease-in;
+  background-color: #e4f5e4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,8 +116,14 @@
 }
 
 .processHeading {
-  font-size: 1.5rem;
-  /* font-weight: bold; */
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+  color: #17324d;
+}
+
+.processDetails {
+  font-size: 1rem;
 }
 
 .borderBottom {
@@ -94,8 +140,13 @@
   padding: 1rem;
   background-color: var(--bg-color);
   color: white;
+  border: none;
   border-radius: 1rem;
   cursor: pointer;
+}
+
+.linkDetails:hover {
+  filter: brightness(0.95);
 }
 
 .reachUsContainer {
@@ -103,13 +154,28 @@
 }
 
 @media (max-width: 768px) {
+  .processSection {
+    gap: 3rem;
+  }
+
+  .content {
+    gap: 3rem;
+    padding: 1.5rem;
+  }
+
   .processHeader {
     font-size: 2rem;
     text-align: center;
   }
+
   .processDetailWrapper {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+  }
+
+  .processWrapper {
+    width: 100%;
+    max-width: 25rem;
   }
 }

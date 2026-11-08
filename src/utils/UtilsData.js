@@ -13,6 +13,11 @@ import {
   Leaf,
   Phone,
   Mail,
+  HeartIcon,
+  ShieldCheckIcon,
+  LeafIcon,
+  TestTube,
+  WavesVertical,
   Map,
   Tag,
   Bubbles,
@@ -22,10 +27,17 @@ import {
   Van,
   MapPin,
   Headset,
+  Headphones,
   MessagesSquare,
   MessageCircleDashed,
   BadgeQuestionMark,
+  TrophyIcon,
 } from "lucide-react";
+
+import FoldedImage from "../assets/images/services/FoldedImage.webp";
+import Leather from "../assets/images/services/Leather.webp";
+import PremiumLaundry from "../assets/images/services/PremiumLaundry.webp";
+import Sofa from "../assets/images/services/Sofa.webp";
 
 export const chooseNeatClean = [
   {
@@ -77,7 +89,7 @@ export const howItWorks = [
 
 export const FooterUtils = [
   {
-    heading: "Company",
+    heading: "Quick Links",
     showPointer: true,
     isNaviagte: true,
     subHeaders: [
@@ -154,31 +166,29 @@ export const LaundryProcess = [
     detail: "Clothes are tagged to avoid potential mix up.",
   },
   {
-    icon: Bubbles,
+    icon: TestTube,
     heading: "Treatment",
-    detail: "Cuff & collar are treated using special detergents",
+    detail: "Cuff & collar are treated using special detergents.",
   },
   {
     icon: SoapDispenserDroplet,
     heading: "Pre-Wash",
-    detail:
-      "Clothes with extra soiling & oil stains are treated to a special enzyme soak before washing",
+    detail: "Stains are treated with anytime soon.",
   },
   {
     icon: WashingMachine,
     heading: "Washing",
-    detail: "Clothes are washed as per the load type",
+    detail: "Clothes are washed as per the fabric type.",
   },
   {
     icon: Fan,
     heading: "Drying",
-    detail: "Clothes are Air-dried in anti-bacterial stainless-steel dryers",
+    detail: "Air dried in hygenic dryers",
   },
   {
-    icon: Thermometer,
+    icon: WavesVertical,
     heading: "Ironing",
-    detail:
-      "High pressure vacuum steam iron is done for that perfect finishing",
+    detail: "Steam Ironing for perfect finishing.",
   },
 ];
 
@@ -201,20 +211,78 @@ export const ServiceExcellence = [
   },
 ];
 
+export const AboutUsTagLine = [
+  {
+    icon: TrophyIcon,
+    heading: "Quality Care",
+    subHeading: "For every fabric",
+  },
+  {
+    icon: Van,
+    heading: "Doortep Service",
+    subHeading: "Pickup and delivery",
+  },
+  {
+    icon: Leaf,
+    heading: "Eco-Friendly",
+    subHeading: "Cleaner Tomorrow",
+  },
+];
+
+export const ContactUsTagLine = [
+  {
+    icon: Headphones,
+    heading: "Quick Response",
+    subHeading: "We're here for you",
+  },
+  {
+    icon: ShieldCheckIcon,
+    heading: "Trusted Support",
+    subHeading: "Pickup and delivery",
+  },
+  {
+    icon: Leaf,
+    heading: "Multiple Channels",
+    subHeading: "Chat, call , email or visit ",
+  },
+];
+
+export const ServiceTagLine = [
+  {
+    icon: ShieldCheckIcon,
+    heading: "Quality Care ",
+    subHeading: "For every fabric",
+  },
+  {
+    icon: Van,
+    heading: "Free pickup and delivery",
+    subHeading: "At your convenience",
+  },
+  {
+    icon: Leaf,
+    heading: "Eco-Friendly",
+    subHeading: "Cleaner Tomorrow ",
+  },
+];
+
 export const ServiceCategories = [
   {
+    image: FoldedImage,
     heading: "Basic Services",
     services: ["Wash & Fold", "Wash & Iron", "Steam Ironing"],
   },
   {
+    image: PremiumLaundry,
     heading: "Premium Services",
     services: ["Dry Cleaning", "Premium Laundry", "Specialty Cleaning"],
   },
   {
+    image: Sofa,
     heading: "Home Services",
     services: ["Sofa Cleaning", "Carpet Cleaning", "Household Items"],
   },
   {
+    image: Leather,
     heading: "Specialty Services",
     services: ["Shoe Cleaning", "Leather Care", "Wedding Attire"],
   },
@@ -571,6 +639,12 @@ export const whyWeStand = [
     icon: Leaf,
     heading: "Eco Mindset",
     detail: "Lower-impact solvents and processes designed to reduce waste.",
+  },
+  {
+    icon: HeartIcon,
+    heading: "Customer First",
+    detail:
+      "Friendly support and a hassle-free experience for all your laundry needs.",
   },
 ];
 

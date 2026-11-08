@@ -1,9 +1,7 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./ViewOrder.module.css";
 import Orders from "../orders/Orders";
-import PrevOrder from "../../admin-component/prev-order/PrevOrder";
 import { getOrder } from "../../../redux/orders/OrderThunk.js";
 import StatusIndicator from "../status-indicator/StatusIndicator.jsx";
 import { ListOrdered, History, X } from "lucide-react";

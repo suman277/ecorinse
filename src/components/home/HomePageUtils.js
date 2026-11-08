@@ -1,46 +1,44 @@
 import { SearchCheck } from "lucide-react";
 import { StarCheck } from "lucide-react";
 import { ClockCheck } from "lucide-react";
-import { ShieldCheck } from "lucide-react";
 import { Users } from "lucide-react";
 import { Van } from "lucide-react";
 import { UserStar } from "lucide-react";
 import { Award } from "lucide-react";
-import { CalendarCheck2 } from "lucide-react";
-import { HandHelping } from "lucide-react";
-import { Bubbles } from "lucide-react";
 import { Pickaxe } from "lucide-react";
 import { Leaf } from "lucide-react";
 import { Shirt } from "lucide-react";
-import { Tag } from "lucide-react";
+import {
+  Tag,
+  Drone,
+  CircleStar,
+  TargetIcon,
+  ShieldCheckIcon,
+  Headphones,
+} from "lucide-react";
 
 export const infoGraphicDetails = [
   {
-    icon: SearchCheck,
-    heading: "8 Specialized Services",
-    detail: "Comprehensive cleaning solutions for every need",
+    icon: Drone,
+    heading: "Advanced Technology",
+    detail: "Modern equipment for superior cleaning",
   },
   {
-    icon: StarCheck,
-    heading: "Expert Care",
-    detail: "Professional techniques for optimal results",
+    icon: CircleStar,
+    heading: "Eco-Friendly Products",
+    detail: "Safe for your clothes and the environment",
   },
   {
-    icon: ClockCheck,
-    heading: "Quick Turnaround",
-    detail: "Fast service without compromising quality",
-  },
-  {
-    icon: ShieldCheck,
-    heading: "Safe & Secure",
-    detail: "Your items are protected throughout the process",
+    icon: TargetIcon,
+    heading: "Trained Experts",
+    detail: "A team that understands fabric care",
   },
 ];
 
 export const StatsDetails = [
   {
     icon: Users,
-    heading: "10,000+",
+    heading: "1000+",
     detail: "Happy Customers",
   },
   {
@@ -50,36 +48,36 @@ export const StatsDetails = [
   },
   {
     icon: UserStar,
-    heading: "4.8",
-    detail: "Customer Rating",
+    heading: "5 Star",
+    detail: "Customer Ratings",
   },
   {
     icon: Award,
-    heading: "10+",
+    heading: "3+",
     detail: "Service Centers",
   },
 ];
 
 export const ProcessDetails = [
   {
-    icon: CalendarCheck2,
-    heading: "Schedule",
-    detail: "Pick a time for pickup — we'll be at your door.",
+    icon: Leaf,
+    heading: "Eco-Friendly",
+    detail: "Safe detergents and sustainable practices for a cleaner tomorrow.",
   },
   {
-    icon: HandHelping,
-    heading: "Collect",
-    detail: "We collect your clothes from your doorstep.",
-  },
-  {
-    icon: Bubbles,
-    heading: "Clean",
-    detail: "Washed, dried, ironed — just like new!",
+    icon: ShieldCheckIcon,
+    heading: "Quality Care",
+    detail: "Professional cleaning standards for every type of fabric.",
   },
   {
     icon: Van,
-    heading: "Deliver",
-    detail: "Delivered back within 24 hours, wrinkle-free.",
+    heading: "Convenient Pickup",
+    detail: "Free doorstep pickup and delivery at your convenience",
+  },
+  {
+    icon: Headphones,
+    heading: "Reliable Supports",
+    detail: "Friendly customer support for all your laundry needs.",
   },
 ];
 
@@ -122,5 +120,43 @@ export const WhyChooseUsList = [
     heading: "Affordable Pricing",
     detail: "No hidden fees. Transparent rates for all services.",
     show: false,
+  },
+];
+
+export const reviews = [
+  {
+    id: 1,
+    review: "Excellent Services",
+    star: 5,
+  },
+  {
+    id: 2,
+    review:
+      "Good Service on time pickup and delivery also exactly what they have told 10kg wash and iron I have given washing quality good and neatly packed",
+    star: 5,
+  },
+  {
+    id: 3,
+    review:
+      "Good service on time pickup and delivery washing and dry cleaning done properly happy their service recommend other sure",
+    star: 5,
+  },
+  {
+    id: 4,
+    review:
+      "I am having with good experience in Eco Rinse Laundry, have given cloth for wash and ironing, they have done good job. With proper lining & packing.",
+    star: 5,
+  },
+  {
+    id: 5,
+    review:
+      "I went to the Eco Rinse Laundry, I gave the cloth for dry cleaning, they are doing good job and finishing. I will recommend the people go there try once.",
+    star: 5,
+  },
+  {
+    id: 6,
+    review:
+      "Great Service, quick delivery, and good quality cleaning. Highly Satisfied.",
+    star: 5,
   },
 ];

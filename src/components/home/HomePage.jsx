@@ -1,183 +1,396 @@
-import React from "react";
 import style from "./HomePage.module.css";
-import HomePageWM from "../../assets/images/homepage/HomePageWM.jpg";
-import EcoRinse from "../../assets/images/homepage/EcoRinse.jpeg";
-import InfoGraphic from "../../assets/images/homepage/Infographic2.png";
-import MottoRightContainerImage from "../../assets/images/homepage/MottoRightContainerImage.png";
-import { Star } from "lucide-react";
+import { motion } from "motion/react";
+import Folding from "../../assets/images/homepage/Folding.png";
+import GreenLeave from "../../assets/images/background/GreenLeave.png";
+import DarkBlueBackGround from "../../assets/images/background/DarkBlueBackGround.png";
+import Schedule from "../../assets/images/background/Schedule.png";
+import { lazy } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  LeafyGreenIcon,
+  MoveRight,
+  TagPlus,
+  Van,
+  StarCheck,
+} from "lucide-react";
 import {
   infoGraphicDetails,
   StatsDetails,
   ProcessDetails,
-  MottoDetails,
-  WhyChooseUsList,
 } from "./HomePageUtils";
-import ServiceCard from "../common-components/services/ServiceCard";
-import Feature from "../common-components/feature/Feature";
-import { chooseNeatClean, howItWorks } from "../../utils/UtilsData";
+const Review = lazy(() => import("../review/Review.jsx"));
+const Feature = lazy(() => import("../common-components/feature/Feature.jsx"));
+const ServiceCard = lazy(
+  () => import("../common-components/services/ServiceCard.jsx"),
+);
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <main className={style.mainContainer}>
       <section className={style.hero}>
-        <img src={HomePageWM} className={style.heroImage} alt="EcoRinse" />
-        <div className={style.heroContent}>
-          <p>Eco Rinse Laundry </p>
-          <h1>Fast • Reliable • Trusted Laundry</h1>
-          <p>We collect. We clean. We deliver.</p>
-        </div>
-      </section>
-      <section className={style.introductionSection}>
-        <div className={style.imageSection}>
-          <img className={style.imageProp} src={EcoRinse} />
-        </div>
-        <div className={style.infoSection}>
-          <p className={style.introHeader}>
-            Welcome to <span className={style.brand}>EcoRinse Laundry</span>
-          </p>
-          <p className={style.subIntro}>
-            India's Most Trusted Laundry & Dry Cleaning Service
-          </p>
-          <p className={style.introDetail}>
-            At EcoRinse, we've revolutionized the way India does laundry. With
-            over 10,000+ satisfied customers and 99.8% satisfaction rate, we
-            bring professional-grade cleaning right to your doorstep.
-          </p>
-        </div>
+        <motion.div
+          className={style.heroContent}
+          initial={{
+            opacity: 0,
+            y: 50,
+          }}
+          whileInView={{ y: 0, opacity: 1 }}
+        >
+          <motion.div
+            className={style.heroTag}
+            initial={{
+              opacity: 0,
+              x: 100,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              ease: "easeIn",
+              duration: 1,
+              delay: 0.2,
+            }}
+          >
+            <LeafyGreenIcon
+              fill="green"
+              size={"1rem"}
+              style={{ alignItems: "center" }}
+            />
+            <div>ECO CARE FOR EVERY WEAR</div>
+          </motion.div>
+          <div className={style.tagLine}>
+            <motion.div
+              className={style.topHeader}
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.1,
+              }}
+            >
+              <span>Laundry,</span>
+            </motion.div>
+            <motion.div
+              className={style.midHeader}
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.15,
+              }}
+            >
+              handled with care.
+            </motion.div>
+          </div>
+          <motion.div
+            className={style.baseHeader}
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              ease: "easeIn",
+              duration: 1,
+              delay: 0.15,
+            }}
+          >
+            Professional laundry and fabric care , made effortless with
+            convenient pickup and delivery{" "}
+          </motion.div>
+          <div className={style.quickAccessButtons}>
+            <motion.button
+              className={style.btnDiv}
+              initial={{
+                opacity: 0,
+                y: -50,
+              }}
+              whileHover={{
+                y: -5,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.25,
+              }}
+              onClick={() => navigate("/create-orders")}
+            >
+              Schedule A Pickup <MoveRight />
+            </motion.button>
+            <motion.button
+              className={style.exploreBtnDiv}
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              whileHover={{
+                y: -5,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.25,
+              }}
+              onClick={() => navigate("/our-services")}
+            >
+              Explore Services
+            </motion.button>
+          </div>
+          <div className={style.hospitality}>
+            <motion.div
+              className={style.iconDetails}
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.1,
+              }}
+            >
+              <TagPlus fill="#498B36" />
+              <div>Professional Care</div>
+            </motion.div>
+            <motion.div
+              className={style.iconDetails}
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.2,
+              }}
+            >
+              <Van fill="#498B36" />
+              <div>Free Pickup and Delivery</div>
+            </motion.div>
+            <motion.div
+              className={style.iconDetails}
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.3,
+              }}
+            >
+              <div className={style.iconWrapper}>
+                <StarCheck fill="#498B36" />
+              </div>
+              <div>Trusted by Customers</div>
+            </motion.div>
+          </div>
+        </motion.div>
       </section>
       <section className={style.serviceSection}>
-        <p className={style.headerText}>Complete Cleaning Solutions</p>
-        <div className={style.bar}></div>
-        <p className={style.paraTag}>
-          From everyday laundry to specialized cleaning services, we{" "}
-        </p>
-        <p className={style.paraTag}>
-          handle it all with professional expertise and care.
-        </p>
-        <div className={style.InfoGraphicContainer}>
-          <img className={style.imgBackground} src={InfoGraphic} />
-          <div className={style.detailsContainer}>
-            {infoGraphicDetails.map((info) => {
-              const Icon = info.icon;
-              return (
-                <div className={style.detailBox} key={info.heading}>
-                  <div className={style.detailIcon}>
-                    <Icon color="white" />
-                  </div>
-                  <div className={style.detailHeading}>{info.heading}</div>
-                  <div>{info.detail}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <ServiceCard />
       </section>
-      <section className={style.statsSection}>
-        <Feature
-          details={StatsDetails}
-          isIconInCircle={false}
-          logoColor={"#488b36"}
-          borderTop={false}
-          stroke={"3"}
-          minWidth={"15rem"}
-        />
-      </section>
-      <section className={style.processSection}>
-        <Feature
-          header={"How EcoRinse Works"}
-          details={ProcessDetails}
-          isIconInCircle={true}
-          borderTop={false}
-          size={30}
-          logoColor={"white"}
-        />
-      </section>
-      <section className={style.mottoSection}>
-        <div className={style.mottoContainer}>
-          <div className={style.leftContainer}>
-            <div className={style.textContainer}>
-              <div className={style.Icon}>
-                <Star color="#488b36" />
-              </div>
-              <p className={style.paraContainer}>
-                Our <span className={style.highLight}>Motto</span>
-              </p>
-              <p className={style.mottoText}>
-                At EcoRinse, we believe clean clothes aren't just about
-                hygiene—they're about confidence, comfort, and care. Our mission
-                is to make laundry effortless, reliable, and refreshingly
-                simple.
-              </p>
-            </div>
-            <div className={style.divContainer}>
-              {MottoDetails.map((motto) => {
-                const Icon = motto.icon;
+      <section className={style.quickGlimpse}>
+        <div className={style.glimpseContainer}>
+          <motion.div
+            className={style.imageContainer}
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              ease: "easeIn",
+              duration: 1,
+            }}
+          >
+            <img src={Folding} loading="lazy" alt="Folding Image" />
+          </motion.div>
+          <div className={style.detailContainer}>
+            <div className={style.detailTag}>ABOUT ECORINSE</div>
+            <motion.div
+              className={style.heading}
+              initial={{
+                opacity: 0,
+                x: 100,
+              }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+              }}
+            >
+              Better care for the clothes{" "}
+              <span className={style.specialText}>you live in.</span>
+            </motion.div>
+            <motion.div
+              className={style.glimpseSubText}
+              initial={{
+                opacity: 0,
+                x: 100,
+              }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1,
+                delay: 0.2,
+              }}
+            >
+              We Combine professional care, modern technology and convenient
+              pickup & delivery to keep your clothes fresh and long-lasting.
+            </motion.div>
+            <div className={style.infographicContainer}>
+              {infoGraphicDetails.map((info, index) => {
+                const Icon = info.icon;
                 return (
-                  <div className={style.mottoWrapper}>
-                    <div>
-                      <Icon />
+                  <motion.div
+                    className={style.infoDetails}
+                    initial={{
+                      opacity: 0,
+                      y: 50,
+                    }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{
+                      ease: "easeIn",
+                      duration: 1,
+                      delay: `0.${index}`,
+                    }}
+                  >
+                    <div className={style.infoIconDetails}>
+                      <Icon color="white" size={"1.5rem"} />
                     </div>
-                    <div>{motto.detail}</div>
-                  </div>
+                    <div className={style.details}>
+                      <div className={style.infoHeading}>{info.heading}</div>
+                      <div className={style.infoSubHeading}>{info.detail}</div>
+                    </div>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
-          <div className={style.rightContainer}>
-            <div className={style.mottoImageWrapper}>
-              <img
-                className={style.resizeImage}
-                src={MottoRightContainerImage}
-              />
-            </div>
+        </div>
+      </section>
+      <motion.section className={style.chooseEcorinse}>
+        <Feature
+          topHeading={"OUR ADVANTAGES"}
+          header="Why Choose EcoRinse?"
+          subHeader={
+            "More than laundry, we deliver care, quality, convenience."
+          }
+          details={ProcessDetails}
+          imgSrc={GreenLeave}
+          topHeadingColour={"#091644"}
+          overlayColor="rgba(255, 255, 255, 0.55)"
+          headingColor="#0F2E54"
+          logoColor="#168A70"
+          isIconInCircle={true}
+          size={"2rem"}
+          stroke={"0.15rem"}
+          borderTop={true}
+        />
+      </motion.section>
+      <motion.section className={style.howItWorksContiner}>
+        <Feature
+          header="Our Impact"
+          subHeader={"Trusted by many"}
+          subHeadingColour="white"
+          details={StatsDetails}
+          imgSrc={DarkBlueBackGround}
+          topHeadingColour={"#091644"}
+          overlayColor="rgba(255, 255, 255, 0.55)"
+          headingColor="White"
+          logoColor="#168A70"
+          size={"2rem"}
+          stroke={"0.15rem"}
+        />
+      </motion.section>
+      <section className={style.reviewSection}>
+        <Review />
+      </section>
+      <section className={style.schdulePickUp}>
+        <div className={style.pickupImg}>
+          <motion.img
+            src={Schedule}
+            loading="lazy"
+            decoding="async"
+            initial={{
+              opacity: 0,
+              x: 100,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              ease: "easeIn",
+              duration: 1,
+            }}
+          />
+        </div>
+        <div className={style.overlay}></div>
+        <div className={style.scheduleContent}>
+          <motion.div
+            className={style.content}
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              ease: "easeIn",
+              duration: 1.2,
+              delay: 0.2,
+            }}
+          >
+            <motion.div
+              className={style.contentTag}
+              initial={{
+                opacity: 0,
+                x: -100,
+              }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1.2,
+              }}
+            >
+              READY FOR FRESH CLOTH
+            </motion.div>
+            <motion.div
+              className={style.scheduleHeader}
+              initial={{
+                opacity: 0,
+                x: -100,
+              }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1.4,
+              }}
+            >
+              Schedule Your Pickup Today
+            </motion.div>
+            <motion.div
+              className={style.scheduleSubHeader}
+              initial={{
+                opacity: 0,
+                x: -100,
+              }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 1.2,
+              }}
+            >
+              Experience professional laundry care at your doorstep
+            </motion.div>
+          </motion.div>
+          <div className={style.pickupBtn}>
+            {" "}
+            <button
+              className={style.scheduleBtn}
+              onClick={() => navigate("/create-orders")}
+            >
+              Schedule A Pickup <MoveRight />
+            </button>
           </div>
         </div>
-      </section>
-      <section className={style.chooseUsSection}>
-        <div className={style.headerText}>Why Choose Us?</div>
-        <div className={style.bar}></div>
-        <div className={style.chooseContainer}>
-          {WhyChooseUsList.map((choose) => {
-            const Icon = choose.icon;
-            return (
-              <>
-                <div className={style.chooseWrapper}>
-                  <div className={style.icon}>
-                    <Icon color="#488b36" />
-                  </div>
-                  <div className={style.chooseHeading}>{choose.heading}</div>
-                  <div className={style.chooseDetail}>{choose.detail}</div>
-                </div>
-                {choose.show && <div className={style.chooseBar}></div>}
-              </>
-            );
-          })}
-        </div>
-      </section>
-      <section className={style.servicesSection}>
-        <ServiceCard heading={"Our Services"} />
-      </section>
-      <section className={style.whyChoosingUs}>
-        <Feature
-          header={"Why Choose EcoRinse?"}
-          details={chooseNeatClean}
-          isIconInCircle={false}
-          borderTop={true}
-          size={40}
-          logoColor={"#488b36"}
-        />
-      </section>
-      <section className={style.howItWorks}>
-        <Feature
-          header={"How It Works"}
-          details={howItWorks}
-          headingColor={"white"}
-          isIconInCircle={true}
-          borderTop={false}
-          topHeadingColour={"white"}
-          size={20}
-          logoColor={"#2864AE"}
-        />
       </section>
     </main>
   );

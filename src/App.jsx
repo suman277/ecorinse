@@ -1,23 +1,38 @@
-import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Layout from "./components/oultet/Layout";
-import HomePage from "./components/home/HomePage";
-import OurService from "./components/our-services/OurService";
-import ComingSoon from "./components/common-components/coming-soon/ComingSoon";
-import AboutUs from "./components/about-us/AboutUs";
-import ContactUs from "./components/contact-us/ContactUs";
-import TermsConditions from "./components/terms-and-conditions/TermsConditions";
-import PrivacyAndPolicy from "./components/privacy-policy/PrivacyAndPolicy";
-import Admin from "./components/admin-component/admin/Admin";
-import CreateOrder from "./components/admin-component/create-order/CreateOrder";
-import ViewOrder from "./components/common-components/view-order/ViewOrder";
-import AlertComponent from "./components/alert-component/AlertComponent";
-import Order from "./components/create-order/Order";
-import Template from "./components/template/template-builder/Template";
-import Login from "./components/login/Login";
 import { authService } from "./service/authService";
-import { useLocation } from "react-router-dom";
+
+import Loading from "./components/loader/Loading";
+const HomePage = lazy(() => import("./components/home/HomePage"));
+const Layout = lazy(() => import("./components/oultet/Layout"));
+const OurService = lazy(() => import("./components/our-services/OurService"));
+const ComingSoon = lazy(
+  () => import("./components/common-components/coming-soon/ComingSoon"),
+);
+const AboutUs = lazy(() => import("./components/about-us/AboutUs"));
+const ContactUs = lazy(() => import("./components/contact-us/ContactUs"));
+const TermsConditions = lazy(
+  () => import("./components/terms-and-conditions/TermsConditions"),
+);
+const PrivacyAndPolicy = lazy(
+  () => import("./components/privacy-policy/PrivacyAndPolicy"),
+);
+const Admin = lazy(() => import("./components/admin-component/admin/Admin"));
+const CreateOrder = lazy(
+  () => import("./components/admin-component/create-order/CreateOrder"),
+);
+const ViewOrder = lazy(
+  () => import("./components/common-components/view-order/ViewOrder"),
+);
+const AlertComponent = lazy(
+  () => import("./components/alert-component/AlertComponent"),
+);
+const Order = lazy(() => import("./components/create-order/Order"));
+const Template = lazy(
+  () => import("./components/template/template-builder/Template"),
+);
+const Login = lazy(() => import("./components/login/Login"));
 
 const getStoredTokenDetails = () => {
   try {
@@ -94,7 +109,9 @@ function App() {
           path="/admin"
           element={
             <ProtectedRoute>
-              <Admin />
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <Admin />
+              </Suspense>
             </ProtectedRoute>
           }
         />
@@ -102,7 +119,9 @@ function App() {
           path="/view-order"
           element={
             <ProtectedRoute>
-              <ViewOrder />
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <ViewOrder />
+              </Suspense>
             </ProtectedRoute>
           }
         />
@@ -110,22 +129,94 @@ function App() {
           path="/template"
           element={
             <ProtectedRoute>
-              <Template />
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <Template />
+              </Suspense>
             </ProtectedRoute>
           }
         />
         <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="our-services" element={<OurService />} />
-          <Route path="order" element={<ComingSoon />} />
-          <Route path="contact-us" element={<ContactUs />} />
-          <Route path="about-us" element={<AboutUs />} />
-          <Route path="terms-cond" element={<TermsConditions />} />
-          <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
-          <Route path="create-order" element={<CreateOrder />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="our-services"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <OurService />
+              </Suspense>
+            }
+          />
+          <Route
+            path="order"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <ComingSoon />
+              </Suspense>
+            }
+          />
+          <Route
+            path="contact-us"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <ContactUs />
+              </Suspense>
+            }
+          />
+          <Route
+            path="about-us"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <AboutUs />
+              </Suspense>
+            }
+          />
+          <Route
+            path="terms-cond"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <TermsConditions />
+              </Suspense>
+            }
+          />
+          <Route
+            path="privacy-policy"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <PrivacyAndPolicy />
+              </Suspense>
+            }
+          />
+          <Route
+            path="create-order"
+            element={
+              <Suspense fallback={<Loading makeSpace={true} />}>
+                <CreateOrder />
+              </Suspense>
+            }
+          />
         </Route>
-        <Route path="create-orders" element={<Order />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="create-orders"
+          element={
+            <Suspense fallback={<Loading makeSpace={true} />}>
+              <Order />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<Loading makeSpace={true} />}>
+              <Login />
+            </Suspense>
+          }
+        />
       </Routes>
     </>
   );

@@ -79,20 +79,19 @@
   font-size: larger;
 }
 
-@media(max-width : 678px){
-  .categoryDetails{
+@media (max-width: 678px) {
+  .categoryDetails {
     grid-template-columns: repeat(2, 1fr);
-      padding: 1rem;
+    padding: 1rem;
   }
   .categoryBtns {
     min-width: 3rem;
     padding: 0.5rem;
-}
-.itemType {
-  font-size: 0.8rem;
-}
-.itemCost {
-  font-size:medium;
-}
-
+  }
+  .itemType {
+    font-size: 0.8rem;
+  }
+  .itemCost {
+    font-size: medium;
+  }
 }

@@ -1,11 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import MainLogo from "../../assets/images/navbar/MainLogo.jpeg";
 import EcoLogo from "../../assets/images/navbar/EcoLogo.png";
-import Logo from "../../assets/images/navbar/Logo.png";
 import { NavbarDetails, labelDetails } from "./NavbarUtils";
 import { Menu } from "lucide-react";
 
@@ -22,10 +19,6 @@ const Navbar = ({ showCart, cartLength, setHandleCart }) => {
         <div className={style.firstSubContainer}>
           <div className={style.imageContainer} onClick={() => navigate("/")}>
             <img className={style.imagePlaceholder} src={EcoLogo} />
-            {/* <img className={style.iconPlaceholder} src={Logo} /> */}
-          </div>
-          <div className={style.menuOption} onClick={toogleMenu}>
-            <Menu />
           </div>
           <div className={style.navBarLists}>
             {NavbarDetails.map((nav, index) => {
@@ -41,6 +34,9 @@ const Navbar = ({ showCart, cartLength, setHandleCart }) => {
                 </NavLink>
               );
             })}
+          </div>
+          <div className={style.extraOption}>
+            {" "}
             {showCart ? (
               <div
                 className={style.bookNow}
@@ -53,6 +49,9 @@ const Navbar = ({ showCart, cartLength, setHandleCart }) => {
                 Schedule A Pickup
               </div>
             )}
+          </div>
+          <div className={style.menuOption} onClick={toogleMenu}>
+            <Menu />
           </div>
         </div>
         {toggle && (
