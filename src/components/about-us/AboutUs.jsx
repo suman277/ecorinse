@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AboutUs1 from "../../assets/images/about-us/AboutUs.jpeg";
 import CommunityImg from "../../assets/images/about-us/CommunityImg.png";
 import TeamGoal from "../../assets/images/about-us/TeamGoal.jpg";
-import AboutUs from "../../assets/images/about-us/AboutUs.png";
+import AboutUs2 from "../../assets/images/about-us/AboutUs.png";
 import AboutUsHero from "../../assets/images/about-us/AboutUsHero.png";
 import { ChevronRight } from "lucide-react";
 import { AboutUsTagLine, whyWeStand } from "../../utils/UtilsData";
@@ -446,7 +446,7 @@ const AboutUs = () => {
             subHeader={"Trusted by many"}
             subHeadingColour="white"
             details={StatsDetails}
-            imgSrc={Aboutus}
+            imgSrc={AboutUs2}
             topHeadingColour={"#091644"}
             overlayColor="rgba(255, 255, 255, 0.55)"
             headingColor="White"
